@@ -354,7 +354,6 @@ E:\Code2nightv2Git\Code2nightv2\code2night\bin\Debug\netcoreapp2.1\Code2Night.dl
 E:\Code2nightv2Git\Code2nightv2\code2night\bin\Debug\netcoreapp2.1\Code2Night.pdb
 E:\Code2nightv2Git\Code2nightv2\code2night\bin\Debug\netcoreapp2.1\Code2Night.Views.dll
 E:\Code2nightv2Git\Code2nightv2\code2night\bin\Debug\netcoreapp2.1\Code2Night.Views.pdb
-E:\Code2nightv2Git\Code2nightv2\code2night\obj\Debug\netcoreapp2.1\Code2Night.csprojAssemblyReference.cache
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Debug\netcoreapp2.1\Code2Night.AssemblyInfoInputs.cache
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Debug\netcoreapp2.1\Code2Night.AssemblyInfo.cs
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Debug\netcoreapp2.1\Code2Night.csproj.CoreCompileInputs.cache
