@@ -1,0 +1,119 @@
+<p><span data-story-id="story_1d9554d3cae2ccd050319f1b42f3dff8" data-room-id="room_2dc481ed0076989ceb9864a53e4c101b" data-timestamp="1623403221111" data-text="I Have tested Zoom meeting and webinar and it is working fine, You can follow the following steps
+
+1.) Unzip <http://zoom-c-sharp-wrapper-5.5.12511.0422.zip|zoom-c-sharp-wrapper-5.5.12511.0422.zip> (Start with a clean sln)
+
+2.) Open the file zoom_sdk_c_sharp_wrap.sln in VisualStudio
+
+3.) Change project configuration to Release, change platform to x86
+
+4.) Build the solution
+
+5.) Right-click on &quot;zoom_sdk_demo&quot; in the Solution Explorer after the build is finished
+
+6.) Click &quot;Set as StratUp Project&quot;
+
+7.) Click Start (in Visual Studio)
+
+8.) MainWindow.xaml is shown
+
+9.) Input token and Click Auth
+
+10.)You can go to <https://jwt.io></https:> to generate the JWT token , I have attached the image that is showing how to generate JWT token and which PAYLOAD:DATA you have to pass
+
+{
+&quot;appKey&quot;: &quot;enter your SDK Key&quot;,
+&quot;iat&quot;: 1623350278,
+&quot;exp&quot;: 1654888782,
+&quot;tokenExp&quot;: 1654888782
+}
+
+11.) when you sucessfully generated the JWT token then enter in the 9th step , I attached the image for better understanding
+
+12.) Then go to the <https://zoom.us></https:> and create the one new meeting it will give you meeting number and password and then click on start you joined as a host, I attached the image for better understanding
+
+13.) when you enter the JWT token in the 9th step then new Pop up will display , I attached the image for better understanding
+
+14.) Then enter the meeting number which you get from step 12th ,I attached the image for better understanding
+
+15.) After then new window will show then enter meeting password get from 12th step and then again one new window then click on join with video
+
+16.) After that you see the zoom SDk player . thats a final output" data-userid="1343130576007667712" data-orgid="1343130576016056321">I Have tested Zoom meeting and webinar and it is working fine, You can follow the following steps<br><br>1.) Unzip zoom-c-sharp-wrapper-5.5.12511.0422.zip (Start with a clean sln)<br><br>2.) Open the file zoom_sdk_c_sharp_wrap.sln in VisualStudio<br><br>3.) Change project configuration to Release, change platform to x86<br><br>4.) Build the solution<br><br>5.) Right-click on "zoom_sdk_demo" in the Solution Explorer after the build is finished<br><br>6.) Click "Set as StratUp Project"<br><br>7.) Click Start (in Visual Studio)<br><br>8.) MainWindow.xaml is shown<br><br>9.) Input token and Click Auth<br><br>10.)You can go to https://jwt.io/ to generate the JWT token , I have attached the image that is showing how to generate JWT token and which PAYLOAD:DATA you have to pass<br><br>{<br>"appKey": "enter your SDK Key",<br>"iat": 1623350278,<br>"exp": 1654888782,<br>"tokenExp": 1654888782<br>}<br><br>11.) when you sucessfully generated the JWT token then enter in the 9th step , I attached the image for better understanding<br><br>12.) Then go to the https://zoom.us/ and create the one new meeting it will give you meeting number and password and then click on start you joined as a host, I attached the image for better understanding<br><br>13.) when you enter the JWT token in the 9th step then new Pop up will display , I attached the image for better understanding<br><br>14.) Then enter the meeting number which you get from step 12th ,I attached the image for better understanding<br><br>15.) After then new window will show then enter meeting password get from 12th step and then again one new window then click on join with video<br><br>16.) After that you see the zoom SDk player . thats a final output</span></p><p><img src="/Uploads/Screenshot_2820210612015810.png"></p><p><br></p><p><img src="/Uploads/Screenshot_2920210612015811.png"><span data-story-id="story_1d9554d3cae2ccd050319f1b42f3dff8" data-room-id="room_2dc481ed0076989ceb9864a53e4c101b" data-timestamp="1623403221111" data-text="I Have tested Zoom meeting and webinar and it is working fine, You can follow the following steps
+
+1.) Unzip <http://zoom-c-sharp-wrapper-5.5.12511.0422.zip|zoom-c-sharp-wrapper-5.5.12511.0422.zip> (Start with a clean sln)
+
+2.) Open the file zoom_sdk_c_sharp_wrap.sln in VisualStudio
+
+3.) Change project configuration to Release, change platform to x86
+
+4.) Build the solution
+
+5.) Right-click on &quot;zoom_sdk_demo&quot; in the Solution Explorer after the build is finished
+
+6.) Click &quot;Set as StratUp Project&quot;
+
+7.) Click Start (in Visual Studio)
+
+8.) MainWindow.xaml is shown
+
+9.) Input token and Click Auth
+
+10.)You can go to <https://jwt.io></https:> to generate the JWT token , I have attached the image that is showing how to generate JWT token and which PAYLOAD:DATA you have to pass
+
+{
+&quot;appKey&quot;: &quot;enter your SDK Key&quot;,
+&quot;iat&quot;: 1623350278,
+&quot;exp&quot;: 1654888782,
+&quot;tokenExp&quot;: 1654888782
+}
+
+11.) when you sucessfully generated the JWT token then enter in the 9th step , I attached the image for better understanding
+
+12.) Then go to the <https://zoom.us></https:> and create the one new meeting it will give you meeting number and password and then click on start you joined as a host, I attached the image for better understanding
+
+13.) when you enter the JWT token in the 9th step then new Pop up will display , I attached the image for better understanding
+
+14.) Then enter the meeting number which you get from step 12th ,I attached the image for better understanding
+
+15.) After then new window will show then enter meeting password get from 12th step and then again one new window then click on join with video
+
+16.) After that you see the zoom SDk player . thats a final output" data-userid="1343130576007667712" data-orgid="1343130576016056321"><br></span></p><p><span data-story-id="story_1d9554d3cae2ccd050319f1b42f3dff8" data-room-id="room_2dc481ed0076989ceb9864a53e4c101b" data-timestamp="1623403221111" data-text="I Have tested Zoom meeting and webinar and it is working fine, You can follow the following steps
+
+1.) Unzip <http://zoom-c-sharp-wrapper-5.5.12511.0422.zip|zoom-c-sharp-wrapper-5.5.12511.0422.zip> (Start with a clean sln)
+
+2.) Open the file zoom_sdk_c_sharp_wrap.sln in VisualStudio
+
+3.) Change project configuration to Release, change platform to x86
+
+4.) Build the solution
+
+5.) Right-click on &quot;zoom_sdk_demo&quot; in the Solution Explorer after the build is finished
+
+6.) Click &quot;Set as StratUp Project&quot;
+
+7.) Click Start (in Visual Studio)
+
+8.) MainWindow.xaml is shown
+
+9.) Input token and Click Auth
+
+10.)You can go to <https://jwt.io></https:> to generate the JWT token , I have attached the image that is showing how to generate JWT token and which PAYLOAD:DATA you have to pass
+
+{
+&quot;appKey&quot;: &quot;enter your SDK Key&quot;,
+&quot;iat&quot;: 1623350278,
+&quot;exp&quot;: 1654888782,
+&quot;tokenExp&quot;: 1654888782
+}
+
+11.) when you sucessfully generated the JWT token then enter in the 9th step , I attached the image for better understanding
+
+12.) Then go to the <https://zoom.us></https:> and create the one new meeting it will give you meeting number and password and then click on start you joined as a host, I attached the image for better understanding
+
+13.) when you enter the JWT token in the 9th step then new Pop up will display , I attached the image for better understanding
+
+14.) Then enter the meeting number which you get from step 12th ,I attached the image for better understanding
+
+15.) After then new window will show then enter meeting password get from 12th step and then again one new window then click on join with video
+
+16.) After that you see the zoom SDk player . thats a final output" data-userid="1343130576007667712" data-orgid="1343130576016056321"><br></span></p><p><img src="/Uploads/Screenshot_2220210612020542.png"></p><p><img src="/Uploads/Screenshot_2320210612020557.png"></p><p><br></p><p><br></p><p><img src="/Uploads/Screenshot_2420210612020707.png"></p><p><br></p><p><br></p><p><img src="/Uploads/Screenshot_2520210612020736.png"></p><p><br></p><p><img src="/Uploads/Screenshot_2620210612020745.png"></p><p><img src="/Uploads/Screenshot_2720210612020751.png"></p><p><img src="/Uploads/upwork120210612020758.png">=</p>
+

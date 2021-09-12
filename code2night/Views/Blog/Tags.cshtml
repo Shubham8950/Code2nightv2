@@ -1,0 +1,111 @@
+﻿@model Code2Night.DAL.Common.MyBlogs
+@{
+    ViewBag.Title = (!string.IsNullOrEmpty(Model.Tag) ? Model.Tag : Model.Author)+ " Blogs | Code2Night.com";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MetaDescription = "Welcome To Code2night, check out latest programming blogs with detailed description to help you out";
+    ViewBag.MetaKeywords = "Code2Night,Code,Programming,Tutorials," + (!string.IsNullOrEmpty(Model.Tag)?Model.Tag:Model.Author);
+    ViewBag.Canonical = "https://www.code2night.com/Blog/"+ (!string.IsNullOrEmpty(Model.Tag) ? "Tags" : "Author") + "/"+ (!string.IsNullOrEmpty(Model.Tag) ? Model.Tag : Model.Author);
+
+    ViewBag.OpenGraphUrl = "https://www.code2night.com/Blog/" + (!string.IsNullOrEmpty(Model.Tag) ? "Tags" : "Author") + "/" + (!string.IsNullOrEmpty(Model.Tag) ? Model.Tag : Model.Author);
+    ViewBag.OpenGraphDescription = "Welcome To Code2night, check out latest programming blogs with detailed description to help you out";
+    ViewBag.OpenGraphTitle = (!string.IsNullOrEmpty(Model.Tag) ? Model.Tag : Model.Author) + " Blogs | Code2Night.com";
+}
+<link href="https://cdn.bootcss.com/simplePagination.js/1.6/simplePagination.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+<div class="page-intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home pr-10"></i><a href="@Url.Action("Index","Users")">Home</a></li>
+                    <li >Blogs    </li> <li class="active">@(!string.IsNullOrEmpty(Model.Tag)?"Tags":"Authors")
+                   </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="main col-md-12">
+
+                <!-- page-title start -->
+                <!-- ================ -->
+
+                @if (!string.IsNullOrEmpty(Model.Tag))
+                {
+                <h1 class="page-title">Blog results for Tags - <span style="background-color:#e84c3d;padding:4px;color: white;font-size: 18px;">#@Model.Tag.Replace("-"," ") </span> </h1>
+                }
+                else
+                {
+                <h1 class="page-title">Blog results for Author - <span style="background-color:#e84c3d;padding:4px;color: white;font-size: 18px;">#@Model.Author </span> </h1>
+                    }
+                <div class="separator-2"></div>
+
+                <!-- page-title end -->
+                <!-- masonry grid start -->
+
+                <div>
+                    <div id="lvCandidatestbl" class="masonry-grid row">
+                        @foreach (var blog in Model.BlogsList)
+                    {
+                        <div class="masonry-grid-item col-sm-6 col-md-4" id="mydiv">
+                            <!-- blogpost start -->
+                            <article class="clearfix blogpost">
+                                @if (blog.VideoEmbed != null)
+                                    {
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    @Html.Raw(blog.VideoEmbed)
+                                </div>
+                                    }
+                                <div class="blogpost-body">
+                                    <div class="post-info">
+                                        <span class="day">@blog.Date.ToString("dd")</span>
+                                        <span class="month">@blog.Date.ToString("MMM yyyy")</span>
+                                    </div>
+                                    <div class="blogpost-content">
+                                        <header>
+                                            <h2 class="title"><a href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(blog.BlogUrl)">@blog.Title</a></h2>
+                                            <div class="submitted"><i class="fa fa-user pr-5"></i> by <a href="~/Blog/Author/@blog.AuthorId-@blog.AuthorName">@blog.AuthorName</a></div>
+                                        </header>
+                                        <p>@Html.Raw(blog.BlogIntroduction)</p>
+                                    </div>
+                                </div>
+                                <footer class="clearfix">
+                                    <ul class="links pull-left">
+
+                                        <li>
+                                            <i class="fa fa-tags pr-5"></i>
+                                            @if (blog.Tags != null)
+                                                {
+                                                    foreach (var str in blog.Tags.Split(',').ToList())
+                                                    {
+                                                        if (!string.IsNullOrWhiteSpace(str))
+                                                        {
+                                            <a href="~/blog/tags/@System.Web.HttpUtility.UrlEncode(str)">@str.Replace("-", " ") @(blog.Tags.Split(',').ToList().IndexOf(str).Equals(blog.Tags.Split(',').ToList().Count - 1) ? "" : ",")</a>
+                                                        }
+                                                    }
+                                                }
+                                        </li>
+                                    </ul>
+                                    <a class="pull-right link" href="~/Blog/MyBlog?id=@blog.BlogUrl"><span>Read more</span></a>
+                                </footer>
+                            </article>
+                            <!-- blogpost end -->
+                        </div>
+                    }
+
+
+                    </div>
+                    <!-- masonry grid end -->
+                </div>
+                <div style="margin:auto auto" id="pagination"></div>
+            </div>
+            <!-- main end -->
+            
+
+        </div>
+    </div>
+</section>
+

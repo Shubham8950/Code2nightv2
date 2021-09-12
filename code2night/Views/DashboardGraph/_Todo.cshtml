@@ -1,0 +1,26 @@
+﻿@model Code2Night.DAL.Common.HomeViewModel
+@foreach (var todolists in Model.GettodoItems)
+{
+    <li>
+        <!-- drag handle -->
+        <span class="handle">
+            <i class="fas fa-ellipsis-v"></i>
+            <i class="fas fa-ellipsis-v"></i>
+        </span>
+        <!-- checkbox -->
+        <div class="icheck-primary d-inline ml-2">
+            <input class="@Model.GettodoItems.IndexOf(todolists)" type="checkbox" @(todolists.IsCompleted ? "checked" : "") @(todolists.IsCompleted ? "checked" : "") value="@todolists.IsCompleted" name="todo@(Model.GettodoItems.IndexOf(todolists))" id="todoCheck_@Model.GettodoItems.IndexOf(todolists)">
+            <label for="todoCheck_@Model.GettodoItems.IndexOf(todolists)"></label>
+        </div>
+        <!-- todo text -->
+        @*<span class="text" id="@todolists.Id">@todolists.Id</span>*@
+        <span class="text">@todolists.TaskName</span>
+        <!-- Emphasis label -->
+        <small class="@todolists.Color"><i class="far fa-clock"></i> @todolists.ToDoTime</small>
+        <!-- General tools such as edit or delete-->
+        <div class="tools">
+            <i class="fas fa-save" onclick="SaveUpdateItem('todoCheck_@Model.GettodoItems.IndexOf(todolists)', '@todolists.Id' )"></i>
+        </div>
+    </li>
+
+}

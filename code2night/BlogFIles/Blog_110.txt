@@ -1,0 +1,33 @@
+<p><br></p><h3>Slick Slider With single slide</h3><p>Slick slider with single slides looks like&nbsp;<img src="/Uploads/slider-120210509111918.PNG"></p><p>So for this slider we need to add few cdn's before using.Go to your view and add these Slick Slider cdn.</p><pre>  &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"&gt;&lt;/script&gt;
+    &lt;link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" rel="stylesheet" /&gt;
+    &lt;link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" rel="stylesheet" /&gt;</pre><p>So, use&nbsp; these after jquery script so you want get any error. Slick-theme.css is used for arrows around slider. After adding the script and css we have to add images which we want to show inside slick slider.</p><pre>&lt;div class="row" style="text-align:center"&gt;
+    &lt;h1&gt;Single Item&lt;/h1&gt;
+    &lt;div class="single-item" style="width:500px;margin:auto auto"&gt;
+        &lt;div&gt;
+            &lt;img style="width:500px;height:500px" src="https://www.androidpolice.com/wp-content/uploads/2020/12/15/Wallpaper-of-the-Week-2020-4-scaled.jpg" /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;img style="width:500px;height:500px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfhrqVBL-0hEtWOj5N9Da6Nh23igvGt_1kKA&amp;usqp=CAU" /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;img style="width:500px;height:500px" src="https://www.androidpolice.com/wp-content/uploads/2020/12/15/Wallpaper-of-the-Week-2020-4-scaled.jpg" /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;img style="width:500px;height:500px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfhrqVBL-0hEtWOj5N9Da6Nh23igvGt_1kKA&amp;usqp=CAU" /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;img style="width:500px;height:500px" src="https://www.androidpolice.com/wp-content/uploads/2020/12/15/Wallpaper-of-the-Week-2020-4-scaled.jpg" /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;img style="width:500px;height:500px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfhrqVBL-0hEtWOj5N9Da6Nh23igvGt_1kKA&amp;usqp=CAU" /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre><p>So, you can use same html inside your code and after that you need to add slick slider initialisation.</p><pre>&lt;script&gt;
+    $(document).ready(function () {
+        $('.single-item').slick();
+	})
+&lt;/script&gt;<br></pre><p><br></p><p>So, now just run the project and you can see your single slider will be working like we have showed in the first image. However if you see you arrows are not visible. Then you can add this css</p><pre>&lt;style&gt;
+        .slick-prev:before, .slick-next:before {
+            color: red;
+        }
+    &lt;/style&gt;</pre><p>So, this will make your arrows visible which you can use to toggle the slick slider slides. There are many more attributes you can use in slick slider for modifying the slider display. We will see them in our next blog. You can have a look at&nbsp;<a href="https://www.code2night.com/Blog/MyBlog/Slick-Slider" target="_blank">Slick-Slider</a>&nbsp;for more options.</p>

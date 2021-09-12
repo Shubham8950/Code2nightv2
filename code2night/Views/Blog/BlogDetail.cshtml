@@ -1,0 +1,333 @@
+﻿@model Code2Night.DAL.Common.MyBlogs
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<string> List = new List<string>();
+    foreach (var item in Model.BlogsList.Where(x => x.Tags != null).Select(x => x.Tags.Split(',')).ToList())
+    {
+        foreach (var tag in item)
+        {
+            if (!string.IsNullOrWhiteSpace(tag))
+            {
+                List.Add(tag.Trim());
+            }
+        }
+    }
+    ViewBag.Title = Model.MyBlog.Title + " | Code2night.com";
+    ViewBag.MetaDescription = Model.MyBlog.BlogIntroduction;
+    ViewBag.MetaKeywords = "Code2Night,Code,Programming,Tutorials," + string.Join(",", List);
+    ViewBag.Canonical = "https://www.code2night.com/Blog/MyBlog?id=" + System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl);
+    ViewBag.OpenGraphUrl = "https://www.code2night.com/Blog/MyBlog?id=" + System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl);
+    ViewBag.OpenGraphDescription = Model.MyBlog.BlogIntroduction;
+    ViewBag.OpenGraphTitle = Model.MyBlog.Title;
+}
+<script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
+@section Styles
+    {
+
+    @*  <script data-ad-client="ca-pub-2622840091485569" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>*@
+    <script id="dsq-count-scr" src="//codetonight.disqus.com/count.js"></script>
+    <link href="~/prism.min.css" rel="stylesheet" />
+
+    <style>
+
+        @@media (max-width: 767px) {
+            .blogpost .blogpost-content, .blogpost .blogpost-body {
+                margin-left: 0px !important;
+            }
+
+            .day {
+                font-size: 17px !important;
+            }
+
+            .post-info {
+                width: 50px !important;
+                height: 60px !important;
+            }
+            .code-panel pre.language-csharp, .code-panel pre.language-csharp span, .code-panel pre.language-csharp code{
+                font-size: 13px !important;
+            }
+        }
+
+        .blogpost-content div, p {
+            color: #403c3c !important;
+        }
+
+        .articleBody h3, .blogpost-content h3 {
+            font-size: 18px !important;
+        }
+
+        .blogpost .blogpost-content, .blogpost .blogpost-body {
+            margin-left: 0px !important;
+        }
+
+        .blogpost-body div, .blogpost-content span {
+            font-family: Verdana,sans-serif,Geneva !important;
+            color: black;
+            font-size: 17px;
+            text-align: justify;
+            margin: 1.5rem 0;
+            letter-spacing: .014em;
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+    "@@context" : "http://schema.org",
+    "@@type" : "Article",
+    "name" : "@Model.MyBlog.Title",
+    "headline" : "@Model.MyBlog.Title",
+    "url" : "https://www.code2night.com/Blog/MyBlog/@System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl)",
+    "author" : {
+    "@@type" : "Person",
+    "name" : "@Model.MyBlog.AuthorName"
+    },
+    "datePublished" : "@Model.MyBlog.Date.ToString("yyyy-MM-dd")",
+    "articleSection" : "@Model.MyBlog.BlogIntroduction",
+    "articleBody" : "@Model.MyBlog.BlogIntroduction",
+    "publisher" : {
+    "@@type" : "Organization",
+    "name" : "Code2night"
+    }
+    }
+    </script>
+
+    <style>
+        .articleactive {
+            background-color: #efefef !important;
+        }
+
+        .code-panel {
+            margin: 10px 0px;
+            background-color: #fff;
+            border: 1px solid #2590e3;
+            border-radius: 0;
+            padding: 10px 0px !important;
+        }
+
+        pre {
+            background-color: white !important;
+            border: 0px;
+            padding: 10px !important;
+        }
+
+        .footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6 {
+            color: #999 !important;
+        }
+
+        .articlefont {
+            font-size: 16px !important;
+            line-height: 31px;
+            /* text-align: justify; */
+            font-family: Verdana,sans-serif,Geneva !important;
+            color: #000 !important;
+            background: transparent;
+        }
+
+        h1, h2, h3 {
+            font-family: "Segoe UI",Verdana,sans-serif !important;
+            font-weight: 400 !important;
+            line-height: 1.2 !important;
+            color: #181717 !important;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin: 2rem 0 1.5rem 0;
+        }
+    </style>
+
+    <style>
+        .CodeMirror-linenumbers, .CodeMirror-linenumber {
+            background-color: #282a36 !important;
+            z-index: 99999;
+            color: white !important;
+            /* padding: 8px;*/
+        }
+
+        .CodeMirror {
+            border: 1px solid #eee;
+            height: auto !important;
+        }
+    </style>
+}
+<div class="page-intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home pr-10"></i><a href="@Url.Action("Index","Users")">Home</a></li>
+                    <li class="active">Blogpost</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page-intro end -->
+<!-- main-container start -->
+<!-- ================ -->
+<section class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="main col-md-8" style="overflow-x:hidden;padding:3%;background-color:#fafafa" itemscope itemtype="http://schema.org/Blog">
+
+
+                <article class="clearfix blogpost full">
+
+                    <div class="blogpost-body">
+                        @*<div class="side">
+                                <div class="post-info" itemprop="datePublished">
+                                    <span class="day">@Model.MyBlog.Date.ToString("dd")</span>
+                                    <span class="month">@Model.MyBlog.Date.ToString("MMM")<br />@Model.MyBlog.Date.ToString("yyyy")</span>
+                                </div>
+                                <div id="affix">
+                                    <span class="share">Share This</span><div id="share">
+                                        <div id="share" class="sharrre">
+                                            <ul class="social-links clearfix">
+                                                <li class="facebook"><a itemprop="url" href="http://www.facebook.com/sharer.php?u=https://code2night.com/Blog/MyBlog/@(Model.MyBlog.BlogUrl)" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li class="twitter"><a itemprop="url" href="http://twitter.com/share?url=https://code2night.com/Blog/MyBlog/@(Model.MyBlog.BlogUrl)&text=@(Model.MyBlog.Title)&via=code2night" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li class="twitter"><a itemprop="url" href="http://reddit.com/submit?url=https://code2night.com/Blog/MyBlog/@(Model.MyBlog.BlogUrl)&title=@(Model.MyBlog.Title)" target="_blank"><i class="fa fa-reddit-alien"></i></a></li>
+                                                <li class="twitter"><a itemprop="url" href="http://www.tumblr.com/share/link?url=https://code2night.com/Blog/MyBlog/@(Model.MyBlog.BlogUrl)" target="_blank"><i class="fa fa-tumblr"></i></a></li>
+                                                <li class="twitter"><a itemprop="url" href="http://www.linkedin.com/shareArticle?mini=true&url=https://code2night.com/Blog/MyBlog/@(Model.MyBlog.BlogUrl)&title=Code2Night" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="blogpost-content" style="word-break:break-word">
+                            <div class="post-info" itemprop="datePublished" style="font-size:13px;color:white !important;  padding: 8px 8px; margin: 0 20px 5px 0 !important;">
+                                <span class="day" style=" color: white; text-align: center; margin: 0; ">@Model.MyBlog.Date.ToString("dd")</span>
+                                <span class="month" style=" padding: 0px !important; margin: 0px; text-align: center; color: white; ">@Model.MyBlog.Date.ToString("MMM")<br />@Model.MyBlog.Date.ToString("yyyy")</span>
+                            </div>
+                            <header>
+                                <h2 itemprop="headline" class="title">
+                                    <a href="~/Blog/MyBlog?id=@(System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl))">
+                                        <h1 class="page-title" style="
+        font-size: 25px;
+        text-align: left;
+        font-weight: 600 !important;
+    " itemprop="headline">
+                                            @Model.MyBlog.Title
+</h1>
+</a>
+</h2>
+<div class="submitted">
+    <div class="submitted">
+        <i class="fa fa-user pr-5"></i> by <a itemprop="author" href="/Blog/Author/@Model.MyBlog.AuthorId-@Model.MyBlog.AuthorName">@Model.MyBlog.AuthorName</a>
+        <a style="color: black;margin-left: 16px;"><i class="fa fa-eye"></i><p itemprop="interactionCount" style=" display: inline-block; margin-left: 6px;">@Model.MyBlog.TotalView</p></a>
+        @if (!string.IsNullOrEmpty(Model.MyBlog.Document))
+        {
+            <i class="fa fa-download pr-5" style="margin-left:10px"></i> <a download="" href="~/Uploads/BlogDocs/@Model.MyBlog.Document"> Download Attachments</a>
+        }
+    </div>
+</div>
+</header>
+<div class="blogpost-content" style="word-break:break-word">
+
+    @if (Model.MyBlog.VideoEmbed != null)
+    {
+        <div class="embed-responsive embed-responsive-16by9">
+            @Html.Raw(Model.MyBlog.VideoEmbed)
+        </div>
+    }
+    <div>
+        <p class="articleBody" itemprop="articleBody">
+            @Html.Raw(Model.MyBlog.BlogBody)
+        </p>
+    </div>
+</div>
+</div>
+</div>
+<footer class="clearfix" style="margin-bottom:10px">
+    <ul class="links pull-left">
+        <li><i class="fa fa-comment-o pr-5"></i><a href="~/Blog/MyBlog/@Model.MyBlog.BlogUrl#disqus_thread"></a> |</li>
+        <li itemprop="keywords">
+            <i class="fa fa-tags pr-5"></i>
+            @if (Model.MyBlog.Tags != null)
+            {
+                foreach (var str in Model.MyBlog.Tags.Split(',').ToList())
+                {
+                    if (!string.IsNullOrWhiteSpace(str))
+                    {
+                        <a itemprop="url" href="~/Blog/tags/@System.Web.HttpUtility.UrlEncode(str)">@str.Replace("-", " ") @(Model.MyBlog.Tags.Split(',').ToList().IndexOf(str).Equals(Model.MyBlog.Tags.Split(',').ToList().Count - 1) ? "" : ",")</a>
+                    }
+                }
+            }
+        </li>
+    </ul>
+</footer>
+
+</article>
+
+<div id="mycmnt">
+    <h2 class="title">Comments</h2><div id="disqus_thread"></div>
+    <script>
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://codetonight.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript> <a href="https://disqus.com/?ref_noscript"></a></noscript>
+</div>
+</div>
+<!-- main end -->
+<!-- sidebar start -->
+<aside class="col-md-3 col-md-offset-1">
+    <div class="sidebar">
+        <div class="block clearfix">
+            <h3 class="title">Tags</h3>
+            <div class="separator"></div>
+            <div class="tags-cloud">
+                @foreach (var str in List.Distinct().ToList())
+                {
+                    if (!string.IsNullOrWhiteSpace(str))
+                    {
+                        <div class="tag" itemprop="keywords">
+                            <a href="~/Blog/tags/@System.Web.HttpUtility.UrlEncode(str)">@str.Replace("-", " ")</a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</aside>
+</div>
+</div>
+@*
+    <div class="col-md-12" style="overflow:hidden">
+        <div>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- DETAIL -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2622840091485569"
+                 data-ad-slot="3445995263"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+*@
+<script id="dsq-count-scr" src="//codetonight.disqus.com/count.js" async></script>
+@section Scripts
+    {
+    <script src="~/prism (1).js"></script>
+}
+</section>
+<script>
+
+    $(document).ready(function () {
+        $('pre').each(function (index, elem) {
+            $(elem).wrap("<div class='code-panel'></div>");
+            if ($(elem).find('.language-csharp').length == 0) {
+                $(elem).wrapInner("<code class='line-numbers language-csharp'></code>");
+            }
+        });
+        $('#Articlespartialid').find('p,div,li,span').each(function (index, elem) {
+            $(elem).addClass("articlefont")
+        });
+    });
+</script>

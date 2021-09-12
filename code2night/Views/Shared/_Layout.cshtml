@@ -1,0 +1,416 @@
+﻿@using System.Web.Mvc
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
+
+    <script data-ad-client="ca-pub-2622840091485569" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <link async href="~/prism.css" rel="stylesheet" />
+
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114851264-8"></script>
+    <link rel="alternate" href="https://www.code2night.com" hreflang="en-us" />
+    <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'UA-114851264-8');
+        </script>
+    <title>@ViewBag.Title</title>
+
+    @if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.MetaDescription)))
+    {
+        <meta name="description" content="@ViewBag.MetaDescription" />
+    }
+    else
+    {
+        <meta name="description" content="Welcome To Code2night, check out latest programming blogs with detailed description to help you out" />
+    }
+    @if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.MetaKeywords)))
+    {
+        <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    }
+    else
+    {
+        <meta name="keywords" content="Code2Night,Blogs,Stripe,Slick,MVC,Exception Handling,Code,Programming,Tutotials,Slick Slider,IIS,Internet Information Services" />
+    }
+    @if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.Canonical)))
+    {
+        <link rel="canonical" hreflang="x-default" href="@ViewBag.Canonical" />
+    }
+    else
+    {
+        <link rel="canonical" hreflang="x-default" href="https://www.code2night.com/" />
+    }
+    @if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.OpenGraphTitle)))
+    {
+        <meta property="og:title" content="@ViewBag.OpenGraphTitle">
+    }
+    else
+    {
+        <meta property="og:title" content="Code2night">
+    }
+    <meta property="og:site_name" content="Code2night">
+    @if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.OpenGraphUrl)))
+    {
+        <meta property="og:url" content="@ViewBag.OpenGraphUrl">
+    }
+    else
+    {
+        <meta property="og:url" content="https://www.code2night.com/">
+    }
+    @if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.OpenGraphDescription)))
+    {
+        <meta property="og:description" content="@ViewBag.OpenGraphDescription">
+    }
+    else
+    {
+        <meta property="og:description" content="Welcome To Code2night, A common place for sharing your programming knowledge,Blogs and Videos">
+    }
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://www.code2night.com/Content/images/logo_2.png">
+    <meta charset="utf-8" />
+
+    <link rel="shortcut icon" href="/Content/images/favicon.ico">
+    <link href="~/css/layouthome.min.css" async asp-append-version="true" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
+
+    @RenderSection("Styles", false)
+    <style>
+        footer:not(.light) .footer-content .tag a, .dark-bg .tag a {
+            background-color: transparent;
+            border-color: #555;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            color: #999 !important;
+        }
+
+        .jq-toast-heading {
+            font-size: 18px;
+        }
+
+        .jq-toast-single {
+            font-size: 14px;
+        }
+
+        pre[class*="language-"] {
+            padding: 0px 1em !important;
+            /* margin: .5em 0; */
+            overflow: auto;
+        }
+
+        .blogpost-body p, .blogpost-content span {
+            font-family: Verdana,sans-serif,Geneva !important;
+            color: black;
+            font-size: 17px;
+            text-align: justify;
+            margin: 1.5rem 0;
+            letter-spacing: .014em;
+        }
+
+        pre span {
+            font-family: Verdana,sans-serif,Geneva !important;
+            font-size: 14px !important;
+            text-align: justify;
+            margin: 1.5rem 0;
+            letter-spacing: .014em;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Segoe UI",Verdana,sans-serif !important;
+            font-weight: 400;
+        }
+
+            h3 span {
+                font-size: 17px;
+                margin: 2rem 0 1.5rem 0 !important;
+                font-family: Verdana,sans-serif,Geneva !important;
+                color: black;
+            }
+    </style>
+</head>
+<body>
+    <amp-auto-ads type="adsense"
+                  data-ad-client="ca-pub-2622840091485569">
+    </amp-auto-ads>
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-2  col-sm-6" style="padding-top: 8px;">
+                    @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin == true)
+                    {
+                        <a href="/DashboardGraph/Index" style="font-size:16px;color:black"><i class="fa fa-sign-out"></i> Go to Admin Section</a>
+                    }
+                </div>
+
+                <div class="col-xs-10 col-sm-6">
+                    <div id="header-top-second" class="clearfix" style="padding-top:5px">
+                        <div class="header-top-dropdown" style="margin:5px">
+                            <div class="btn-group dropdown">
+                                <div class="g-ytsubscribe" data-channelid="UCqQGuoVKuPacXpkoAFuZvew" data-layout="default" data-count="default"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loadersmallbg" style="display: none"></div>
+    <div class="bg-gr" id="DivLoader_SMS" clientidmode="Static" style="display: none">
+        <div class="loadersmall"></div>
+    </div>
+    <header class="header fixed header-small clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="header-left clearfix">
+                        <div class="logo">
+                            <a href='@Url.Action("index","Blog")'><img id="logo" src="/Content/images/logo_2.png" title="Code2night" alt="Code2night"></a>
+                        </div>
+                        <div class="site-slogan">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="header-right clearfix">
+                        <div class="main-navigation animated">
+                            <nav class="navbar navbar-default" role="navigation">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li class="Home">
+                                                <a class="links" href="/Users/Index">Home</a>
+                                            </li>
+                                            <li class="Blogs">
+                                                <a class="links" href="/Blog/Index">Blogs </a>
+                                            </li>
+                                            <li class="Tutorial">
+                                                <a class="links" href="@Url.Action("index","Tutorials")">Tutorial</a>
+                                            </li>
+                                            <li>
+                                                @if (Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext) == null && string.IsNullOrEmpty(Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext)) || Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext) == "0")
+                                                {
+                                                    <a class="links" href="@Url.Action("Login","Users")"> Post Blog </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="links" href="/Blog/AddBlog"> Post Blog </a>
+                                                }
+                                            </li>
+
+                                            <li class="dropdown" style="">
+                                                <a class="dropdown-toggle" data-toggle="dropdown">Tools</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="@Url.Action("Index", "JsonBeautifier")">Json Beautifier</a></li>
+                                                    <li><a href="@Url.Action("Index", "HtmlBeautifier")">Html Beautifier</a></li>
+                                                    @*<li><a href="@Url.Action("Index", "Docreader")">Document Viewer</a></li>*@
+                                                </ul>
+                                            </li>
+                                            @if (Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext) == null && string.IsNullOrEmpty(Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext)) || Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext) == "0")
+                                            {
+                                                <li class="dropdown" style="">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown">Members</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="@Url.Action("Register", "Users")">Register</a></li>
+                                                        <li><a href="@Url.Action("Login", "Users")">Login</a></li>
+                                                    </ul>
+                                                </li>
+
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a class="links" href="@Url.Action("MyBlogs", "Blog")">My Blogs</a>
+                                                </li>
+                                                <li>
+                                                    <a class="links" href="@Url.Action("Logout", "Blog")">Logout</a>
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="">
+        @RenderBody()
+        <footer id="footer">
+            <div class="footer">
+                <div class="container" style="margin-bottom:1%">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="footer-content">
+                                <div class="logo-footer">
+                                    <a href="@Url.Action("index","Users")"><img id="logo" src="/Content/images/logo_white.png" title="Code2night" alt="Code2night" style="height: 35px;"></a>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p>Welcome To Code2night, A common place for sharing your programming knowledge,Blogs and Videos</p>
+                                        <ul class="social-links circle">
+                                            <li class="facebook">
+                                                <a target="_blank" href="http://www.facebook.com/sharer.php?u=https://code2night.com"><i class="fa fa-facebook"></i></a>
+                                            </li>
+                                            @*<li class="reddit">
+                                                    <a target="_blank" href="http://reddit.com/submit?url=https://code2night.com&title=Code2Night"><i class="fa fa-reddit"></i></a>
+                                                </li>
+                                                <li class="linkedin">
+                                                    <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=https://code2night.com"><i class="fa fa-linkedin"></i></a>
+                                                </li>
+                                                <li class="tumblr">
+                                                    <a target="_blank" href="http://www.tumblr.com/share/link?url=https://code2night.com&title=Code2Night"><i class="fa fa-tumblr"></i></a>
+                                                </li>*@
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <!-- StuffGate widget -->
+
+                                        <ul class="list-icons">
+                                            <li>
+                                                <i class="fa fa-map-marker pr-10"></i> Kurukshetra
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-envelope-o pr-10"></i> info@Code2night.com
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-bottom hidden-lg hidden-xs"></div>
+                        <div class="col-sm-6 col-md-2">
+                            <div class="footer-content">
+                                <h2>Links</h2>
+                                <nav>
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li class="Home">
+                                            <a class="links" href="/Users/Index">Home</a>
+
+                                        </li>
+                                        <li class="Blogs">
+                                            <a class="links" href="@Url.Action("Index","Blog")">Blogs </a>
+                                        </li>
+                                        <li class="Tutorial">
+                                            <a class="links" href="@Url.Action("index","Tutorials")">Tutorial</a>
+                                        </li>
+                                        <li>
+                                            @if (Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext) == null && string.IsNullOrEmpty(Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext)) || Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext) == "0")
+                                            {
+                                                <a class="links" href="@Url.Action("Login","Users")"> Post Blog </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="links" href="/Blog/AddBlog"> Post Blog </a>
+                                            }
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3 col-md-offset-1 mb-1">
+                            <div class="footer-content" style="max-height:227px;overflow:hidden">
+                                <h2>Popular Tags</h2>
+                                <div id="tagsList"></div>
+                            </div>
+                        </div>
+                        <div class="space-bottom hidden-lg hidden-xs"></div>
+                    </div>
+                </div>
+                <div class="subfooter">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>
+                                    Copyright © @DateTime.Now.Year  by
+                                    <a>Code2night</a>. All Rights Reserved
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <nav class="navbar navbar-default" role="navigation">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-2">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="navbar-collapse-2">
+                                        <ul class="nav navbar-nav">
+                                            <li>
+                                                <a href="@Url.Action("index","Users")">Home</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("index","Blog")">Blog</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Login","Users")">Login</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Register","Users")">SignUp</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("ContactUs","Users")">Contact</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Index", "JsonBeautifier")">Json Beautifier</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script async src="~/js/layoutMinifiedjs.min.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script  src="/adminplugins/select2/js/select2.min.js"></script>
+
+    @*<script  type='text/javascript' src='/plugins/summernote/summernote.min.js'></script>*@
+
+    @*<script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.links').each(function (val, elem) {
+                if (window.location.href.indexOf($(elem).attr("href")) != -1) {
+                    $(elem).parent().addClass("active");
+                }
+                else {
+                    $(elem).parent().removeClass("active");
+                }
+            });
+        })
+        $(document).ready(function () { LoadPartialView("/Blog/TagsList", "tagsList", {}); });
+    </script>
+    @RenderSection("scripts", required: false)
+
+</body>
+        </html>

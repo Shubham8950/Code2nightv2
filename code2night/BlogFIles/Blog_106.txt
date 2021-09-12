@@ -1,0 +1,458 @@
+
+<h5> Create the new folder "Model" in solution and add all the classes in the model folder </h5>
+
+<h5> Add new class in model folder "AdditionalFields"</h5>
+
+<pre>    public class AdditionalFields
+    {
+        [XmlElement(IsNullable = false, ElementName = "Field1")]
+        public string Field1{ get; set; }
+
+        [XmlElement(IsNullable = false, ElementName = "Field2")]
+        public string Field2{ get; set; }
+    }
+</pre>
+
+<h5> Add new class in model folder "VendorInformation"</h5>
+
+<pre> public class VendorInformation
+	{
+        [XmlElement(IsNullable = false)]
+        public string VendorName { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string VendorAddress1 { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string VendorAddress2 { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string VendorCity { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string VendorState { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string VendorPostalCode { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string VendorCountry { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string VendorBusinessNumber { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string VendorRGRNumber { get; set; }
+
+	}
+</pre>
+
+<h5> Add new class in model folder "ShippingLane"</h5>
+
+<pre></pre>
+
+<h5> Add new class in model folder "AdditionalFields"</h5>
+
+<pre> public class ShippingLane
+    {
+        [XmlElement(IsNullable = false)]
+        public string Region { get; set; }
+    }
+</pre>
+
+<h5> Add new class in model folder "Shipment"</h5>
+
+<pre>  public class Shipment
+    {
+        [XmlElement(ElementName = "Name")]
+        public string CompanyName { get; set; }
+
+        [XmlElement(ElementName = "Attention")]
+        public string ContactName { get; set; }
+
+        [XmlElement(ElementName = "Address1")]
+        public string AddressLine1 { get; set; }
+
+        [XmlElement(ElementName = "Address2")]
+        public string AddressLine2 { get; set; }
+
+        [XmlElement(ElementName = "Address3")]
+        public string AddressLine3 { get; set; }
+
+        [XmlElement(ElementName = "City")]
+        public string City { get; set; }
+
+        [XmlElement(ElementName = "State")]
+        public string DivisionCode { get; set; }
+
+        [XmlElement(ElementName = "PostalCode")]
+        public string PostCode { get; set; }
+
+        [XmlElement(ElementName = "Country")]
+        public string Country { get; set; }
+
+        [XmlElement(ElementName = "Phone")]
+        public string PhoneNumber { get; set; }
+
+        [XmlElement(ElementName = "Email")]
+        public string Email { get; set; }
+
+        [XmlElement(ElementName = "ConsigneeTaxID")]
+        public string ConsigneeTaxId { get; set; }
+    }
+</pre>
+
+<h5> Add new class in model folder "Package"</h5>
+
+<pre> public class Package
+    {
+        [XmlElement(IsNullable = false)]
+        public string WeightUnit { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public decimal Weight { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string DimensionsUnit { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public int Length { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public int Width { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public int Height { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public int PackageReference { get; set; }
+    }
+</pre>
+
+<h5> Add new class in model folder "Login"</h5>
+
+<pre>public class Login
+    {
+        [XmlElement(IsNullable = false)]
+        public string Username { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string Password { get; set; }
+    }
+</pre>
+
+<h5> Add new class in model folder "LabelImageResponse"</h5>
+
+<pre>public class LabelImageResponse
+    {
+        public string LabelImage { get; set; }
+    }
+</pre>
+
+<h5> Add new class in model folder "Item"</h5>
+
+<pre>   public class Item
+    {
+        [XmlElement(IsNullable = false)]
+        public string Sku { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string Quantity { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string UnitPrice { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string Description { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string HSCode { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string CountryOfOrigin { get; set; }
+    }
+</pre>
+
+<h5> Add new class in model folder "ImportResponse"</h5>
+
+<pre>[XmlRoot(ElementName = "ImportResponse")]
+	public class ImportResponse
+	{
+
+		[XmlElement(ElementName = "Result")]
+		public Result Result { get; set; }
+	}
+	 
+
+	[XmlRoot(ElementName = "LabelImages")]
+	public class LabelImages
+	{
+
+		[XmlElement(ElementName = "LabelImage")]
+		public string LabelImage { get; set; }
+	}
+
+	[XmlRoot(ElementName = "Package")]
+	public class PackageResponses
+	{
+
+		[XmlElement(ElementName = "TrackingNumber")]
+		public string TrackingNumber { get; set; }
+
+		[XmlElement(ElementName = "LandmarkTrackingNumber")]
+		public string LandmarkTrackingNumber { get; set; }
+
+		[XmlElement(ElementName = "PackageReference")]
+		public int PackageReference { get; set; }
+
+		[XmlElement(ElementName = "LabelImages")]
+		public LabelImages LabelImages { get; set; }
+	}
+
+	[XmlRoot(ElementName = "Packages")]
+	public class Packages
+	{
+
+		[XmlElement(ElementName = "Package")]
+		public List<packageresponses> Package { get; set; }
+	}
+
+	[XmlRoot(ElementName = "Result")]
+	public class Result
+	{
+
+		[XmlElement(ElementName = "Success")]
+		public bool Success { get; set; }
+
+		[XmlElement(ElementName = "ResultMessage")]
+		public string ResultMessage { get; set; }
+
+		[XmlElement(ElementName = "ShipmentLabelLink")]
+		public string ShipmentLabelLink { get; set; }
+
+		[XmlElement(ElementName = "Packages")]
+		public Packages Packages { get; set; }
+	}
+}
+
+</packageresponses></pre>
+
+<h5> Add new class in model folder "ImportRequest"</h5>
+
+<pre> public class ImportRequest
+    {
+        [XmlElement(IsNullable = false, ElementName = "Login")]
+        public Login Login = new Login();
+
+        [XmlElement(IsNullable = false)]
+        public string Test { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string ClientID { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string Reference { get; set; }
+
+        [XmlElement(IsNullable = false)]
+
+        public Shipment ShipTo = new Shipment();
+
+        [XmlElement(IsNullable = false, ElementName = "ShippingLane")]
+
+        public ShippingLane ShippingLane = new  ShippingLane();
+
+        [XmlElement(IsNullable = false)]
+        public string ShipMethod { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string OrderTotal { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string ItemsCurrency { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string ProduceLabel { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string LabelFormat { get; set; }
+
+        [XmlElement(IsNullable = false)]
+        public string LabelEncoding { get; set; }
+
+        [XmlElement(IsNullable = false, ElementName = "VendorInformation")]
+        public VendorInformation VendorInformation = new VendorInformation();
+
+        [XmlElement(IsNullable = false, ElementName = "AdditionalFields")]
+        public AdditionalFields AdditionalFields = new AdditionalFields();
+
+        [XmlArray("Packages")]
+        [XmlArrayItem("Package")]
+        public List<package> Package = new List<package>();
+
+        [XmlArray("Items")]
+        [XmlArrayItem("Item")]
+        public List<item> Item = new List<item>();
+    }
+</item></item></package></package></pre>
+
+<h5> Add new class in model folder "Serializer"</h5>
+
+<pre> public static class Serializer
+    {
+        public static T DeserializeXML<t>(string input) where T : class
+        {
+            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(T));
+            XmlSerializer xs = null;
+
+            XmlWriterSettings settings = null;
+            XmlSerializerNamespaces ns = null;
+
+            XmlWriter xw = null;
+
+            settings = new XmlWriterSettings();
+            settings.OmitXmlDeclaration = false;
+
+    
+            ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+
+            StringBuilder sb = new StringBuilder();
+
+            xs = new XmlSerializer(typeof(T));
+ 
+            xw = XmlWriter.Create(sb, settings);
+
+
+            String outString = String.Empty;
+            using (StringReader sr = new StringReader(input))
+            {
+                return (T)ser.Deserialize(sr);
+            }
+        }
+
+    
+        public static string Serialize<t>(T value)
+        {
+            var stream = new StringWriter();
+            try
+            {
+                var emptyNamespaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+                var serializer = new XmlSerializer(value.GetType());
+                var settings = new XmlWriterSettings();
+                settings.Indent = false;
+                settings.OmitXmlDeclaration = false;
+
+
+                using (stream)
+                using (var writer = XmlWriter.Create(stream, settings))
+                {
+                    serializer.Serialize(writer, value, emptyNamespaces);
+                    writer.Flush(); writer.Close();
+                    return
+                        stream.ToString().Replace("<!--?xml version=\"1.0\" encoding=\"utf-16\"?-->", string.Empty);
+
+                }
+            }
+            catch (ThreadAbortException ex)
+            {
+                stream.Dispose();
+                string msg = ex.Message;
+               
+            }
+            return
+                      stream.ToString().Replace("<!--?xml version=\"1.0\" encoding=\"utf-16\"?-->", string.Empty);
+        }
+    }
+</t></t></pre>
+
+<h5>create new action on controller and add all the code in the controller </h5>
+
+<pre>  [HttpPost]
+        public async Task<actionresult> TestapiAsync()
+        {
+            string url = "https://api.landmarkglobal.com/v2/Import.php";
+            HttpClientHandler handler = new HttpClientHandler();
+            HttpClient httpClient = new HttpClient(handler);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
+
+
+            var ImportRequest = new ImportRequest
+            {
+                Login =
+                {
+                    Username = "Enter Your Username",
+                    Password = "Enter Your Password",<br>                },
+                Test = "true",
+                ClientID = "Enter Your ClientID",<br>                Reference = "Enter Your Refrence number",<br>                ShipTo =
+                {
+                    CompanyName = "Test Company",
+                    ContactName = "Ole Olsen",
+                    AddressLine1 = "5130 Halford Drive",
+                    AddressLine2 = "Building #C",
+                    AddressLine3 = "Unit 1",
+                    City = "Windsor",
+                    DivisionCode = "ON",
+                    PostCode = "N9A6J3",
+                    Country = "CA",
+                    PhoneNumber = "1-519-737-9101",
+                    Email = "orders@test.com",
+                    ConsigneeTaxId = "12345",
+                },
+
+                ShippingLane =
+                {
+                    Region = "Landmark UK"
+                },
+                ShipMethod = "LGINTSTDU",
+                OrderTotal = "187.98",
+                ItemsCurrency = "USD",
+                ProduceLabel = "true",
+                LabelFormat = "PDF",
+                LabelEncoding = "link",
+                VendorInformation =
+                {
+                    VendorName="Test Company Legal Name",
+                    VendorAddress1="Sample Company Street",
+                    VendorAddress2="Suite 135",
+                    VendorCity="Santa Barbara",
+                    VendorState="CA",
+                    VendorPostalCode="93101",
+                    VendorCountry="US",
+                    VendorBusinessNumber="12345",
+                    VendorRGRNumber="123"
+                },
+                AdditionalFields =
+                {
+                    Field1="Any type of data",
+                    Field2="99000029327172321",
+                },
+                Package = new List<package>
+                {
+                    new Package { WeightUnit="KG", Weight=Convert.ToDecimal("4.5"), DimensionsUnit="CM", Length=12, Width=12, Height=12, PackageReference=98233310},
+
+                    new Package { WeightUnit="KG", Weight=8, DimensionsUnit="CM", Length=12, Width=12, Height=12, PackageReference=98233310}
+                },
+                Item = new List<item>
+                {
+                  new Item {Sku="7224059",Quantity="2" ,UnitPrice="93.99",Description="Women's Shoes",HSCode="640399.30.00",CountryOfOrigin="CN" },
+                },
+
+            };
+
+            var xml = Serializer.Serialize(ImportRequest);
+            request.Content = new StringContent(xml, Encoding.UTF8, "application/xml");
+            HttpResponseMessage response = await httpClient.SendAsync(request);
+
+            var createShipmentResponse = new ImportResponse();
+            var responseStr = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            createShipmentResponse = Serializer.DeserializeXML<importresponse>(responseStr);
+
+            return Ok();
+        }
+</importresponse></item></package></actionresult></pre>
+
+<h5>Hit the API with postman or unit test cases or swagger</h5>
+
+
+
+

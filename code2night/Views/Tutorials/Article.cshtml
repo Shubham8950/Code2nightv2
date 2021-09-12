@@ -1,0 +1,137 @@
+﻿@model Code2Night.Models.AritclesModel
+@{
+    ViewData["Title"] = "Article";
+
+}<script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
+    <style>
+        .articleactive {
+            background-color: #efefef !important;
+        }
+
+        .code-panel {
+            margin:10px 0px;
+            background-color: #fff;
+            border: 1px solid #2590e3;
+            border-radius: 0;
+           
+        }
+
+        pre {
+            background-color: white !important;
+            border: 0px;
+        }
+        .footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6 {
+            color: #999 !important;
+        }
+        .articlefont {
+            font-size: 16px !important;
+            line-height: 31px;
+            /* text-align: justify; */
+            font-family: Verdana,sans-serif,Geneva !important;
+            color: #000 !important;
+            background: transparent;
+        }
+
+        h1, h2, h3 {
+            font-family: "Segoe UI",Verdana,sans-serif !important;
+            font-weight: 400 !important;
+            line-height: 1.2 !important;
+            color: #181717 !important;
+        }
+    </style>
+    <div class="page-intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home pr-10"></i><a href="@Url.Action("Index","Users")">Home</a></li>
+                        <li><a href="@Url.Action("index","Tutorials")">Tutorials</a></li>
+                        <li class="active">@ViewBag.Title</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="main-container" style="margin-top: 0px;">
+
+        <div class="container">
+            <div class="row">
+
+                <!-- sidebar start -->
+                @if (Model.GetArticles.Count() > 0)
+                {
+                    <aside class="col-md-3">
+                        <div class="sidebar">
+                            <div class="block clearfix">
+
+                                <h3 class="title">@Model.GetArticles.FirstOrDefault()?.Topictitle</h3>
+                                <div class="separator"></div>
+                                <nav>
+                                    <ul class="nav nav-pills nav-stacked">
+                                        @foreach (var item in Model.GetArticles)
+                                        {
+                                            <li><a class='article @(Model.ArticleDetails?.articleurl==item.articleurl?"articleactive":"")' onclick="fetchArticle(@item.articleid,this)">@item.articletitle</a></li>
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </aside>
+                }
+                else
+                {
+                    <h1 style="text-align:center">Sorry ! No Articles Found</h1>
+                }
+                <!-- sidebar end -->
+                <!-- main start -->
+                <!-- ================ -->
+                <div class="main col-md-8 col-md-offset-1" id="Articlespartialid">
+                    @if (Model.ArticleDetails.articleid != 0)
+                    {
+                        Html.RenderPartial("_Article", Model.ArticleDetails);
+                    }
+                </div>
+                <!-- main end -->
+
+            </div>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+              @if (Model.ArticleDetails.articleid == 0)
+                  {
+            @: $('.article').first().click();
+            @: $('.article:first').addClass('articleactive');
+                  }
+        })
+        function LoadPartialViewPromise(url, elem, postData) {
+          
+            var promise = $.post(url, postData, function (result, status) {
+
+                $("#" + elem).html('');
+                $("#" + elem).html(result);
+              
+
+            });
+            return promise;
+        }
+        var fetchArticle = function (id, elem) {
+            $('.articleactive').removeClass('articleactive');
+            $(elem).addClass('articleactive');
+            var promise = LoadPartialViewPromise('@Url.Action("ArticleDetail", "Tutorials")', "Articlespartialid", { id: id });
+            promise.done(function (data) {
+                $('#Articlespartialid').html(data);
+                $('pre').each(function (index, elem) {
+                    $(elem).wrap("<div class='code-panel'></div>")
+                });
+                $('#Articlespartialid').find('p,div,li,span').each(function (index, elem) {
+                    $(elem).addClass("articlefont")
+                });
+            })
+        }
+        function wrapNode(node) {
+            $(node).replaceWith("<p>" + node.textContent + "</p>");
+        }
+
+
+    </script>

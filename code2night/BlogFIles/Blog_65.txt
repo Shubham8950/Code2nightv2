@@ -1,0 +1,720 @@
+<p><span style="font-family: Verdana;">﻿</span><span style="font-family: &quot;Courier New&quot;; color: rgb(52, 52, 52); font-size: 18px;"><span style="font-family: Impact;"><span style="font-family: Verdana;">Step 1: O</span><span style="font-family: Verdana;">pen the SQL Server a</span></span><span style="font-family: Verdana;">n</span></span><span style="font-family: Verdana;">﻿</span><span style="font-family: Verdana; color: rgb(52, 52, 52); font-size: 18px;">d create a database table and related stored procedure.</span></p><pre style="padding: 10px 16px; line-height: 1.42857; border-radius: 2px;"><span style="font-family: &quot;Courier New&quot;;"><span style="font-family: Verdana;">
+</span></span><span style="font-family: Verdana;">﻿</span><span style="font-family: Verdana;">/* Create Table Customer */  
+
+</span><span style="font-family: &quot;Courier New&quot;;"><span style="font-family: Verdana;">CREATE TABLE [dbo].[Customers](
+
+	[CustomerId] [int] IDENTITY(1,1) NOT NULL,
+
+	[FirstName] [nvarchar](250) NULL,
+
+	[LastName] [nvarchar](250) NULL,
+
+	[Phone] [nvarchar](20) NULL,
+
+	[Email] [nvarchar](250) NULL,
+
+	[Street] [nvarchar](250) NULL,
+
+	[City] [nvarchar](250) NULL,
+
+	[State] [nvarchar](250) NULL,
+
+	[Zipcode] [nvarchar](10) NULL,
+
+ CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED 
+
+(
+
+[CustomerId] ASC
+
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+) ON [PRIMARY]
+
+</span><span style="font-family: Verdana;"> </span></span></pre><span style="font-family: Verdana;">
+
+</span><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-family: Verdana;">Step 2: Create a project&nbsp;</span></h4><ol style="margin-bottom: 10px; color: rgb(102, 102, 102);"><li><span style="font-family: Verdana;">Start Visual Studio 2017 or 2015.</span><br></li><li><span style="font-family: Verdana;">Create a new project&nbsp; -&gt;﻿ Web -&gt; Visual Studio 2017.</span></li></ol><p><img src="/Uploads/projectstart120200928124456.png"><span style="font-family: &quot;Courier New&quot;;"><br></span></p><p style="color: rgb(102, 102, 102);"><span style="font-family: Verdana;">&nbsp; 3. Select ASP.NET Web Application(.Net Framework).</span></p><p style="color: rgb(102, 102, 102);"><span style="font-family: Verdana;">&nbsp; 4.Provide the Name and Location for the project and click Next.</span></p><p style="color: rgb(102, 102, 102);"><img src="/Uploads/projectstart220200928124527.png"><span style="font-family: &quot;Courier New&quot;;"><br></span></p><p style="color: rgb(102, 102, 102);"><span style="font-family: Verdana;">&nbsp; 5. Choose an "Empty" template and check "MVC" under "Add folders &amp; core references"&nbsp; then click Ok.</span></p><p style=""><img src="/Uploads/projectstart320200928124547.png"><font color="#666666"><span style="width: 1344px;"></span></font><span style="color: rgb(102, 102, 102); font-family: &quot;Courier New&quot;;"><br></span><font color="#666666" face="Courier New"><span style="font-family: Verdana;">Installing Entity framework</span></font></p><p style=""><font color="#666666" face="Courier New"><span style="font-family: Verdana;">For adding Entity framework just right click on your application and from above list select “Manage NuGet Packages” After select a new dialog will popup of “Manage NuGet Packages” Inside search box enter “EntityFramework”. After getting search value select EntityFramework click on install button</span></font></p><p style=""><font color="#666666" face="Courier New"><span style="font-family: Verdana;">After adding Entity framework now we are going to add ADO.NET Entity Data Model</span></font></p><p><font color="#666666" face="Courier New"><span style="font-family: Verdana;">Adding ADO.NET Entity Data Model</span></font></p><p><font color="#666666" face="Courier New"><span style="font-family: Verdana;">For ADO.NET Entity Data Model just right click on Model folder and select Add inside that Select ADO.NET Entity Data Model to our solution</span></font></p><p><img src="/Uploads/m120200928124700.png"></p><p><span style="font-family: Verdana;">After that a small dialog will popup for asking ADO.NET Entity Data Model Name I will name it as EmployeeDB</span></p><p><img src="/Uploads/m220200928124748.png"></p><p></p><p><span style="font-family: Verdana;">After that a new Wizard will popup where we are going configure EF Designer from database. In this we are going to use Database first.</span></p><p><img src="/Uploads/m320200928124841.png"></p><p><span style="font-family: Verdana;">From that select Generate from database and click on Next button. After clicking on Next button a New Wizard will popup for Choosing Data Connection.</span></p><p><span style="font-family: Verdana;">Choosing Database Connection</span></p><p><img src="/Uploads/m420200928124942.png"><br></p><p></p><p><span style="font-family: Verdana;">Now click on New Connection a new Dialog will popup. Here we need to configure it. In Server name you need to add your Sql Server Name and select either Using Windows Authentication or Using Sql Server Authentication to connect SQL Server. Here we selected Using Sql Server Authentication and entered User name and Password of Sql server. Last we are going to select Database Name EmployeeDB once we done click on OK button as shown below</span></p><p><img src="/Uploads/m520200928125100.png"></p><p><img src="/Uploads/m620200928125100.png"></p><p><span style="font-family: Verdana;">After adding database connection our Entity Data Model Wizard will look like below snapshot</span></p><p><img src="/Uploads/m720200928125234.png"></p><p><span style="font-family: Verdana;">Now click on Next button. A new wizard will pop up for selecting database object and in this you will see all the table which we have created in database</span></p><p><img src="/Uploads/m820200928125406.png"></p><p><span style="font-family: Verdana;">Final clicking on Finish button. After adding ADO.NET Entity Data Model</span><br></p><p><img src="/Uploads/m920200928125446.png"><br></p><p><span style="font-family: Verdana;">following connection string is generated after adding entity framework</span><br></p><pre><span style="font-family: Verdana;">&lt;connectionStrings&gt;
+&lt;add name="CrudMVCEntities" connectionString="metadata=res://*/Models.CustomerDB.csdl|res://*/Models.CustomerDB.ssdl|res://*/Models.CustomerDB.msl;provider=System.Data.SqlClient;provider connection string=&amp;quot;data source=SHUBHAM\SQLEXPRESS;initial catalog=CrudMVC;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&amp;quot;" providerName="System.Data.EntityClient" /&gt;&lt;add name="CrudMVCEntities1" connectionString="metadata=res://*/Models.CustomerDBase.csdl|res://*/Models.CustomerDBase.ssdl|res://*/Models.CustomerDBase.msl;provider=System.Data.SqlClient;provider connection string=&amp;quot;data source=SHUBHAM\SQLEXPRESS;initial catalog=CrudMVC;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&amp;quot;" providerName="System.Data.EntityClient" /&gt;
+&lt;/connectionStrings&gt;
+  </span></pre><p><span style="font-family: Verdana;">After adding entity framework now let’s add controller.</span></p><p><span style="font-family: Verdana;">Adding Interfaces And Repository</span><br></p><span style="font-family: Verdana;">
+
+</span><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: normal; font-family: Verdana;">Step 4: Right-click on the project "Add" folder name&nbsp; Repository&nbsp; then Right-click on the Repository&nbsp; folder select "Add" then&nbsp; "Choose a class" window will appear. From that window, select Visual C# and&nbsp; then see on right side Class will display&nbsp; select class and then give a class name as "RepoCustomer.cs" Then click "Add". and after that again right click on Repository&nbsp; folder "Add" an interface ICustomer.cs .</span></h4><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: bold; text-decoration-line: underline; font-family: Verdana;">ICustomer interface</span></h3><span style="font-family: Verdana;">
+</span><pre><span style="font-family: Verdana;">using MvcWithRepositryEFW.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MvcWithRepositryEFW.Repository
+{
+  public  interface ICustomer
+    {
+        IEnumerable&lt;Customer&gt; GetCustomers();
+        Customer GetCustomerById(int? id);
+        int InsertCustomer(Customer customer);
+        int UpdateCustomer(Customer customer);
+        void DeleteCustomer(int? id);
+    }
+}
+</span></pre><div><br></div><span style="font-family: Verdana;">
+
+</span><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: bold; text-decoration-line: underline; font-family: Verdana;">RepoCustomer Class</span></h3><span style="font-family: Verdana;">
+</span><pre><span style="font-family: Verdana;">using MvcWithRepositryEFW.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+
+namespace MvcWithRepositryEFW.Repository
+{
+    public class RepoCustomer : ICustomer
+    {
+        public readonly  CrudMVCEntities DBcontext;
+
+       
+        public RepoCustomer(CrudMVCEntities crudMVCEntities)
+        {
+            this.DBcontext = crudMVCEntities;
+        }
+
+        public void DeleteCustomer(int? id)
+        {
+            Customer CustomerEntity = DBcontext.Customers.Find(id);
+            DBcontext.Customers.Remove(CustomerEntity);
+            DBcontext.SaveChanges();
+        }
+
+        public Customer GetCustomerById(int? id)                
+        {
+            return DBcontext.Customers.Find(id);
+        }
+
+        public IEnumerable&lt;Customer&gt; GetCustomers()
+        {
+            return DBcontext.Customers.ToList();
+        }
+
+        public int  InsertCustomer(Customer customer)
+        {
+            int result = -1;
+
+            if (customer != null)
+            {
+                DBcontext.Customers.Add(customer);
+                DBcontext.SaveChanges();
+                result = customer.CustomerId;
+            }
+            return result;
+        }
+
+        public int UpdateCustomer(Customer customer)
+        {
+            int result = -1;
+            if (customer != null)
+            {
+                DBcontext.Entry(customer).State = EntityState.Modified;
+                DBcontext.SaveChanges();
+                result = customer.CustomerId;
+            }
+            return result;
+        }
+    }
+}</span></pre><span style="font-family: Verdana;">
+
+</span><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: normal;"><span style="font-family: Verdana;">Step 6: Now right click on controllers folder and Add controller&nbsp; &nbsp;A window will appear. Choose&nbsp; MVC5 Controller with read/write actions and click "Add".</span><br><span style="font-family: Verdana;">After clicking on "Add", another window will appear with DefaultController. Change the name to CustomerController and click "Add". The CustomerController will be added under the Controllers folder.</span></span></h4><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"></h4><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><img src="/Uploads/c120200928010228.png"><br></h4><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><img src="/Uploads/c220200928010252.png"></h4><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><img src="/Uploads/c320200928010317.png"><br></h4><span style="font-family: Verdana;">
+</span><pre><span style="font-family: Verdana;">using MvcWithRepositryEFW.Models;
+using MvcWithRepositryEFW.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace MvcWithRepositryEFW.Controllers
+{
+    public class CustomerController : Controller
+    {
+
+        private ICustomer _CustomerRepository;
+
+        public CustomerController()
+        {
+            _CustomerRepository = new RepoCustomer(new Models.CrudMVCEntities());
+        }
+        public CustomerController(ICustomer CustomerRepository)
+        {
+            _CustomerRepository = CustomerRepository;
+        }
+        public ActionResult Index()
+        {
+            var model = _CustomerRepository.GetCustomers();
+            return View(model);
+        }
+
+        // GET: Customer/Details/5
+        public ActionResult Details(int? id)
+        {
+            var customerdetail = _CustomerRepository.GetCustomerById(id);
+            return View(customerdetail);
+        }
+
+        // GET: Customer/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Customer/Create
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var result = _CustomerRepository.InsertCustomer(customer);
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                string except = ex.Message;
+                return View();
+            }
+        }
+
+        // GET: Customer/Edit/5
+        public ActionResult Edit(int id)
+        {
+            var Customers = _CustomerRepository.GetCustomerById(id);
+            return View(Customers);
+        }
+
+        // POST: Customer/Edit/5
+        [HttpPost]
+        public ActionResult Edit(Customer customer)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    int result = _CustomerRepository.UpdateCustomer(customer);
+                    if (result &gt; 0)
+                    {
+                        return RedirectToAction("Index", "Customer");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("Index", "Customer");
+                    }
+                }
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Customer/Delete/5
+        public ActionResult Delete(int id)
+        {
+            Customer model = _CustomerRepository.GetCustomerById(id);
+            return View(model);
+        }
+
+        // POST: Customer/Delete/5
+       
+        [HttpPost, ActionName("Delete")]
+        public ActionResult ConfirmDelete(int? id)
+        {
+            try
+            {
+                _CustomerRepository.DeleteCustomer(id);
+                return RedirectToAction("Index", "Customer");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+    }
+}
+</span></pre><div><br></div><span style="font-family: Verdana;">
+
+</span><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: normal; font-family: Verdana;">Step 7: Right-click on the Index method in EmployeeController. The "Add View" window will appear with default index name checked (use a Layout page). Click on "Add</span></h4><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: bold; text-decoration-line: underline; font-family: Verdana;">Index View</span></h3><span style="font-family: Verdana;">
+</span><pre><span style="font-family: Verdana;">@model List&lt;MvcWithRepositryEFW.Models.Customer&gt;
+@{
+    ViewBag.Title = "Index";
+    var Models = Model ?? new List&lt;MvcWithRepositryEFW.Models.Customer&gt;();
+}
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width" /&gt;
+    &lt;title&gt;Details&lt;/title&gt;
+    &lt;script src="~/Scripts/bootstrap.js"&gt;&lt;/script&gt;
+    &lt;script src="~/Scripts/bootstrap.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div style="margin-bottom:10px;"&gt;
+        @Html.ActionLink("Create New", "Create", "Customer", "", new { @class = "btn btn-sm btn-primary rounded-0" })
+    &lt;/div&gt;
+    &lt;h4 class="text-center text-uppercase"&gt;List of employees&lt;/h4&gt;
+    &lt;table id="example" class="table table-bordered"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;@Html.DisplayNameFor(model =&gt; model[0].FirstName) &lt;/th&gt;
+                &lt;th&gt;@Html.DisplayNameFor(model =&gt; model[0].LastName) &lt;/th&gt;
+                &lt;th&gt;@Html.DisplayNameFor(model =&gt; model[0].Phone) &lt;/th&gt;
+                &lt;th&gt;@Html.DisplayNameFor(model =&gt; model[0].Email) &lt;/th&gt;
+                &lt;th&gt;@Html.DisplayNameFor(model =&gt; model[0].Street) &lt;/th&gt;
+                &lt;th&gt;@Html.DisplayNameFor(model =&gt; model[0].City) &lt;/th&gt;
+                &lt;th&gt;@Html.DisplayNameFor(model =&gt; model[0].State) &lt;/th&gt;
+                &lt;th&gt;@Html.DisplayNameFor(model =&gt; model[0].Zipcode) &lt;/th&gt;
+                &lt;th&gt;Action(s)&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        @foreach (var item in Models)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;@item.FirstName&lt;/td&gt;
+                &lt;td&gt;@item.LastName&lt;/td&gt;
+                &lt;td&gt;@item.Phone&lt;/td&gt;
+                &lt;td&gt;@item.Email&lt;/td&gt;
+                &lt;td&gt;@item.Street&lt;/td&gt;
+                &lt;td&gt;@item.City&lt;/td&gt;
+                &lt;td&gt;@item.State&lt;/td&gt;
+                &lt;td&gt;@item.Zipcode&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href="@Url.Action("Details","Customer",new { id=item.CustomerId})" class="btn btn-sm btn-primary"&gt;&lt;i class="fa fa-eye"&gt;&lt;/i&gt;&lt;/a&gt;
+                    &lt;a href="@Url.Action("Edit","Customer",new { id=item.CustomerId})" class="btn btn-sm btn-info"&gt;&lt;i class="fa fa-pencil-square"&gt;&lt;/i&gt;&lt;/a&gt;
+                    &lt;a href="@Url.Action("Delete","Customer",new { id=item.CustomerId})" class="btn btn-sm btn-danger"&gt;&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</span></pre><span style="font-family: Verdana;">
+
+</span><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: normal; font-family: &quot;Courier New&quot;;"><br></span></h4><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><img src="/Uploads/All Customer Detail20200928124253.png"></h4><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-family: Verdana; font-weight: normal;">Step 8: Now similarly right click on Details of ActionResult choose "Add View" and click on it. Now you will get another window which has default view name as ActionResult name. Checked Use a lay page and click on "Add".</span><br></h4><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: bold; text-decoration-line: underline; font-family: Verdana;">Details View</span></h3><span style="font-family: Verdana;">
+</span><pre><span style="font-family: Verdana;">@model MvcWithRepositryEFW.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+&lt;h2&gt;Details&lt;/h2&gt;
+
+&lt;div&gt;
+    &lt;h4&gt;Customer&lt;/h4&gt;
+    &lt;hr /&gt;
+    &lt;dl class="dl-horizontal"&gt;
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.FirstName)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.FirstName)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.LastName)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.LastName)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Phone)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Phone)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Email)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Email)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Street)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Street)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.City)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.City)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.State)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.State)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Zipcode)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Zipcode)
+        &lt;/dd&gt;
+
+    &lt;/dl&gt;
+&lt;/div&gt;
+&lt;p&gt;
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }) |
+    @Html.ActionLink("Back to List", "Index")
+&lt;/p&gt;
+</span></pre><div><br></div><div><img src="/Uploads/Customer Detail20200928124336.png"><br></div><span style="font-family: Verdana;">
+
+</span><p style="color: rgb(102, 102, 102);"><span style="font-family: Verdana;">Step 9: Now click on Create of ActionResult choose "Add View" and click on it. Now you will get another window that has a default view name as ActionResult name. Checked Use a layout page and click on "Add".</span></p><p><span style="color: rgb(102, 102, 102); font-family: &quot;Courier New&quot;;"></span></p><p style="box-sizing: border-box; margin: 0px 0px 20px; color: rgb(102, 102, 102); font-family: &quot;Open Sans&quot;, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;"><span style="box-sizing: border-box; color: rgb(52, 52, 52); font-family: Verdana; font-size: 22px; font-weight: bold; text-decoration-line: underline;">Create View</span></p><span style="font-family: Verdana;">
+</span><pre><span style="font-family: Verdana;">@model MvcWithRepositryEFW.Models.Customer
+
+@{
+    ViewBag.Title = "Create";
+}
+
+&lt;h2&gt;Create&lt;/h2&gt;
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    &lt;div class="form-horizontal"&gt;
+        &lt;h4&gt;Customer&lt;/h4&gt;
+        &lt;hr /&gt;
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.FirstName, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.LastName, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.Phone, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.Email, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.Street, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.Street, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.Street, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.City, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.State, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.State, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.Zipcode, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.Zipcode, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            &lt;div class="col-md-offset-2 col-md-10"&gt;
+                &lt;input type="submit" value="Create" class="btn btn-default" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+}
+
+&lt;div&gt;
+    @Html.ActionLink("Back to List", "Index")
+&lt;/div&gt;
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+</span></pre><div><br></div><div><img src="/Uploads/add customer20200928124212.png"><br></div><div><br></div><span style="font-family: Verdana;">
+
+</span><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: normal; font-family: Verdana;">Step 10: Right click on Edit of ActionResult choose “Add View” and click on it. Now you will get another window which has default view name as ActionResult name. Checked Use a layout page and click on “Add”.</span></h4><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: bold; text-decoration-line: underline; font-family: Verdana;">Edit View</span></h3><span style="font-family: Verdana;">
+</span><pre><span style="font-family: Verdana;">@model MvcWithRepositryEFW.Models.Customer
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+&lt;h2&gt;Edit&lt;/h2&gt;
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    &lt;div class="form-horizontal"&gt;
+        &lt;h4&gt;Customer&lt;/h4&gt;
+        &lt;hr /&gt;
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model =&gt; model.CustomerId)
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.FirstName, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.LastName, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.Phone, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.Email, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.Street, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.Street, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.Street, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.City, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.State, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.State, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            @Html.LabelFor(model =&gt; model.Zipcode, htmlAttributes: new { @class = "control-label col-md-2" })
+            &lt;div class="col-md-10"&gt;
+                @Html.EditorFor(model =&gt; model.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =&gt; model.Zipcode, "", new { @class = "text-danger" })
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            &lt;div class="col-md-offset-2 col-md-10"&gt;
+                &lt;input type="submit" value="Save" class="btn btn-default" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+}
+
+&lt;div&gt;
+    @Html.ActionLink("Back to List", "Index")
+&lt;/div&gt;
+</span></pre><div><br></div><div><img src="/Uploads/Customer Edit20200928124131.png"></div><div><br></div><span style="font-family: Verdana;">
+
+</span><div style="color: rgb(102, 102, 102);"><h4><span style="font-weight: normal;"><span style="font-family: Verdana;">Step 11: Right click on Delete of ActionResult choose “Add View” and click on it. Now you will get another window which has default view name as ActionResult name. Checked Use a lay page and click on “Add”</span></span><span style="font-family: Verdana;">.</span></h4></div><p><span style="color: rgb(102, 102, 102); font-family: &quot;Courier New&quot;;"></span></p><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="text-decoration-line: underline; font-weight: bold; font-family: Verdana;">Delete View</span></h3><span style="font-family: Verdana;">
+</span><pre><span style="font-family: Verdana;">@model MvcWithRepositryEFW.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+&lt;h2&gt;Delete&lt;/h2&gt;
+
+&lt;h3&gt;Are you sure you want to delete this?&lt;/h3&gt;
+&lt;div&gt;
+    &lt;h4&gt;Customer&lt;/h4&gt;
+    &lt;hr /&gt;
+    &lt;dl class="dl-horizontal"&gt;
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.FirstName)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.FirstName)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.LastName)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.LastName)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Phone)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Phone)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Email)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Email)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Street)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Street)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.City)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.City)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.State)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.State)
+        &lt;/dd&gt;
+
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Zipcode)
+        &lt;/dt&gt;
+
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Zipcode)
+        &lt;/dd&gt;
+
+    &lt;/dl&gt;
+
+    @using (Html.BeginForm("Delete", "Customer", FormMethod.Post, new { id = "DeleteCustomer", enctype = "multipart/form-data", name = "Delete" }))
+    {
+
+        @Html.AntiForgeryToken()
+
+        &lt;div class="form-actions no-color"&gt;
+            &lt;input type="submit" value="Delete" id="Delete" formmethod="post" name="command" class="btn btn-default" /&gt; |
+            @Html.ActionLink("Back to List", "Index")
+        &lt;/div&gt;
+    }
+    &lt;div id="DeleteDialog"&gt;You really want to delete?&lt;/div&gt;
+
+    @section scripts{
+        &lt;link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"&gt;
+        &lt;script src="https://code.jquery.com/jquery-1.12.4.js"&gt;&lt;/script&gt;
+        &lt;script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"&gt;&lt;/script&gt;
+        &lt;script&gt;
+            $(document).ready(function () {
+                debugger;
+                $("#DeleteDialog").dialog({
+                    height: 280,
+                    modal: true,
+                    autoOpen: false,
+                    buttons: {
+                        'Confirm': function () {
+                            $("#DeleteCustomer").submit();
+                            $(this).dialog('close');
+                        },
+                        'Cancel': function () {
+                            $(this).dialog('close');
+                        }
+                    }
+                });
+
+                $("#DeleteDialog").hide();
+                $("#Delete").click(function (e) {
+                    debugger;
+                    $("#DeleteDialog").dialog("open");
+                    e.preventDefault();
+                    return false;
+                });
+
+
+            });
+
+        &lt;/script&gt;
+}
+    &lt;/div&gt;</span></pre><div><br></div><div><img src="/Uploads/Delete20200928124025.png"><br></div><div><br></div><span style="font-family: Verdana;">
+
+</span><h4 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="font-weight: normal; font-family: Verdana;">Step 12: Build your project and run by pressing ctrl+F5</span></h4><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><span style="text-decoration-line: underline; font-weight: bold; font-family: Verdana;">The Final Output</span></h3><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><img src="/Uploads/Customer Edit20200928123756.png"></h3><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><img src="/Uploads/Customer Detail20200928123757.png"></h3><h3 style="font-family: &quot;Open Sans&quot;, sans-serif;"><img src="/Uploads/Delete20200928123757.png"><img src="/Uploads/add customer20200928123757.png"><img src="/Uploads/All Customer Detail20200928123757.png"><br></h3>
+
+
+
+

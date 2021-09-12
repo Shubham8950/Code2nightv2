@@ -1,0 +1,92 @@
+﻿@model Code2Night.DAL.Common.MyBlogs
+
+@foreach (var item in Model.BlogsList)
+{
+    <script type="application/ld+json">
+    {
+    "@@context" : "http://schema.org",
+    "@@type" : "Article",
+    "name" : "@item.Title",
+    "headline" : "@item.Title",
+    "url" : "https://www.code2night.com/Blog/MyBlog?id=@(System.Web.HttpUtility.UrlEncode(item.BlogUrl))",
+    "author" : {
+    "@@type" : "Person",
+    "name" : "@item.AuthorName"
+    },
+    "datePublished" : "@item.Date.ToString("yyyy-MM-dd")",
+    "articleSection" : "@item.BlogIntroduction",
+    "articleBody" : "@item.BlogBody",
+    "publisher" : {
+    "@@type" : "Organization",
+    "name" : "Code2night"
+    }
+    }
+    </script>
+}
+
+<script asp-append-version="true" src="/plugins/isotope/isotope.pkgd.min.js"></script>
+@foreach (var blog in Model.BlogsList.Where(x => x.IsApproved))
+{
+    <div class="masonry-grid-item col-sm-6 col-md-4" id="mydiv">
+        <!-- blogpost start -->
+        <article class="clearfix blogpost" itemscope itemtype="http://schema.org/Blog">
+            @*@if (blog.VideoEmbed != null)
+                        {
+                <div class="embed-responsive embed-responsive-16by9">
+                    @Html.Raw(blog.VideoEmbed)
+                </div>
+                        }*@
+            <div class="blogpost-body" style='max-height: 410px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 351px;'>
+                <div class="post-info" itemprop="datePublished">
+                    <span class="day">@blog.Date.ToString("dd")</span>
+                    <span class="month">@blog.Date.ToString("MMM yyyy")</span>
+                </div>
+                <div class="blogpost-content">
+                    <header>
+                        <h2 itemprop="headline" class="title"><a href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(blog.BlogUrl)">@blog.Title</a></h2>
+                        <div class="submitted">
+                            <i class="fa fa-user pr-5"></i> by <a itemprop="author" href="~/Blog/Author/@blog.AuthorId-@blog.AuthorName">@blog.AuthorName</a><a style="
+    color: black;
+    margin-left: 16px;
+"><i class="fa fa-eye"></i>@blog.TotalView</a>
+</div>
+</header>
+<p itemprop="articleBody">@blog.BlogIntroduction</p>
+</div>
+</div>
+<footer class="clearfix">
+    <ul class="links pull-left">
+
+        <li>
+            <i class="fa fa-tags pr-5"></i>
+            @if (blog.Tags != null)
+            {
+                var list = blog.Tags.Split(',').ToList().Take(2).ToList();
+                foreach (var str in list)
+                {
+                    if (!string.IsNullOrWhiteSpace(str))
+                    {
+                    <a itemprop="keywords" href="~/blog/tags/@System.Web.HttpUtility.UrlEncode(str)">@str.Replace("-", " ") @(list.IndexOf(str).Equals(list.Count - 1) ? "" : ",")</a>
+                    }
+                }
+            }
+        </li>
+    </ul>
+    <a class="pull-right link" itemprop="url" href="~/blog/MyBlog?id=@(System.Web.HttpUtility.UrlEncode(blog.BlogUrl))"><span>Read more</span></a>
+</footer>
+</article>
+<!-- blogpost end -->
+</div>
+}
+@section Scripts
+    {
+    <script type='text/javascript'>
+        $(document).ready(function () {
+             $('#hdnTotalRecords').val('@(Model.BlogsList.Any()?Model.BlogsList.FirstOrDefault().TotalRecords:0)');
+        });
+    </script>
+
+        }

@@ -1,0 +1,31 @@
+<h2 style="color: rgb(117, 117, 117); font-family: Roboto, sans-serif;">Error Handling In Asp.Net Core :-</h2><div style="color: rgb(117, 117, 117); font-family: Roboto, sans-serif;">Error Handling in Asp.Net Core has changed a bit from what we used to use in Asp.Net Mvc. Before .Net Core We used to use OnException Methods to handle Exceptions while executing actions But it doesn't see working in .Net Core as many features are changed.So In this Article we will see how to make exception handling work&nbsp; in Asp.Net Core.</div><div style="color: rgb(117, 117, 117); font-family: Roboto, sans-serif;"><br></div><h3 style="color: rgb(117, 117, 117); font-size: 16px; font-family: Roboto, sans-serif;">Setting Up Error Logs:-&nbsp;&nbsp;</h3><div style="color: rgb(117, 117, 117); font-family: Roboto, sans-serif;">Unlike Asp.Net Mvc in Asp.Net Core we have to do most of the work with our startup.cs file.Here in Configure Method We can use Exception Handler like we have showed in code snippet.This will write exception in a separated Log File.</div><p><br style="color: rgb(117, 117, 117); font-family: Roboto, sans-serif;"><span style="color: rgb(117, 117, 117); font-family: Roboto, sans-serif;">Open your startup.cs and use exception handling code block like this.</span></p><p><br></p>
+<pre><code class="line-numbers language-csharp">public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+  if (env.IsDevelopment()) {
+    app.UseExceptionHandler(a =&gt;a.Run(async context =&gt;{
+      var exceptionHandlerPathFeature = context.Features.Get &lt; IExceptionHandlerPathFeature &gt; ();
+      var exception = exceptionHandlerPathFeature.Error;
+      if (!Directory.Exists(env.ContentRootPath + "\\App_Data\\log\\")) {
+        Directory.CreateDirectory(env.ContentRootPath + "\\App_Data\\log\\");
+      }
+      var filename = env.ContentRootPath + "\\App_Data\\" + "log\\" + "Logerror.txt";
+      var sw = new System.IO.StreamWriter(filename, true);
+      sw.WriteLine(DateTime.Now.ToString() + " " + exception.Message + " " + exception.InnerException + " " + exception.StackTrace);
+      sw.Close();
+      var result = JsonConvert.SerializeObject(new {
+        error = exception.Message
+      });
+      context.Response.ContentType = "application/json";
+      await context.Response.WriteAsync(result);
+    }));
+  } else {
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+  }
+  app.UseHttpsRedirection();
+  app.UseStaticFiles();
+  app.UseCookiePolicy();
+  app.UseMvc(routes =&gt;{
+    routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+  });
+}
+</code></pre>

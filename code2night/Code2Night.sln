@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Code2Night", "Code2NightCore\Code2Night.csproj", "{434DE50D-BE7B-48AC-873A-752F3F3B03F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{434DE50D-BE7B-48AC-873A-752F3F3B03F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{434DE50D-BE7B-48AC-873A-752F3F3B03F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{434DE50D-BE7B-48AC-873A-752F3F3B03F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{434DE50D-BE7B-48AC-873A-752F3F3B03F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A1B25FC-A2A2-40B3-BF1E-6D03C9877453}
+	EndGlobalSection
+EndGlobal

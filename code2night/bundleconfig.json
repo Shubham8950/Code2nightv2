@@ -1,0 +1,86 @@
+[
+  {
+    "outputFileName": "wwwroot/css/layouthome.css",
+    "inputFiles": [
+      "wwwroot/css/boootstrap.css",
+      "wwwroot/plugins/magnific-popup/magnific-popup.css",
+      "wwwroot/css/animate.css",
+      "wwwroot/css/animations.css",
+      "wwwroot/fonts/font-awesome/css/font-awesome.css",
+      "wwwroot/Tags/bootstrap-tokenfield.css",
+      "wwwroot/css/style.css",
+      "wwwroot/css/custom.css",
+      "wwwroot/css/JqueryUI.css",
+      "wwwroot/plugins/summernote/summernote.min.css",
+      "wwwroot/plugins/sweetalert2/sweetalert2.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/layoutMinifiedjs.js",
+    "inputFiles": [
+      "wwwroot/js/code.min.js",
+      "wwwroot/js/custom.min.js",
+      "wwwroot/plugins/jquery.sharrre.min.js",
+      "wwwroot/js/BlogIndex.min.js",
+      "wwwroot/plugins/owl-carousel/owl.carousel.js",
+      "wwwroot/bootstrap/js/bootstrap.min.js",
+      "wwwroot/js/template.min.js",
+      "wwwroot/plugins/modernizr.js",
+      "wwwroot/plugins/jquery.browser.js",
+      "wwwroot/plugins/jquery.parallax-1.1.3.js",
+      "wwwroot/plugins/jquery.countTo.js",
+      "wwwroot/plugins/jquery.appear.js",
+      "wwwroot/plugins/SmoothScroll.js",
+      "wwwroot/plugins/isotope/isotope.pkgd.min.js",
+      "wwwroot/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js",
+      "wwwroot/plugins/rs-plugin/js/jquery.themepunch.tools.min.js",
+      "wwwroot/plugins/magnific-popup/jquery.magnific-popup.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/LayoutFinal.js",
+    "inputFiles": [
+      "wwwroot/bootstrap/js/bootstrap.min.js",
+      "wwwroot/plugins/modernizr.js",
+      "wwwroot/plugins/jquery.browser.js",
+      "wwwroot/plugins/jquery.parallax-1.1.3.js",
+      "wwwroot/plugins/jquery.countTo.js",
+      "wwwroot/plugins/jquery.appear.js",
+      "wwwroot/plugins/SmoothScroll.js",
+      "wwwroot/plugins/isotope/isotope.pkgd.min.js",
+      "wwwroot/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js",
+      "wwwroot/plugins/rs-plugin/js/jquery.themepunch.tools.min.js",
+      "wwwroot/plugins/magnific-popup/jquery.magnific-popup.min.js",
+      "wwwroot/Sharee.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plugins/LayoutAfterTemplate.js",
+    "inputFiles": [
+      "wwwroot/plugins/jquery.min.js",
+      "wwwroot/plugins/sweetalert2/sweetalert2.min.js",
+      "wwwroot/LayoutFinal.min.js",
+      "wwwroot/js/summernote.js",
+      "wwwroot/js/template.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/LayoutTop.js",
+    "inputFiles": [
+      "wwwroot/js/Jquery.min.js",
+      "wwwroot/js/summernote.js",
+      "wwwroot/plugins/sweetalert2/sweetalert2.min.js",
+      "wwwroot/Tags/bootstrap-tokenfield.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/layouttopfixed.js",
+    "inputFiles": [
+      "wwwroot/layoutTop.js",
+      "wwwroot/plugins/jquery.js",
+      "wwwroot/plugins/summernote/summernote.js",
+      "wwwroot/plugins/sweetalert2/sweetalert2.js",
+      "wwwroot/Tags/bootstrap-tokenfield.js"
+    ]
+  }
+]

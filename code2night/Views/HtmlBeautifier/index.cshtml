@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewData["Title"] = "Html Beautifier | Code2night";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MetaDescription = "This Html beautifier tool can help in formatting and beautifying Html along with minify as per your requirement. So that it can be easily read.";
+    ViewBag.MetaKeywords = "Code2Night,Code,Programming,Tutorials,Html Beautifier,Html Minifier";
+}
+@section Styles
+    {
+    <script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
+    <script src="~/CodeMirrorOld/codemirror.js"></script>
+    <script src="~/CodeMirrorOld/xml.js"></script>
+    <script src="~/CodeMirrorOld/htmlmixed.js"></script>
+    <script src="~/CodeMirrorOld/Placeholder.js"></script>
+    <script src="~/CodeMirrorOld/formatting.js"></script>
+    <style>
+        .btn {
+            padding: 10px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            min-width: 140px !important;
+            text-align: center;
+            border-radius: 0;
+            text-transform: uppercase;
+            margin: 10px 0;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+        }
+
+        .CodeMirror {
+            border: 1px solid #eee;
+            height: auto !important;
+        }
+
+        .CodeMirror-scroll {
+            overflow: auto;
+            height: 500px !important;
+            position: relative;
+            outline: none;
+        }
+
+        .CodeMirror pre.CodeMirror-placeholder {
+            color: #999;
+        }
+    </style>
+
+    <link href="~/CodeMirrorOld/codemirror.css" rel="stylesheet" />
+
+}
+<div class="page-intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home pr-10"></i><a href="@Url.Action("Index","Users")">Home</a></li>
+                    <li class="active">Html Beautifier</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="container" style="padding: 50px 10px;">
+        <div class="row"><h3 class="page-title" style="margin-left:13px;">Html Beautifier</h3>
+                         <div class="separator-2" style="margin-left:13px;"></div>
+            <div class="col-md-5 col-sm-12">
+                <label>Enter your Html here..</label>
+                <textarea id="json-input" class="form-control json-editor-blackbord" placeholder="Enter Html..." style="min-height:500px;" autocomplete="off"></textarea>
+            </div>
+            <div class="col-md-2 col-sm-12" style=" text-align: center;">
+                <div class="col-md-12 col-sm-6">
+                    <button id="translate" type="button" class="btn btn-primary">Beautify</button>
+                </div>
+                <div class="col-md-12 col-sm-6">
+                    <button id="Copy" type="button" onclick="copyDivToClipboard()" class="btn btn-success">Copy Output</button>
+                </div>
+                <div class="col-md-12 col-sm-6">
+                    <button id="Minify" type="button" onclick="Minify()" class="btn btn-warning">Minify</button>
+                </div>
+                <div class="col-md-12 col-sm-6">
+                    <button id="Reset" type="button" onclick="window.location.reload();" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-12">
+                <label>Check your Result..</label>
+                @*<textarea id="json-display" class="form-control" autocomplete="off"></textarea>*@
+                <div id="json-display" style="min-height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+    {
+
+    <script type="text/javascript">
+        function getJson() {
+            try {
+                return JSON.parse($('#json-input').val());
+            } catch (ex) {
+                alert('Wrong JSON Format: ' + ex);
+            }
+        }
+        function copyDivToClipboard() {
+            var range = document.createRange();
+            range.selectNode(document.getElementById("json-display"));
+            window.getSelection().removeAllRanges(); // clear current selection
+            window.getSelection().addRange(range); // to select text
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();// to deselect
+        }
+        var editor1;
+        var editor;
+        $(document).ready(function () {
+            editor1 = CodeMirror.fromTextArea(document.getElementById("json-input"), {
+                lineNumbers: true,
+                mode: "htmlmixed",
+                indentWithTabs: true,
+                smartIndent: true,
+                viewportMargin: Infinity
+            });
+            editor = CodeMirror(document.getElementById("json-display"), {
+                lineNumbers: true,
+                mode: "htmlmixed",
+                indentWithTabs: true,
+                smartIndent: true,
+                viewportMargin: Infinity,
+                value: editor1.getValue()
+            });
+            $('#translate').on('click', function () {
+                editor.setValue(editor1.getValue());
+                CodeMirror.commands["selectAll"](editor);
+                var range = { from: editor.getCursor(true), to: editor.getCursor(false) };
+                editor.autoFormatRange(range.from, range.to);
+            });
+        })
+        function Minify() {
+            var value = editor1.getValue();
+            editor.setValue(value.replace(/\t/ig, "").replace(/\n/ig, "").replace(/\s\s+/ig, ""));
+        }
+
+    </script>
+
+    <script src="~/jquery.json-viewer.js"></script>
+
+}

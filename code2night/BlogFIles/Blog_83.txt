@@ -1,0 +1,351 @@
+ <h5>Step 1:&nbsp; Now we will add the following files to the Master Page:</h5>
+<pre><code class="line-numbers language-csharp">&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" /&gt;
+    &lt;script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'&gt;&lt;/script&gt;
+    &lt;script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'&gt;&lt;/script&gt;
+    &lt;script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"&gt;&lt;/script&gt;
+    &lt;script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'&gt;&lt;/script&gt;</code></pre>
+<h5>STEP 2: Add the div&nbsp;</h5>
+<pre><code class="line-numbers language-csharp">&lt;section class="content" style="background-color:white"&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-xs-12"&gt;
+                &lt;div id="calendar" style="width: 1200px; margin-left: 105px;"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/section&gt;</code></pre>
+<h5>Step 3: Add the Script File</h5>
+<pre><code class="line-numbers language-csharp">&lt;script type="text/javascript"&gt;
+        $(document).ready(function () {
+            $(document).ready(function () {
+                InitializeCalendar();
+            });
+            function InitializeCalendar() {
+                debugger;
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "BookingCalendar.aspx/GetCalendarData",
+                    dataType: "json",
+                    success: function (data) {
+                        debugger;
+
+                        $('#calendar').empty();
+                        $('#calendar').fullCalendar({
+                            header: {
+                                left: 'prev,next today',
+                                center: 'title',
+                                right: 'month,agendaWeek,agendaDay'
+                            },
+                            //weekNumbers: true,
+                            height: 600,
+                            width: 100,
+                            allDayText: 'Events',
+                            selectable: true,
+                            overflow: 'auto',
+                            editable: true,
+                            firstDay: 1,
+                            slotEventOverlap: true,
+                            events: $.map(data.d, function (item, i) {
+                               
+                                //-- here is the event details to show in calendar view.. the data is retrieved via ajax call will be accessed here
+                                var eventStartDate = new Date(parseInt(item.slotStartTime.substr(6)));
+                                var eventEndDate = new Date(parseInt(item.slotEndTime.substr(6)));
+
+                                var event = new Object();
+                                event.id = item.slotID;
+                                //event.start = new Date(eventStartDate.getFullYear(), eventStartDate.getMonth(), eventStartDate.getDate(), eventStartDate.getHours(), 0, 0, 0);
+                                //event.end = new Date(eventEndDate.getFullYear(), eventEndDate.getMonth(), eventEndDate.getDate(), eventEndDate.getHours() + 1, 0, 0, 0);
+                                event.start = eventStartDate;
+                              //  event.end = eventEndDate;
+
+                                event.title = formatAMPM(eventStartDate) + "-" + formatAMPM(eventEndDate);
+                                //event.allDay = item.AllDayEvent;
+                                event.backgroundColor = item.color;
+                                event.allDay= true;
+                                return event;
+                            })
+                        });
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //-- log error
+                    }
+                });
+            }
+        })
+        function formatAMPM(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours &gt;= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes &lt; 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
+    &lt;/script&gt;</code></pre>
+<h5>Step 4: Add the connection String&nbsp;</h5>
+<pre><code class="line-numbers language-csharp">&lt;connectionStrings&gt;
+    &lt;add name="connectionString" connectionString="data source=SHUBHAM\SQLEXPRESS; database=CrudMVC; integrated security=true;" providerName="System.Data.SqlClient"/&gt;
+  &lt;/connectionStrings&gt;</code></pre>
+<h5>Step 5: Add the Class CalendarEvents</h5>
+<pre><code class="line-numbers language-csharp">public class CalendarEvents
+    {
+        public int slotID { get; set; }
+
+        public DateTime slotStartTime { get; set; }
+
+        public DateTime slotEndTime { get; set; }
+        public DateTime slotDate { get; set; }
+        public string EventDescription { get; set; }
+
+        public string Title { get; set; }
+        public string slotStatus { get; set; }
+
+        public int bookingID { get; set; }
+        public bool AllDayEvent { get; set; }
+        public string color { get; set; }
+    }</code></pre>
+<h5>Step 6: Add the Web method&nbsp;</h5>
+<pre><code class="line-numbers language-csharp">[WebMethod]
+    public static List&lt;CalendarEvents&gt; GetCalendarData()
+    {
+        //-- this is the webmethod that you will require to create to fetch data from database
+        return GetCalendarDataFromDatabase();
+    }
+    private static List&lt;CalendarEvents&gt; GetCalendarDataFromDatabase()
+    {
+        List&lt;CalendarEvents&gt; CalendarList = new List&lt;CalendarEvents&gt;();
+        string constring = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(constring))
+        {
+            string strQuery = "Select * FROM SlotMaster where slotStatus='ACTIVE' ";
+
+            using (SqlCommand cmd = new SqlCommand(strQuery, con))
+            {
+                cmd.CommandType = CommandType.Text;
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+
+                    DataSet ds = new DataSet();
+                    // ds = ClsDAL.QueryEngine(strQuery, "SlotMaster");
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    //dt = ds.Tables[0];
+                    for (int i = 0; i &lt; dt.Rows.Count; i++)
+                    {
+                        CalendarEvents Calendar = new CalendarEvents();
+                        Calendar.slotID = Convert.ToInt32(dt.Rows[i]["slotID"]);
+                        Calendar.slotDate = Convert.ToDateTime(dt.Rows[i]["slotDate"]);
+                        Calendar.slotStatus = dt.Rows[i]["slotStatus"].ToString();
+                        Calendar.slotStartTime = Convert.ToDateTime(dt.Rows[i]["slotStartTime"]);
+                        Calendar.slotEndTime = Convert.ToDateTime(dt.Rows[i]["slotEndTime"]);
+
+                        if (Calendar.slotStatus == "ACTIVE")
+                        {
+                            Calendar.color = "green";
+                        }
+                        else
+                        {
+                            // Calendar.color = "white";
+                        }
+
+                        CalendarList.Add(Calendar);
+                    }
+                }
+            }
+        }
+        return CalendarList;
+    }
+</code></pre><div><h5 style="font-family: &quot;Open Sans&quot;, sans-serif;">STEP 7: Complete code of script</h5></div><div><br></div>
+<pre><code class="line-numbers language-csharp">&lt;%@ Page Language="C#" AutoEventWireup="true" CodeFile="BookingCalendar.aspx.cs" Inherits="BookingCalendar" %&gt;
+
+&lt;!DOCTYPE html&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head runat="server"&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" /&gt;
+    &lt;script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'&gt;&lt;/script&gt;
+    &lt;script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'&gt;&lt;/script&gt;
+    &lt;script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"&gt;&lt;/script&gt;
+    &lt;script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'&gt;&lt;/script&gt;
+    &lt;%--  &lt;script type="text/javascript" src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'&gt;&lt;/script&gt;--%&gt;
+     &lt;%--  &lt;script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'&gt;&lt;/script&gt;--%&gt;
+&lt;/head&gt;
+&lt;body&gt;
+     &lt;section class="content" style="background-color:white"&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-xs-12"&gt;
+                &lt;div id="calendar" style="width: 1200px; margin-left: 105px;"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+
+
+    &lt;script type="text/javascript"&gt;
+        $(document).ready(function () {
+            $(document).ready(function () {
+                InitializeCalendar();
+            });
+            function InitializeCalendar() {
+                debugger;
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "BookingCalendar.aspx/GetCalendarData",
+                    dataType: "json",
+                    success: function (data) {
+                        debugger;
+
+                        $('#calendar').empty();
+                        $('#calendar').fullCalendar({
+                            header: {
+                                left: 'prev,next today',
+                                center: 'title',
+                                right: 'month,agendaWeek,agendaDay'
+                            },
+                            //weekNumbers: true,
+                            height: 600,
+                            width: 100,
+                            allDayText: 'Events',
+                            selectable: true,
+                            overflow: 'auto',
+                            editable: true,
+                            firstDay: 1,
+                            slotEventOverlap: true,
+                            events: $.map(data.d, function (item, i) {
+                               
+                                //-- here is the event details to show in calendar view.. the data is retrieved via ajax call will be accessed here
+                                var eventStartDate = new Date(parseInt(item.slotStartTime.substr(6)));
+                                var eventEndDate = new Date(parseInt(item.slotEndTime.substr(6)));
+
+                                var event = new Object();
+                                event.id = item.slotID;
+                                //event.start = new Date(eventStartDate.getFullYear(), eventStartDate.getMonth(), eventStartDate.getDate(), eventStartDate.getHours(), 0, 0, 0);
+                                //event.end = new Date(eventEndDate.getFullYear(), eventEndDate.getMonth(), eventEndDate.getDate(), eventEndDate.getHours() + 1, 0, 0, 0);
+                                event.start = eventStartDate;
+                              //  event.end = eventEndDate;
+
+                                event.title = formatAMPM(eventStartDate) + "-" + formatAMPM(eventEndDate);
+                                //event.allDay = item.AllDayEvent;
+                                event.backgroundColor = item.color;
+                                event.allDay= true;
+                                return event;
+                            })
+                        });
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //-- log error
+                    }
+                });
+            }
+        })
+        function formatAMPM(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours &gt;= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes &lt; 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><div><br></div>
+<h5>step 8: complete code of&nbsp;BookingCalendar</h5>
+<pre><code class="line-numbers language-csharp">using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class BookingCalendar : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    [WebMethod]
+    public static List&lt;CalendarEvents&gt; GetCalendarData()
+    {
+        //-- this is the webmethod that you will require to create to fetch data from database
+        return GetCalendarDataFromDatabase();
+    }
+    private static List&lt;CalendarEvents&gt; GetCalendarDataFromDatabase()
+    {
+<p>        List&lt;CalendarEvents&gt; CalendarList = new List&lt;CalendarEvents&gt;();</p>        string constring = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(constring))
+        {
+            string strQuery = "Select * FROM SlotMaster ";
+
+            using (SqlCommand cmd = new SqlCommand(strQuery, con))
+            {
+                cmd.CommandType = CommandType.Text;
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+
+                    DataSet ds = new DataSet();
+                    // ds = ClsDAL.QueryEngine(strQuery, "SlotMaster");
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    //dt = ds.Tables[0];
+                    for (int i = 0; i &lt; dt.Rows.Count; i++)
+                    {
+                        CalendarEvents Calendar = new CalendarEvents();
+                        Calendar.slotID = Convert.ToInt32(dt.Rows[i]["slotID"]);
+                        Calendar.slotDate = Convert.ToDateTime(dt.Rows[i]["slotDate"]);
+                        Calendar.slotStatus = dt.Rows[i]["slotStatus"].ToString();
+                        Calendar.slotStartTime = Convert.ToDateTime(dt.Rows[i]["slotStartTime"]);
+                        Calendar.slotEndTime = Convert.ToDateTime(dt.Rows[i]["slotEndTime"]);
+
+                        if (Calendar.slotStatus == "ACTIVE")
+                        {
+                            Calendar.color = "green";
+                        }
+                        else
+                        {
+                            Calendar.color = "grey";
+                        }
+
+                        CalendarList.Add(Calendar);
+<p>                    }</p>                }
+            }
+        }
+        return CalendarList;
+    }
+
+
+    public class CalendarEvents
+    {
+        public int slotID { get; set; }
+
+        public DateTime slotStartTime { get; set; }
+
+        public DateTime slotEndTime { get; set; }
+        public DateTime slotDate { get; set; }
+        public string EventDescription { get; set; }
+
+        public string Title { get; set; }
+        public string slotStatus { get; set; }
+
+        public int bookingID { get; set; }
+        public bool AllDayEvent { get; set; }
+        public string color { get; set; }
+    }
+}</code></pre>
+<h5>Final output&nbsp;</h5><p><img src="/Uploads/ice_screenshot_20201001-00563520200930122732.png"><br></p>
+

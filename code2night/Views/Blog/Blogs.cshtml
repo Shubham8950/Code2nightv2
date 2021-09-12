@@ -1,0 +1,70 @@
+﻿@model Code2Night.DAL.Common.MyBlogs
+@{
+    ViewBag.Title = "Blogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home pr-10"></i><a href="@Url.Action("Index","Users")">Home</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="main-container">
+    <div class="container">
+        <div class="row">
+             <div class="main col-md-12" >
+                    <div>
+                    <div id="lvCandidatestbl"  class="masonry-grid row">
+                    @foreach (var blog in Model.BlogsList)
+                    {
+                            <div class="masonry-grid-item col-sm-6 col-md-4" id="mydiv">
+                                <article class="clearfix blogpost">
+                                    @if (blog.VideoEmbed != null)
+                                    {
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        @Html.Raw(blog.VideoEmbed)
+                                    </div>
+                                    }
+                                    <div class="blogpost-body">
+                                        <div class="post-info">
+                                            <span class="day">@blog.Date.ToString("dd")</span>
+                                            <span class="month">@blog.Date.ToString("MMM yyyy")</span>
+                                        </div>
+                                        <div class="blogpost-content">
+                                            <header>
+                                                <h2 class="title"><a href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(blog.BlogUrl)">@blog.Title</a></h2>
+                                                <div class="sdubmitted"><i class="fa fa-user pr-5"></i> by <a href="~/Blog/Author/@blog.AuthorId-@blog.AuthorName">@blog.AuthorName</a></div>
+                                            </header>
+                                            <p>@Html.Raw(blog.BlogBody)</p>
+                                        </div>
+                                    </div>
+                                    <footer class="clearfix">
+                                        <ul class="links pull-left">
+                                            <li><i class="fa fa-tags pr-5"></i>
+                                            @foreach (var str in blog.Tags.Split(',').ToList())
+                                            {
+                                                if (!string.IsNullOrWhiteSpace(str))
+                                                {
+                                                <a href="~/blog/tags/@System.Web.HttpUtility.UrlEncode(str)">@str @(blog.Tags.Split(',').ToList().IndexOf(str).Equals(blog.Tags.Split(',').ToList().Count - 1) ? "" : ",")</a>
+                                                }
+                                            }
+                                            </li>
+                                        </ul>
+                                        <a class="pull-right link" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(blog.BlogUrl)"><span>Read more</span></a>
+                                    </footer>
+                                </article>
+                            </div>
+                    }
+                    </div>
+                </div>
+                <div style="margin:auto auto" id="pagination"></div>
+            </div>
+        </div>
+    </div>
+</section>

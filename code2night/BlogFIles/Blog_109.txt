@@ -1,0 +1,140 @@
+<p><br></p><h2><b>Url Encryption in Asp.Net MVC</b></h2><p></p><p>So, starting from the beginning Url encryption is really important feature in today's world as it provided protection to the data our website often share with query string. So while using query string and for hiding&nbsp; the actual data from the user so that can't change that for misuse we often use url encryption.</p><p><b>Html Helpers</b></p><p>For url encryption we actually need to think about two things. Firstly, how to encrypt data in such a way that it can be used globally and second is how to decrypt data in such&nbsp; a way that you don't have to change too many things. So for encryption of url we can use custom Html Helpers. In the below example we are creating a helper which will take action,controller ,parameter,html class and will return a anchor tag with enrypted url.</p><p><br></p><pre>  public static MvcHtmlString EncodedActionLink(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, object routeValues, object htmlAttributes,string iconclass)
+        {
+           
+          
+            string queryString = string.Empty;
+            string htmlAttributesString = string.Empty;
+            if (routeValues != null)
+            {
+                RouteValueDictionary d = new RouteValueDictionary(routeValues);
+                for (int i = 0; i &lt; d.Keys.Count; i++)
+                {
+                    if (i &gt; 0)
+                    {
+                        queryString += "?";
+                    }
+                    queryString += d.Keys.ElementAt(i) + "=" + d.Values.ElementAt(i);
+                }
+            }
+
+            if (htmlAttributes != null)
+            {
+                RouteValueDictionary d = new RouteValueDictionary(htmlAttributes);
+                for (int i = 0; i &lt; d.Keys.Count; i++)
+                {
+                    htmlAttributesString += " " + d.Keys.ElementAt(i) + "=" +"'"+ d.Values.ElementAt(i)+"'";
+                }
+            }
+           
+
+            //What is Entity Framework??
+            StringBuilder ancor = new StringBuilder();
+            ancor.Append("&lt;a ");
+            if (htmlAttributesString != string.Empty)
+            {
+                ancor.Append(htmlAttributesString);
+            }
+            ancor.Append(" href='");
+            if (controllerName != string.Empty)
+            {
+                ancor.Append("/" + controllerName);
+            }
+
+            if (actionName != "Index")
+            {
+                ancor.Append("/" + actionName);
+            }
+            if (queryString != string.Empty)
+            {
+                ancor.Append("?q=" + EncryptURL(queryString));
+            }
+            ancor.Append("'");
+            ancor.Append("&gt;");
+            if(!string.IsNullOrEmpty(iconclass))
+            ancor.Append("&lt;i class='" + iconclass + "'&gt;&lt;/i&gt; ");
+            ancor.Append(linkText);
+            ancor.Append("&lt;/a&gt;");
+            return new MvcHtmlString(ancor.ToString());
+        }
+        public static string EncryptURL(string clearText)
+        {
+            string EncryptionKey = "LUPHLAKMAKJ2SPBNI99212";
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
+                    }
+                    clearText = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return clearText;
+        }</pre><p> So, you can place this helper inside a static class and use it afterwards.&nbsp;<span style="background-color: rgb(245, 245, 245); color: rgb(51, 51, 51); font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 13px;"><b>EncodedActionLink&nbsp;</b></span></p> <p>This will be used on view as you can see in below example</p><pre> @Html.EncodedActionLink("Create", "Add", "Master", new { Id=1}, new { @class = "btn btn-primary" }, null)</pre><p>So, this will return you a anchor tag. When you will click this anchor your page will redirect with encrypted data which you have passed to the helper. However, controller and action will be same just query string will be encrypted.</p><p><br></p><h2>Decryption of Encrypted Url</h2><p>So, after encryption we have to create a global method for decryption of url. We will create custom filter attribute for this purpose.</p><pre>      
+ [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class EncryptedActionParameterAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+           
+            Dictionary&lt;string, object&gt; decryptedParameters = new Dictionary&lt;string, object&gt;();
+            if (HttpContext.Current.Request.QueryString.Get("q") != null)
+            {
+                string encryptedQueryString = HttpContext.Current.Request.QueryString.Get("q");
+                string decrptedString = Decrypt(encryptedQueryString.ToString());
+                string[] paramsArrs = decrptedString.Split('?');
+
+                for (int i = 0; i &lt; paramsArrs.Length; i++)
+                {
+                    string[] paramArr = paramsArrs[i].Split('=');
+                    //if(paramArr[1].GetType().Name == "String")
+                    //    decryptedParameters.Add(paramArr[0], paramArr[1]);
+                    //else
+                    int val = 0;
+                    if(Int32.TryParse(paramArr[1],out val))
+                        decryptedParameters.Add(paramArr[0], Convert.ToInt32(paramArr[1]));
+                    else
+                        decryptedParameters.Add(paramArr[0], paramArr[1]);
+                }
+            }
+            for (int i = 0; i &lt; decryptedParameters.Count; i++)
+            {
+                filterContext.ActionParameters[decryptedParameters.Keys.ElementAt(i)] = decryptedParameters.Values.ElementAt(i);
+            }
+            base.OnActionExecuting(filterContext);
+
+        }
+        
+        private string Decrypt(string cipherText)
+        {
+            string EncryptionKey = "JUDHAAUMAKV2SPBNI99212";
+            cipherText = cipherText.Replace(" ", "+");
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            return cipherText;
+        }
+       
+    }</pre> <p>So, you can use this custom filter attribute. This will decrypt the query string and will pass the original data in the action parameters. Let's have a look at how to use this.</p><p><br></p><pre>   [EncryptedActionParameter]
+        public ActionResult Create(int Id)
+        { return View();}</pre><p>So,&nbsp;<span style="background-color: rgb(245, 245, 245); color: rgb(51, 51, 51); font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 13px;"><b>[EncryptedActionParameter],&nbsp;</b></span>is the same custom filter attribute which we have created in last step. You have to use this attribute wherever you want to decrypt the encrypted data. And you can get original data in your parameters.&nbsp;</p><p>This is how your url will look after encryption, but it will give correct data in your action parameters. So this is how you can implement url encryption in Asp.Net MVC.</p><p><img src="/Uploads/img1120210504094545.PNG" style="width: 100%;"></p>
+

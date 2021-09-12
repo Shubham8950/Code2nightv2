@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Code2Night.DAL.Common.Tutorial>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+<link href="/css/animations.css" rel="stylesheet">
+<link href="/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+<body class="front no-trans">
+    <div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+    <div class="page-wrapper">
+        <div class="section clearfix">
+                <div class="container">
+                 <div class="row">
+                    <div>
+                        <h2>Learn</h2>
+                        <div class="separator-2"></div>
+                        <div class="space-bottom"></div>
+                        <div class="row grid-space-20">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-md-4">
+                                    <div class="image-box mb-20 object-non-visible" data-animation-effect="fadeInLeft" data-effect-delay="300">
+                                        <div class="overlay-container">
+                                            <img src="Content/images/portfolio-1.jpg" alt="">
+                                            <a href="@Url.Action("Article", "Tutorials",new { id = item.topicurl })" class="overlay small">
+                                                <i class="fa fa-link"></i>
+                                                <span>@item.title</span>
+                                            </a>
+                                        </div>
+                                        <a style="font-size:16px" href="@Url.Action("Article", "Tutorials",new { id = item.topicurl })" class="btn btn-light-gray btn-lg btn-block">@item.title</a>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                    </div>  
+                </div>
+        </div>
+    </div>
+</body>
+
+
+
+

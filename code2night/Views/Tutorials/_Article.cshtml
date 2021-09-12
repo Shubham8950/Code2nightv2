@@ -1,0 +1,17 @@
+﻿@model Code2Night.DAL.Common.Article
+
+<link asp-append-version="true" href="~/prism.css" rel="stylesheet" />
+<script asp-append-version="true" src="~/prism (1).js"></script>
+<h1 class="page-title">@Model.articletitle</h1>
+<hr>
+<style>
+    <!--
+    page-title end -->
+    pre[class*="language-"] {
+        padding: 0px 1em !important;
+        /* margin: .5em 0; */
+        overflow: auto;
+    }
+</style>
+<p> @Html.Raw(Model.ArticleBody)</p>
+

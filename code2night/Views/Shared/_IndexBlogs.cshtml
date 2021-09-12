@@ -1,0 +1,95 @@
+﻿@model List<Code2Night.DAL.Common.Blog>
+
+<section class="main-container" style="padding: 0px 0px">
+    <div class="container">
+        <div class="row">
+            <div class="main col-md-8">
+                <!-- page-title start -->
+                <!-- ================ -->
+                <h3 class="page-title">Latest Blog</h3>
+                <div class="separator-2"></div>
+                @foreach (var item in Model.Where(x => x.IsApproved).OrderByDescending(x => x.Date))
+                {
+                    <article class="clearfix blogpost object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+                        <div class="blogpost-body">
+                            <div class="post-info">
+                                <span class="day">@item.Date.ToString("dd")</span>
+                                <span class="month">@item.Date.ToString("MMM yyyy")</span>
+                            </div>
+                            <div class="blogpost-content">
+                                <header>
+                                    <h2 class="title" style="font-weight: 400 !important;"><a target="_blank" href="~/Blog/MyBlog/@item.BlogUrl">@item.Title</a></h2>
+                                    <div class="submitted" style="font-size:12px !important;"><i class="fa fa-user pr-5"></i> by <a href="/Blog/Author/@(item.AuthorId)-@(item.AuthorName)">@item.AuthorName</a><a style="color: black;margin-left: 16px;"><i class="fa fa-eye"></i>@item.TotalView</a></div>
+
+                                </header>
+                                <p style="font-size:13px !important">@item.BlogIntroduction</p>
+                            </div>
+                        </div>
+
+                    </article>
+                }
+            </div>
+
+            <aside class="col-md-4">
+                <div class="sidebar">
+
+                    <div class="block clearfix">
+                        <h3 class="title">Top Trending</h3>
+                        <div class="separator"></div>
+                        <div class="block clearfix" style="padding-bottom:0px !important ">
+                            <script async src="https://cse.google.com/cse.js?cx=54fa958b97e2934d7"></script>
+                            <div class="gcse-search"></div>
+
+                        </div>
+                        @foreach (var item in Model.Where(x => x.IsApproved).OrderByDescending(x => x.TotalView))
+                        {
+                            <ul class="tweets">
+                                <li>
+                                    <i class="fa fa-line-chart"></i>
+                                    @*<p>@item.Title</p>*@
+                                    <p class="title"><a style="color: black;" target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></p>
+
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                    <div class="block clearfix">
+                        <h3 class="title">Featured Post</h3>
+                        <div class="separator"></div>
+                        <div class="image-box">
+                            @foreach (var item in Model)
+                            {
+                                <div class="image-box-body">
+                                    <h3 class="title"><a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></h3>
+                                    <p></p>
+                                    <a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)" class="link"><span>Read More</span></a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container" style="overflow-x:hidden">
+        <div class="row">
+            <div class="col-md-12">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Code2night Home -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2622840091485569"
+                     data-ad-slot="8043938560"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </div>
+</section>

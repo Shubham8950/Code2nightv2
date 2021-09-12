@@ -1,0 +1,593 @@
+﻿@model Code2Night.DAL.Common.HomeViewModel
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    div#textboxbutton #Additemtextbox {
+        height: 38px;
+        padding: 5px 10px;
+        border-radius: 6px;
+        border: 1px solid #f4f6f9;
+    }
+</style>
+<style>
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+        max-width: 100%;
+    }
+</style>
+
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<section class="content">
+    <div class="container-fluid" style="width:1060px">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-12 col-sm-12">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@Model.DashBoardItem.TotalUsers</h3>
+
+                        <p>Total Users</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+
+                    </div>
+                    <a href='@Url.Action("Listing","Blog")' class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-12 col-sm-12">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@Model.DashBoardItem.TotalBlogs</h3>
+                        <p>Total Blogs</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-clipboard"></i>
+
+                    </div>
+                    <a href='@Url.Action("Listing","Blog")' class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-12 col-sm-12">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@(Model.DashBoardItem.LifeTimeViews>1000? ((decimal)Model.DashBoardItem.LifeTimeViews/1000).ToString("0.0")+"k": Model.DashBoardItem.LifeTimeViews.ToString())</h3>
+                        <p>Life Time Views</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-12 col-sm-12">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@(Model.DashBoardItem.MonthlyViews>1000? ((decimal)Model.DashBoardItem.MonthlyViews/1000).ToString("0.0")+"k": Model.DashBoardItem.MonthlyViews.ToString())</h3>
+                        <p>This Month</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7 col-12 col-sm-12 connectedSortable">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ion ion-clipboard mr-1"></i>
+                            To Do List
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <ul class="todo-list" data-widget="todo-list" id="Todolist" style="height: 284px;">
+                            <partial name="_ToDo" model="Model" />
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                        <div id="textboxbutton">
+                            @* style="display:flex"*@
+                            @*<button type="button" class="btn btn-info float-right" onclick="DivShow()"><i class="fas fa-plus"></i> Add item</button>*@
+                            <button type="button" class="btn btn-info float-right" onclick="Additembutton()"><i class="fas fa-plus"></i>  Add item</button>
+                            <input type="text" placeholder="Enter Item" id="Additemtextbox" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </section>
+            <!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-lg-5 col-12 col-sm-12 connectedSortable">
+
+                <!-- Map card -->
+                <!-- /.card -->
+                <!-- solid sales graph -->
+                <div class="card bg-gradient-info">
+                    <div class="card-header border-0">
+                        <h3 class="card-title">
+                            <i class="fas fa-th mr-1"></i>
+                            Weekly Users Visit Chart
+                        </h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer bg-transparent">
+                        <div class="row">
+
+                            <!-- ./col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+                <!-- Calendar -->
+                <!-- /.card -->
+            </section>
+
+            <section class="col-lg-12 col-12 col-sm-12 connectedSortable">
+                <!-- HTML -->
+                <div class="card bg-gradient-info">
+                    <div class="card-header border-0">
+                        <h3 class="card-title">
+                            <i class="fas fa-th mr-1"></i>
+                            Income Chart
+                        </h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body" style="background-color:white">
+                        <div id="chartdiv"></div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer bg-transparent">
+                        <div class="row">
+
+                            <!-- ./col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                
+            </section>
+
+                <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<script>
+    am4core.ready(function () {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        // Create chart
+        var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+        var data = [];
+        var price1 = 1000, price2 = 1200;
+        var quantity = 30000;
+          var allData = JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.IncomeList))');
+        for (var i = 0; i < allData.length; i++) {
+            var dataobj = {}
+            dataobj[allData[i].PaymentMode] = allData[i].Amount;
+            dataobj[allData[i].PaymentMode+"Date"] = allData[i].PaymentDate;
+            
+            data.push(dataobj);
+        }
+       
+
+        chart.data = data;
+
+        var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis.renderer.grid.template.location = 0;
+        dateAxis.renderer.labels.template.fill = am4core.color("#e59165");
+
+        var dateAxis2 = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis2.renderer.grid.template.location = 0;
+        dateAxis2.renderer.labels.template.fill = am4core.color("#dfcc64");
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.tooltip.disabled = true;
+        valueAxis.renderer.labels.template.fill = am4core.color("#e59165");
+
+        valueAxis.renderer.minWidth = 60;
+
+        var valueAxis2 = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis2.tooltip.disabled = true;
+        valueAxis2.renderer.labels.template.fill = am4core.color("#dfcc64");
+        valueAxis2.renderer.minWidth = 60;
+        valueAxis2.syncWithAxis = valueAxis;
+        var allTypes = JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.IncomeList.Select(x=>x.PaymentMode).Distinct()))');
+        var randomcolors = ['#17a2b8', '#dc3545', '#0AFFFF', '#87F717'];
+      
+      
+        for (var i = 0; i < allTypes.length; i++) {
+            var series = chart.series.push(new am4charts.LineSeries());
+          
+            var total = 0;
+            $.each(allData.filter(x => x.PaymentMode == allTypes[i]).map(x => x.Amount), function () {
+                total += this;
+            });
+            series.name = allTypes[i] + "(" + total.toLocaleString()+")";
+            series.dataFields.dateX = allTypes[i]+"Date";
+    series.dataFields.valueY = allTypes[i];
+            series.tooltipText = "{valueY.value}";
+            series.fill = am4core.color(randomcolors[i]);
+            series.stroke = am4core.color(randomcolors[i]);
+            series.strokeWidth = 2;
+            var bullet = series.bullets.push(new am4charts.CircleBullet());
+            //bullet.circle.stroke = randomcolors[i];
+            bullet.circle.strokeWidth = 2;
+            bullet.fillOpacity = 1;
+            bullet.strokeWidth = 2;
+            bullet.circle.radius = 4;
+            bullet.fill ="#ffffff"
+           // bullet2.fill = bullet.fill;
+        }
+      
+        //series.strokeWidth = 3;
+
+        //series2.strokeWidth = 3;
+
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.xAxis = dateAxis2;
+
+        var scrollbarX = new am4charts.XYChartScrollbar();
+        scrollbarX.series.push(series);
+        chart.scrollbarX = scrollbarX;
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.parent = chart.plotContainer;
+        chart.legend.zIndex = 100;
+
+        valueAxis2.renderer.grid.template.strokeOpacity = 0.07;
+        dateAxis2.renderer.grid.template.strokeOpacity = 0.07;
+        dateAxis.renderer.grid.template.strokeOpacity = 0.07;
+        valueAxis.renderer.grid.template.strokeOpacity = 0.07;
+
+    }); // end am4core.ready()
+</script>
+@*<script>
+
+    am4core.ready(function () {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        // Create chart instance
+        var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+        // Create axes
+        var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        var allTypes = JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.IncomeList.Select(x=>x.PaymentMode).Distinct()))');
+        for (var i = 0; i < allTypes.length; i++) {
+            createSeries("value" + i, allTypes[i]);
+        }
+
+        // Create series
+        function createSeries(s, name) {
+            var allData = JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.IncomeList))');
+
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "value" + s;
+            series.dataFields.dateX = "date";
+            series.name = name;
+
+            var segment = series.segments.template;
+            segment.interactionsEnabled = true;
+
+            var hoverState = segment.states.create("hover");
+            hoverState.properties.strokeWidth = 3;
+
+            var dimmed = segment.states.create("dimmed");
+            dimmed.properties.stroke = am4core.color("#dadada");
+
+            segment.events.on("over", function (event) {
+                processOver(event.target.parent.parent.parent);
+            });
+
+            segment.events.on("out", function (event) {
+                processOut(event.target.parent.parent.parent);
+            });
+
+            var data = [];
+            var value = Math.round(Math.random() * 100) + 100;
+            var typeData = allData.filter(x => x.PaymentMode == name);
+            for (var i = 0; i < typeData.length; i++) {
+                var dataItem = { date: new Date(typeData[i].PaymentDate) };
+                dataItem["value" + s] = typeData[i].Amount;
+                data.push(dataItem);
+            }
+
+            series.data = data;
+            console.log(series)
+            return series;
+        }
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.position = "right";
+        chart.legend.scrollable = true;
+
+        // setTimeout(function() {
+        //   chart.legend.markers.getIndex(0).opacity = 0.3;
+        // }, 3000)
+        chart.legend.markers.template.states.create("dimmed").properties.opacity = 0.3;
+        chart.legend.labels.template.states.create("dimmed").properties.opacity = 0.3;
+
+        chart.legend.itemContainers.template.events.on("over", function (event) {
+            processOver(event.target.dataItem.dataContext);
+        })
+
+        chart.legend.itemContainers.template.events.on("out", function (event) {
+            processOut(event.target.dataItem.dataContext);
+        })
+
+        function processOver(hoveredSeries) {
+            hoveredSeries.toFront();
+
+            hoveredSeries.segments.each(function (segment) {
+                segment.setState("hover");
+            })
+
+            hoveredSeries.legendDataItem.marker.setState("default");
+            hoveredSeries.legendDataItem.label.setState("default");
+
+            chart.series.each(function (series) {
+                if (series != hoveredSeries) {
+                    series.segments.each(function (segment) {
+                        segment.setState("dimmed");
+                    })
+                    series.bulletsContainer.setState("dimmed");
+                    series.legendDataItem.marker.setState("dimmed");
+                    series.legendDataItem.label.setState("dimmed");
+                }
+            });
+        }
+
+        function processOut() {
+            chart.series.each(function (series) {
+                series.segments.each(function (segment) {
+                    segment.setState("default");
+                })
+                series.bulletsContainer.setState("default");
+                series.legendDataItem.marker.setState("default");
+                series.legendDataItem.label.setState("default");
+            });
+        }
+
+        document.getElementById("button").addEventListener("click", function () {
+            processOver(chart.series.getIndex(3));
+        })
+
+    }); // end am4core.ready()
+</script>*@
+@*<script src="~/dist/js/pages/dashboard.js"></script>*@
+@*<canvas id="revenues" height="300" style="height: 300px;"></canvas>
+
+    <script src="~/Scripts/canvasjs.min.js"></script>*@
+@*<script type="text/javascript">
+            window.onload = function () {
+                var data = [];
+
+                @foreach( var item in Model)
+                {
+                    @:data.push({ label:'@item.ViewDate.ToString("dd-MMM-yyyy")', y:@item.TotalView});
+                }
+
+                var chart = new CanvasJS.Chart("revenues", {
+                    title: {
+                    text: "Weekly Traffic Rate"
+                    },
+                    axisY: {
+                    title: "ViewCounts Day wise",
+                        includeZero: false
+                    },
+                    axisX: {
+                    interval: 1
+                    },
+                    data: [
+                     {
+                    type: "line", //try changing to column, area
+                         toolTipContent: "{label}: {y}",
+                            dataPoints: data
+                        },
+
+                    ],
+
+                });
+
+                chart.render();
+            }
+    </script>*@
+<script>
+    function LoadPartialView(url, elem, postData) {
+
+        $.post(url, postData, function (result, status) {
+            $("#" + elem).html('');
+            $("#" + elem).html(result);
+            HideLoader();
+
+        });
+
+    }
+    // Sales graph chart
+
+
+    var Refresh = function()
+        {
+             LoadPartialView('@Url.Action("BindToDo","DashBoardGraph")', "Todolist", {});
+        }
+    window.onload = function () {
+        var salesGraphChartCanvas = $('#line-chart').get(0).getContext('2d')
+        // $('#revenue-chart').get(0).getContext('2d');
+        var labeldata = [];
+        var userdata = [];
+     @foreach( var item in Model.EmployeeDashboardList)
+                {
+                    @:labeldata.push('@item.ViewDate.ToString("dd-MMM-yyyy")');
+                       @:userdata.push('@item.TotalView');
+                }
+        var salesGraphChartData = {
+            labels: labeldata,
+            datasets: [
+                {
+                    label: 'Weekly Traffic Rate',
+                    fill: false,
+                    borderWidth: 2,
+                    lineTension: 0,
+                    spanGaps: true,
+                    borderColor: '#efefef',
+                    pointRadius: 3,
+                    pointHoverRadius: 7,
+                    pointColor: '#efefef',
+                    pointBackgroundColor: '#efefef',
+                    data: userdata
+                }
+            ]
+        }
+
+        var salesGraphChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontColor: '#efefef'
+                    },
+                    gridLines: {
+                        display: false,
+                        color: '#efefef',
+                        drawBorder: false
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+
+                        fontColor: '#efefef'
+                    },
+                    gridLines: {
+                        display: true,
+                        color: '#efefef',
+                        drawBorder: false
+                    }
+                }]
+            }
+        }
+
+        // This will get the first returned node in the jQuery collection.
+        // eslint-disable-next-line no-unused-vars
+        var salesGraphChart = new Chart(salesGraphChartCanvas, {
+            type: 'line',
+            data: salesGraphChartData,
+            options: salesGraphChartOptions
+        })
+    }
+
+    //Additembutton, DivShow, Additemtextbox
+    function GetAjaxDataPromise(url, postData) {
+
+        var promise = $.post(url, postData, function (promise, status) {
+        });
+        return promise;
+    };
+    var Additembutton = function () {
+
+        var promises = GetAjaxDataPromise('@Url.Action("Additems", "DashboardGraph")', { TaskName: $("#Additemtextbox").val() });
+        promises.done(function (response) {
+
+            $("#Additemtextbox").val("");
+            if (response.data == 0) {
+            }
+            else {
+                Refresh();
+                Swal.fire({
+                    position: 'top-end',
+                    type: 'success',
+                    title: "Item Inserted Successfully",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+            }
+        }).fail(function (response) {
+
+            console.log(response);
+        });
+    }
+
+    var SaveUpdateItem = function (elem,ids) {
+
+        var promises = GetAjaxDataPromise('@Url.Action("SaveUpdateItem", "DashboardGraph")', { IsCompleted: $("#" + elem).is(":checked"), Id: ids});
+        promises.done(function (response) {
+            Refresh();
+            debugger;
+            if (response.data == 0) {
+            }
+            //else {
+            //    Swal.fire({
+            //        position: 'top-end',
+            //        type: 'success',
+            //        title: "Item Inserted Successfully",
+            //        showConfirmButton: false,
+            //        timer: 3000
+            //    });
+
+            //}
+        }).fail(function (response) {
+
+            console.log(response);
+        });
+
+
+    }
+</script>

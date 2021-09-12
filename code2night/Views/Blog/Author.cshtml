@@ -1,0 +1,134 @@
+﻿@model Code2Night.DAL.Common.MyBlogs
+@{
+    ViewBag.Title = (!string.IsNullOrEmpty(Model.Tag) ? Model.Tag : Model.Author)+ " Blogs | Code2Night.com";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MetaDescription = "Welcome To Code2night, check out latest programming blogs with detailed description to help you out";
+    ViewBag.MetaKeywords = "Code2Night,Code,Programming,Tutorials," + (!string.IsNullOrEmpty(Model.Tag)?Model.Tag:Model.Author);
+    ViewBag.Canonical = "https://www.code2night.com/Blog/"+ (!string.IsNullOrEmpty(Model.Tag) ? "Tags" : "Author") + "/"+ (!string.IsNullOrEmpty(Model.Tag) ? Model.Tag : Model.Author);
+
+    ViewBag.OpenGraphUrl = "https://www.code2night.com/Blog/" + (!string.IsNullOrEmpty(Model.Tag) ? "Tags" : "Author") + "/" + (!string.IsNullOrEmpty(Model.Tag) ? Model.Tag : Model.Author);
+    ViewBag.OpenGraphDescription = "Welcome To Code2night, check out latest programming blogs with detailed description to help you out";
+    ViewBag.OpenGraphTitle = (!string.IsNullOrEmpty(Model.Tag) ? Model.Tag : Model.Author) + " Blogs | Code2Night.com";
+    List<string> List = new List<string>();
+    foreach (var item in Model.BlogsList.Where(x => x.Tags != null).Select(x => x.Tags.Split(',')).ToList())
+    {
+
+        foreach (var tag in item)
+        {
+            List.Add(tag.Trim());
+        }
+
+    }
+}
+<div class="page-intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home pr-10"></i><a href="@Url.Action("Index","Users")">Home</a></li>
+                    <li>Blogs    </li>
+                    <li class="active">
+                        @(!string.IsNullOrEmpty(Model.Tag)?"Tags":"Authors")
+
+                    </li>
+                    <li>@Model.AuthorDetail.Name    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="main-container">
+
+    <div class="container">
+        <div class="row">
+
+            <!-- main start -->
+            <!-- ================ -->
+            <div class="main col-md-12">
+
+                <!-- page-title start -->
+                <!-- ================ -->
+                <h1 class="page-title">@Model.AuthorDetail.Name</h1>
+                <div class="separator-2"></div>
+                <div class="space"></div>
+                <!-- page-title end -->
+
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="box-style-1 gray-bg team-member" style=" text-align: left;">
+                            @Html.Raw(Model.AuthorDetail.ProfileDescription)
+                        </div>
+                        <div class="block clearfix">
+                            
+                            <div class="tags-cloud">
+                                @foreach (var str in Model.AuthorDetail.Skills.Split(","))
+                                {
+                                <div class="tag" itemprop="keywords">
+                                    <a style="background-color: #e84c3d;color:white">@str</a>
+                                </div>
+                                }
+                            </div>
+                            </div>
+                            @*<div class=" ">
+                @foreach (var item in Model.BlogsList.OrderByDescending(x => x.Date))
+                {
+                    <article class="clearfix blogpost object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+                        <div class="blogpost-body">
+                            <div class="post-info">
+                                <span class="day">@item.Date.ToString("dd")</span>
+                                <span class="month">@item.Date.ToString("MMM yyyy")</span>
+                            </div>
+
+
+                            <div class="blogpost-content">
+                                <header>
+                                    <h2 class="title"><a target="_blank" href="~/Blog/MyBlog?id=@item.BlogUrl">@item.Title</a></h2>
+                                    <div class="submitted"><i class="fa fa-user pr-5"></i> by <a href="#">@item.AuthorName</a><a style="color: black;margin-left: 16px;"><i class="fa fa-eye"></i>@item.TotalView</a></div>
+
+                                </header>
+                                <p>@item.BlogIntroduction</p>
+                            </div>
+                        </div>
+
+                    </article>
+                }
+            </div>*@
+                        </div>
+
+                        <div class="col-lg-3 col-md-12 col-sm-8 col-sm-offset-4 col-md-offset-0">
+                            <div class="vertical-divider-left-lg side">
+                                <h2 class="title">Contact Me</h2>
+                                <ul class="list-icons">
+                                    <li><i class="fa fa-phone pr-5"></i>@Model.AuthorDetail.ContactNo</li>
+                                    <li style="white-space: nowrap;"><i class="fa fa-envelope pr-5"></i><a>@Model.AuthorDetail.Email</a></li>
+                                </ul>
+                                <ul class="social-links colored clearfix">
+                                    <li class="twitter"><a target="_blank" href="http://www.twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="skype"><a target="_blank" href="http://www.skype.com/"><i class="fa fa-skype"></i></a></li>
+                                    <li class="facebook"><a target="_blank" href="http://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="googleplus"><a target="_blank" href="http://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+
+                            @*<div class="block clearfix">
+                <h3 class="title">Tags</h3>
+                <div class="separator"></div>
+                <div class="tags-cloud">
+                    @foreach (var str in List.Distinct().ToList())
+                    {
+                        <div class="tag" itemprop="keywords">
+                            <a href="~/Blog/Tags/@str">@str.Replace("-", " ")</a>
+                        </div>
+                    }
+                </div>
+            </div>*@
+
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+       
+           
+        </div>
+</section>

@@ -1,0 +1,22 @@
+﻿
+@model Code2Night.DAL.Common.MyBlogs
+    <head>
+        <script data-ad-client="ca-pub-2622840091485569" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </head>
+<div class="tags-cloud">
+    @if (Model.Tags != null)
+    {
+        foreach (var item in Model.Tags.Take(20))
+        {
+            if (!string.IsNullOrWhiteSpace(item))
+            {
+        <div class="tag">
+
+            <a href="~/blog/tags/@item">@item.Replace("-", " ")</a>
+        </div>
+            }
+
+        }
+    }
+</div>
+ 

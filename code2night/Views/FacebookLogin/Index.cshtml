@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<h2>Index</h2>
+    <tr>
+        <td>
+            <input type="button" id="btnFacebookLogin"
+                   value="Login with Facebook" class="btn btn-success" />
+        </td>
+    </tr>
+
+    <script>
+        $('#btnFacebookLogin').click(function () {
+        window.location.href = "/api/Account/ExternalLogin?provider=Facebook&response_type=token&client_id=self&redirect_uri=http%3a%2f%2flocalhost%3a61358%2fLogin.html&state=GerGr5JlYx4t_KpsK57GFSxVueteyBunu02xJTak5m01";
+            EAAF8JAkMUO4BABjc4kvufWydLRJ9YsriB5vzdSL9ZBaPa1Bkuvs41PG4XgSZBtvU0LwV3MDMZCnvPq8tcm9KjzMAwYR7IyazTEyp0qSeWwarQ7opVMnVEBV2otQsCHfbneeAItvwsPuZCjoTtyXynhxzhouMfGl10ROAVII49Fb2uXrnVOI6ywcEar6iub7SEjUsmReqWjVZBxIDEkvOkMSS8btrw8uOWo69GE0okbQZDZD
+        });
+    </script>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div>
+        <h2>Login</h2>
+        @Html.ActionLink("Login with Facebook.", "Facebook", "Facebooklogin")
+    </div>
+</body>
+</html>

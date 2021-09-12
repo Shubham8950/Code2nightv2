@@ -1,0 +1,387 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<head runat="server">
+    <title></title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <style>
+        .customFile_upload {
+            max-width: 30em;
+            margin: 60px auto;
+        }
+
+        .customFile_inner {
+            padding: 25px 40px 40px;
+            border: 1px dotted #b0b0b0;
+            border-radius: 8px;
+        }
+
+        .choose_files {
+            display: inline-block;
+            width: 100%;
+            margin: 0 0 25px;
+            background: #1b1b1b;
+            color: #fff;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .customFile_upload h3 {
+            font-weight: 600;
+            font-size: 30px;
+            color: #1b1b1b;
+            margin-bottom: 15px;
+        }
+
+        .customFile_upload h4 {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+            .customFile_upload h4 img {
+                max-width: 50px;
+                margin-right: 15px;
+            }
+
+
+        .upload_btn {
+            background: #cf4336;
+            border: 1px solid #cf4336;
+            border-radius: 5px;
+            padding: 12px;
+            color: #fff;
+            width: 100%;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+
+            .upload_btn:hover, .upload_btn:focus {
+                background: #ac3227;
+                border-color: #ac3227;
+            }
+
+        .customFile_upload p.underline {
+            max-width: 13em;
+            background-color: #000;
+            height: 3px;
+            position: relative;
+            margin: 0 auto 40px;
+            width: 100%;
+            opacity: 0.7;
+        }
+
+            .customFile_upload p.underline:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                height: 20px;
+                width: 20px;
+                background-color: #000;
+                border-radius: 50px;
+                margin: 0 auto;
+                top: 50%;
+                transform: translateY(-50%);
+                border: 5px solid #fff;
+            }
+
+        .top_titlebar {
+            background: #2a2a2a;
+            padding: 15px;
+        }
+
+        .pdf_module .col-md-12 {
+            padding: 0;
+        }
+
+        .top_titlebar a, .top_titlebar i, .top_titlebar .prev_next p, .top_titlebar .prev_next span, .top_titlebar #zoom {
+            color: #fff;
+        }
+
+        .top_titlebar .prev_next {
+            display: flex;
+            align-items: center;
+        }
+
+        .top_titlebar i {
+            font-size: 18px;
+        }
+
+        .top_titlebar .prev_next span, .top_titlebar #zoom {
+            font-size: 16px;
+        }
+
+        .top_titlebar .prev_next p {
+            margin: 0 7px;
+            font-size: 16px;
+        }
+
+        .top_titlebar .prev_next .btn {
+            width: auto;
+            min-width: unset;
+            background: transparent;
+            margin: 0;
+        }
+
+            .top_titlebar .prev_next .btn:focus {
+                outline: 0;
+                border-color: transparent;
+            }
+
+        .top_titlebar .prev_next {
+            position: absolute;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        .top_titlebar #zoom {
+            background: transparent;
+            border-color: transparent;
+        }
+
+        .top_titlebar .titlebar_controls {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+            .top_titlebar .titlebar_controls select:focus {
+                outline: 0;
+            }
+
+            .top_titlebar .titlebar_controls i {
+                cursor: pointer;
+            }
+
+            .top_titlebar .titlebar_controls .margin_custom {
+                margin: 0 40px;
+            }
+
+            .top_titlebar .titlebar_controls .print_download i {
+                margin-right: 30px;
+            }
+
+            .top_titlebar .titlebar_controls .print_download {
+                justify-self: flex-end;
+                margin-left: auto;
+            }
+
+            .top_titlebar .titlebar_controls .zoom_search i:first-child {
+                margin-right: 20px;
+            }
+
+            .top_titlebar .titlebar_controls .rotate i:first-child {
+                margin-right: 20px;
+            }
+
+            .top_titlebar .titlebar_controls .print_download i:last-child {
+                margin-right: 0;
+            }
+
+        .pdf_module .img_pdf {
+            text-align: center;
+            padding: 0 40px;
+        }
+
+            .pdf_module .img_pdf img {
+                margin: 0 auto;
+            }
+
+        .pdf_module .order_flex {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<div class="container" id="firstpage">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="customFile_upload">
+                <h3 class="text-center">VIEW DOCUMENTS</h3>
+                <p class="underline"></p>
+                <div class="customFile_inner">
+                    <div id="showFileUpload">
+                        <h4>
+
+                            <img border="0" title="Page navigation" src="/Content/images/file-upload.png">Upload Your File (Max 25mb)
+                        </h4>
+                        <input type="file" id="FileUpload1" class="choose_files" />
+                        <input type="button" id="btnUpload" value="Upload And View" class="upload_btn" />
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@*second step - pdf*@
+<div class="container-fluid pdf_module" id="secondpage">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="top_titlebar">
+                <div class="titlebar_controls">
+                    @*<a id="btnNext">Next</a>
+                        <p id="lblpage">1</p>
+                        <a id="btnPrevious">Previous</a>*@
+                    <select name="zoom" id="zoom" class="order_flex">
+                        <option value="volvo">100%</option>
+                        <option value="saab">100%</option>
+                        <option value="opel">100%</option>
+                        <option value="audi">100%</option>
+                    </select>
+
+                    <div class="zoom_search margin_custom order_flex">
+                        <i class="fa fa-search-plus" aria-hidden="true"></i>
+                        <i class="fa fa-search-minus" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="rotate order_flex">
+                        <i class="fa fa-repeat" aria-hidden="true"></i>
+                        <i class="fa fa-undo" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="prev_next">
+                        <button id="btnPrevious" class="btn">
+                            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                        </button>
+                        <p id="lblpage">1</p>
+                        <span>/</span>
+                        <p id="totalcount"></p>
+                        <button id="btnNext" class="btn">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <div class="print_download order_flex">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <i class="fa fa-print" aria-hidden="true"></i>
+                        <i class="fa fa-download" id="download" onclick="Remove()" aria-hidden="true" download></i>
+                       
+                    </div>
+
+                </div> <!-- titlebar_controls -->
+            </div>
+
+            <div class="img_pdf">
+                <img id="imagedoc" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#firstpage').show();
+            $('#secondpage').hide();
+
+
+        $('#btnNext').click(function () {
+            var currentPage = parseInt($('#lblpage').text());
+            var totalPages =parseInt($('#totalcount').text());
+            if ((currentPage + 1) <= totalPages) {
+                Navigate(currentPage + 1);
+                $('#lblpage').html(currentPage + 1)
+            }
+        });
+        $('#btnPrevious').click(function () {
+            var currentPage = parseInt($('#lblpage').text());
+            var totalPages = parseInt($('#totalcount').text());
+            if ((currentPage - 1) >= 1) {
+                Navigate(currentPage - 1);
+                $('#lblpage').html(currentPage - 1)
+            }
+        });
+    });
+
+    function getCurrentPageNumber() {
+        return parseInt($('#<%=lblCurrentPage.ClientID%>').html());
+    }
+
+    function getTotalPages() {
+        return parseInt($('#<%= lblTotalPages.ClientID %>').html());
+    }
+    function Remove() {
+
+        $('#download').attr("href", "/output/img1.png");
+        alert("kfkd");
+    }
+    function Navigate(value) {
+        debugger;
+        var promises = GetAjaxDataPromise('@Url.Action("GetPage", "Docreader")', { value: value});
+        promises.done(function (response) {
+           // debugger;
+            console.log(response);
+            debugger;
+            $('#imagedoc').attr("src", response);
+            $('#firstpage').hide();
+            $('#download').attr("download", response);
+
+        });
+    }
+
+    $('#btnUpload').click(function () {
+
+        if (window.FormData !== undefined) {
+            var fileData = new FormData();
+            fileData.append('fileData', $('#FileUpload1')[0].files[0]);
+            $.ajax({
+                url: '/Docreader/UploadFiles',
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: fileData,
+                success: function (result) {
+                    debugger;
+                    Navigate(1);
+                    $('#totalcount').text(result)
+                    $('#secondpage').show();
+                },
+                error: function (err) {
+                    console.log(err);
+                    alert(err.statusText);
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+
+
+        $('#download-btn').click(function () {
+            debugger;
+            alert("kk");
+                var link = document.createElement('a');
+                link.href = '/sites/default/files/toy/jpeg/image-1419683919_4851.jpeg';  // use realtive url
+                link.download = 'MyToy.jpeg';
+                document.body.appendChild(link);
+                link.click();
+            });
+
+
+    });
+
+</script>
+

@@ -1,0 +1,219 @@
+﻿@model IEnumerable<Code2Night.DAL.Common.Blog>
+@{
+    ViewBag.Title = "Index | Code2night.com";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #video.iframe {
+        width: 100% !important;
+    }
+</style>
+<section class="main-container" style="padding: 0px 0px">
+    <div class="container">
+        <div class="row">
+            <div class="main col-md-8">
+                <!-- page-title start -->
+                <!-- ================ -->
+                <h3 class="page-title">Latest Blog</h3>
+                <div class="separator-2"></div>
+                @foreach (var item in Model.Where(x => x.IsApproved).OrderByDescending(x => x.Date))
+                {
+                    <article class="clearfix blogpost object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+                        <div class="blogpost-body">
+                            <div class="post-info">
+                                <span class="day">@item.Date.ToString("dd")</span>
+                                <span class="month">@item.Date.ToString("MMM yyyy")</span>
+                            </div>
+                            <div class="blogpost-content">
+                                <header>
+                                    <h2 class="title" style="font-weight: 400 !important;"><a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></h2>
+                                    <div class="submitted" style="font-size:14px !important;">
+                                        <i class="fa fa-user pr-5"></i> by <a  href="/Blog/Author/@(item.AuthorId)-@(item.AuthorName)">@item.AuthorName</a><a style="color: black;margin-left: 16px;"><i class="fa fa-eye"></i>@item.TotalView</a>
+                                        @if (!string.IsNullOrEmpty(item.VideoEmbed))
+                                        {
+                                            <a onclick="ShowVideo('@item.VideoEmbed')" data-toggle="modal" data-target="#myModal" style="margin-left:5px;font-size:14px;color:black;" href="http://www.youtube.com/">
+
+                                                <i class="fa fa-youtube-play" style="color: #e84c3d
+"></i>  Watch Video
+                                            </a>
+                                         }
+                                    </div>
+
+                                </header>
+                                <p style="font-size:13px !important">@item.BlogIntroduction</p>
+                            </div>
+                        </div>
+
+                    </article>
+                }
+            </div>
+
+            <aside class="col-md-4">
+                <div class="sidebar">
+
+                    <div class="block clearfix">
+                        <h3 class="title">Top Trending</h3>
+                        <div class="separator"></div>
+                        <div class="block clearfix" style="padding-bottom:0px !important ">
+                            <script async src="https://cse.google.com/cse.js?cx=54fa958b97e2934d7"></script>
+                            <div class="gcse-search"></div>
+
+                        </div>
+                        @foreach (var item in Model.Where(x => x.IsApproved).OrderByDescending(x => x.TotalView))
+                        {
+                            <ul class="tweets">
+                                <li>
+                                    <i class="fa fa-line-chart"></i>
+                                    @*<p>@item.Title</p>*@
+                                    <p class="title"><a style="color: black;" target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></p>
+
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                    <div class="block clearfix">
+                        <h3 class="title">Featured Post</h3>
+                        <div class="separator"></div>
+                        <div class="image-box">
+                            @foreach (var item in Model)
+                            {
+                                <div class="image-box-body">
+                                    <h3 class="title"><a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></h3>
+                                    <p></p>
+                                    <a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)" class="link"><span>Read More</span></a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+@*
+    <section>
+        <div class="container" style="overflow-x:hidden">
+            <div class="row">
+                <div class="col-md-12">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Code2night Home -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-2622840091485569"
+                         data-ad-slot="8043938560"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+*@
+<section class="main-container" style="padding: 0px 0px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center title">Core Features</h1>
+                <div class="separator"></div>
+                <p class="text-center"></p>
+                <div class="row grid-space-20">
+                    <div class="col-sm-6">
+                        <div class="box-style-3 right object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="0">
+                            <div class="icon-container default-bg">
+                                <i class="fa fa-code"></i>
+                            </div>
+                            <div class="body">
+                                <h2>Code2night Tutorials</h2>
+                                <p>Code2night Tutorials contains references to programming solutions</p>
+                            </div>
+                        </div>
+                        <div class="box-style-3 right object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+                            <div class="icon-container default-bg">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="body">
+                                <h2>Technologies We Provide's</h2>
+                                <p>ASP .NET CORE ,JQUERY, ASP.NET MVC , SQL SERVER</p>
+                            </div>
+                        </div>
+                        <div class="box-style-3 right object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="400">
+                            <div class="icon-container default-bg">
+                                <i class="fa fa-book"></i>
+                            </div>
+                            <div class="body">
+                                <h2>Blog</h2>
+                                <p>Welcome to the Blog section of Code2night...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="box-style-3 object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="0">
+                            <div class="icon-container default-bg">
+                                <i class="fa fa-leaf"></i>
+                            </div>
+                            <div class="body">
+                                <h2>Tutorials</h2>
+                                <p>Learn C# ,SQL, Angularjs , Asp.net ...</p>
+                            </div>
+                        </div>
+                        <div class="box-style-3 object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+                            <div class="icon-container default-bg">
+                                <i class="fa fa-lightbulb-o"></i>
+                            </div>
+                            <div class="body">
+                                <h2>Forum</h2>
+                                <p>C# Forum, C# Forums, Forums, ASP.NET Forum, VB.NET, WPF ...</p>
+                            </div>
+                        </div>
+                        <div class="box-style-3 object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="400">
+                            <div class="icon-container default-bg">
+                                <i class="fa fa-code"></i>
+                            </div>
+                            <div class="body">
+                                <h2>Latest Technologies</h2>
+                                <p>C# ,Asp.Net core</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="main-container default-bg">
+    <div class="main">
+        <div class="container">
+            <div class="call-to-action">
+                <div class="row">
+                    <div class="col-md-12">
+                        <blockquote class="inline">
+                            <p class="margin-clear">Never study to be successful, study for self-efficiency. Don’t run behind success. Follow behind excellence, success will come all way behind you.</p>
+                            <footer style="color:white;font-size:20px;"><cite title="Source Title">3 Idiots </cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Play Video Tutorial</h4>
+            </div>
+            <div class="modal-body" id="video">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    var ShowVideo = function (data) {
+        $('#video').html(data);
+    }
+</script>

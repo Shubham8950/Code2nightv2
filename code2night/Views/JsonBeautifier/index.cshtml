@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewData["Title"] = "Json Beautifier | Code2night";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MetaDescription = "This JSON beautifier tool can help in formatting and beautifying JSON data along with minify as per your requirement. So that it can be easily read.";
+    ViewBag.MetaKeywords = "Code2Night,Code,Programming,Tutorials,Json Beautifier,Json Minifier";
+}
+@section Styles
+    {
+    <script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
+    <style>
+        .btn {
+            padding: 10px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            min-width: 140px !important;
+            text-align: center;
+            border-radius: 0;
+            text-transform: uppercase;
+            margin: 10px 0;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+        }
+    </style>
+    @*<link href="~/codemirror.css" rel="stylesheet" />
+        <script src="~/codemirror.js"></script>*@
+    <link href="~/jquery.json-viewer.css" rel="stylesheet" />
+    <script src="~/jquery.json-viewer.js"></script>
+    <script src="~/jquery.json-editor.js"></script>
+}
+<div class="page-intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home pr-10"></i><a href="@Url.Action("Index","Users")">Home</a></li>
+                    <li class="active">Json Beautifier</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="container" style="padding: 50px 10px;">
+        <div class="row">
+            <div class="col-md-5 col-sm-12">
+                <textarea id="json-input" class="form-control json-editor-blackbord" placeholder="Enter json..." style="min-height:500px;" autocomplete="off"></textarea>
+            </div>
+            <div class="col-md-2 col-sm-12" style=" text-align: center;">
+                <div class="col-md-12 col-sm-6">
+                    <button id="translate" type="button" class="btn btn-primary">Beautify</button>
+                </div>
+                <div class="col-md-12 col-sm-6">
+                    <button id="Copy" type="button" onclick="copyDivToClipboard()" class="btn btn-success">Copy Output</button>
+                </div>
+                <div class="col-md-12 col-sm-6">
+                    <button id="Minify" type="button" onclick="Minify()" class="btn btn-warning">Minify</button>
+                </div>
+                <div class="col-md-12 col-sm-6">
+                    <button id="Reset" type="button" onclick="window.location.reload();" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-12">
+                @*<textarea id="json-display" class="form-control" autocomplete="off"></textarea>*@
+                <div id="json-display" class="form-control json-editor-blackbord" style="min-height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+    {
+
+    <script type="text/javascript">
+        function getJson() {
+            try {
+                return JSON.parse($('#json-input').val());
+            } catch (ex) {
+                alert('Wrong JSON Format: ' + ex);
+            }
+        }
+        function copyDivToClipboard() {
+            var range = document.createRange();
+            range.selectNode(document.getElementById("json-display"));
+            window.getSelection().removeAllRanges(); // clear current selection
+            window.getSelection().addRange(range); // to select text
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();// to deselect
+        }
+        $(document).ready(function () {
+            $('#translate').on('click', function () {
+                var editor = new JsonEditor('#json-display', getJson());
+                editor.load(getJson());
+                $('.collapsed').first().click();
+            });
+        })
+        function Minify() {
+            var jsonObject = getJson();
+            var newString = JSON.stringify(jsonObject, null, 0);
+            $('#json-display').text(newString)
+        }
+
+    </script>
+
+    <script src="~/jquery.json-viewer.js"></script>
+}

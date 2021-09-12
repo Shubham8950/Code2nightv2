@@ -1,0 +1,54 @@
+<h5> </h5><h3 style="margin: 2rem 0px 1.5rem; font-size: 24px; letter-spacing: 0.238px; text-align: justify; color: rgb(24, 23, 23) !important;"><span style="font-weight: 700;">Ajax</span>&nbsp;</h3><h5><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(0, 0, 0); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; text-transform: none;">So starting of from the beginning Ajax is used for Asynchronous Javascript and XML. We can use it for many purposes. Few basic uses of Ajax are:-</p><ul style="box-sizing: inherit; margin-bottom: 10px; color: rgb(0, 0, 0); letter-spacing: 0.238px; text-align: justify; text-transform: none; font-family: Verdana, sans-serif;"><li style="box-sizing: inherit;">Update page without reloading the page providing better performance.</li><li style="box-sizing: inherit;">Request data from a server - after the page has loaded which can be used in loading Partial Views.</li><li style="box-sizing: inherit;">Send data to a server without reload - in the background making it easier to performance Save, Delete operations smoothly.</li></ul></h5><h3 style="margin: 2rem 0px 1.5rem; font-size: 24px; letter-spacing: 0.238px; text-align: justify; color: rgb(24, 23, 23) !important;"><span style="font-weight: 700;">Ajax in Asp.Net MVC</span></h3><h5><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(0, 0, 0); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; text-transform: none;">Ajax can be used anywhere where we can use jquery. So you have seen various ways of using Ajax in our previous article&nbsp; <a style="color:#0066ff" href="https://www.code2night.com/Blog/MyBlog/Using-Ajax-in-AspNet-MVC"><b>Using Ajax in Asp.Net MVC</b></a>. But posting fileupload files becomes a little complicated with Ajax.So we will learn How to upload Image file using AJAX and jquery. So let's start from beginning:-</p><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(0, 0, 0); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; text-transform: none;"><span style="font-weight: 700;">Step-1<br></span></p><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(0, 0, 0); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; text-transform: none;"><span style="letter-spacing: 0.238px;">So you have to add a fileupload filed on your view and now we will make some changes in Ajax to post that file on controller. We have also kept the three textboxes for some dummy data.</span></p><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(0, 0, 0); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; text-transform: none;"><span style="letter-spacing: 0.238px;">So for posting files and other data we have to send data by adding to formdata.</span></p><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(0, 0, 0); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; text-transform: none;"><b style="color: rgb(32, 33, 36); font-family: arial, sans-serif; font-size: 16px; letter-spacing: normal; text-align: left;">FormData </b><span style="color: rgb(32, 33, 36); font-family: arial, sans-serif; font-size: 16px; letter-spacing: normal; text-align: left;">is introduced</span><span style="color: rgb(32, 33, 36); font-family: arial, sans-serif; font-size: 16px; letter-spacing: normal; text-align: left;">&nbsp;to allow developers to build forms objects dynamically (and can even include files from the user's file system), and then to send this form object via&nbsp;</span><b style="color: rgb(32, 33, 36); font-family: arial, sans-serif; font-size: 16px; letter-spacing: normal; text-align: left;">AJAX.</b></p><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(0, 0, 0); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; text-transform: none;"><span style="color: rgb(32, 33, 36); font-family: arial, sans-serif; font-size: 16px; letter-spacing: normal; text-align: left;">So we will create a new formdata object and than add all the required values in that formdata using formdata.append. You will also add the file here . Remember to use the same keys which you have used on controller to receive tha data.</span></p><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(0, 0, 0); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; text-transform: none;">One thing to remember here is you have to use <b>contenttype</b> false which was json in previous methods we have seen in last article.And also set <b>processdata</b> to false</p></h5>
+<pre>    $(function () {
+        $("#btnGet6").click(function () {
+            var formData = new FormData();
+            var empIds = $("#txtId").val();
+            var empNames = $("#txtName").val();
+            var empSalarys = $("#txtSalary").val();
+            var totalFiles = document.getElementById("FileUpload").files.length;
+            debugger;
+            for (var i = 0; i &lt; totalFiles; i++) {
+                var file = document.getElementById("FileUpload").files[i];
+                formData.append("fileUpload", file);
+                formData.append("empId", empIds);
+                formData.append("empName", empNames);
+                formData.append("empSalary", empSalarys);
+            }
+            $.ajax({
+                type: 'post',
+                url: '/Home/AjaxMethodFileUpload',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    debugger;
+                    alert("Hello: " + response.EmpName + " Your Employee Id Is: " + response.EmpId + " Your Salary Is: " + response.EmpSalary + " And Your File Name Is: " + response.File);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    });
+</pre>
+<h5> </h5><p>On the controller side we have to using same way like we have used earlier for first three parameters. Like giving same name which we have added in formdata. And then we will use a parameter of type of <b>HttpPostedFileBase </b>to receive the file.You will get you file in this parameter. Also you can get the file in <b>Request.Files. </b>So this is how you can get your file posted in mvc.</p><h5>
+
+<pre> 
+        [HttpPost]
+        public JsonResult AjaxMethodFileUpload(string empId, string empName, string empSalary, HttpPostedFileBase fileUpload)
+        {
+            PersonModel personModel = new PersonModel
+            {
+                EmpId = empId,
+                EmpName = empName,
+                EmpSalary = empSalary,
+                File = fileUpload.FileName
+            };
+            return Json(personModel);
+        }
+</pre></h5>
+

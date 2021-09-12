@@ -1,0 +1,33 @@
+<p><p></p><h2>Issue: This is the error you might have faced while installing Postgre Sql "A non-fatal error occured during cluster initialisation in Postgre SQL"</h2><p></p>
+<p>
+<img src="/Uploads/Step1YYYY09DD1109SS.PNG"></p>
+<p>Step-2: Delete Folder PostgreSql from ProgramFiles</p>
+<p>
+<img src="/Uploads/Step-2YYYY09DD1109SS.PNG"></p>
+<p>Step-3: Now create a new Folder with the same name "PostgreSql"&nbsp; as shown in the pic</p>
+<p><img src="/Uploads/Step-3YYYY09DD1109SS.PNG"></p>
+<p>Step-4: Run setup again By right clicking and selecting Run As Administrator<br></p>
+<p><img src="/Uploads/Step-4YYYY09DD1109SS.PNG"></p>
+<p>Step-5: Change Installation location by default to&nbsp;</p><p>C:\PostgreSql by clicking on right side folder icon</p>
+<p><img src="/Uploads/Step-5YYYY09DD1109SS.PNG"></p>
+<p>Step-6 : Clicking Next and on Next Step Change Data Folder Location To&nbsp;</p><p>C:\PostgreSql\PostgreSqlData</p><img src="/Uploads/Step-6YYYY09DD1109SS.PNG">
+<p></p>
+<p>Step-7: Setting Folder Location</p><p>
+</p><p><img src="/Uploads/Step-7YYYY09DD1109SS.PNG">
+</p>
+<p>Step-8: Enter your Username and Password .You will need this while setting up database connection</p>
+<p><img src="/Uploads/Step-8YYYY09DD1109SS.PNG"></p>
+<p>Step-9: Click Next and Installation will start</p><p><img src="/Uploads/Step-9YYYY09DD1109SS.PNG"></p>
+<p>Step-10: Click on FInish After Installation complete</p><p><img src="/Uploads/Step-10YYYY09DD1109SS.PNG"></p>
+<p>Step-11: Look for pgAdmin4 and click on that to start PostgreSql</p>
+<p><img src="/Uploads/Step-11YYYY09DD1109SS.PNG">
+</p>
+<p>Step-12 You will see error again. But don't worry just press ok</p><p>and Go to pgAdmin4&nbsp; again and click it to reopen PostgreSql</p><p><img src="/Uploads/Step-12YYYY09DD1109SS.PNG"></p><p>If you see this error than press ok and go to pgAdmin4 and reopen PostgreSql again and this will work</p><p>
+<img src="/Uploads/Step-13YYYY09DD1109SS.PNG"></p>
+</p><p>Step-13: Congrats this time it will open perfectly and this is how we can solve Issue&nbsp;<span style="color: rgba(0, 0, 0, 0.87); font-family: Roboto, Noto, sans-serif; white-space: pre-wrap;">A non-fatal error occured during cluster initialisation in Postgre SQL.</span><br></p><p><img src="/Uploads/Save-14YYYY09DD1109SS.PNG"><br><p></p>
+<p>You can also have a look at our&nbsp; video tutorial available with step by step explanation</p><p><br></p><p><a href="https://youtu.be/XLmmrEAqTtc" target="_blank">A non-fatal error occured during cluster initialization video tutorial</a><br></p></p><p><br></p>
+
+
+
+
+

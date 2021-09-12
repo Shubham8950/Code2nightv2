@@ -1,0 +1,72 @@
+<p><br></p>
+<pre>@{
+
+    ViewBag.Title = "Create";
+
+}
+
+
+
+<h3>Add Customer</h3>
+
+
+
+
+
+@using (Html.BeginForm()) 
+
+{
+
+    @Html.AntiForgeryToken()
+
+    
+
+    <div class="form-horizontal">
+
+  
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+
+            @Html.LabelFor(model =&gt; model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+
+                @Html.EditorFor(model =&gt; model.FirstNam</div></div></div></pre><h1>heading</h1><pre>@{
+
+    ViewBag.Title = "Create";
+
+}
+
+
+
+<h3>Add Customer</h3>
+
+
+
+
+
+@using (Html.BeginForm()) 
+
+{
+
+    @Html.AntiForgeryToken()
+
+    
+
+    <div class="form-horizontal">
+
+  
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+
+            @Html.LabelFor(model =&gt; model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+
+                @Html.EditorFor(model =&gt; model.FirstNam</div></div></div></pre>
+<h2>hreadin 2</h2>
+<pre></pre>

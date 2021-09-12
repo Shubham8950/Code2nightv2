@@ -1,0 +1,123 @@
+<h3><b>Globalisation and Localisation in .net core 3.1</b></h3><p>In ASP.Net webforms you all might have used <b>Resource(.resx)&nbsp;</b>&nbsp;files for implementing multiple language across your websites. What that mean is your webpage will pick text according to the selected culture from the resource file's key value string. However, with the evolution of .net technology and .Net core 3.1 the ways of applying <b>localisation and Resource Files</b> has changed.</p><p>So, you will find many solutions asking you to use&nbsp;&nbsp;<span style="color: rgb(0, 0, 0); font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace; font-size: 14px; white-space: pre-wrap;"><b>IStringLocalizer&lt;Resource&gt;</b> </span>for implementing localisation but those seems to be too complicated if you are a beginner or new to .net core. So, for those who&nbsp; are new and want a simpler solution to use Resource files then follow the steps.</p><p><br></p><h3>Step-1 Add Resource Files on Application Root</h3><p>So the first step we need to follow is adding two Resource Files in your .Net core Application at root level. Remember you have to first keep the name <b>Resource.resx </b>and <b>Resource1.resx </b>while adding the files and you can change the filename later according to the culture likes <b>Resource.en-US.resx</b> and <b>Resource.Ar.resx&nbsp;</b>&nbsp;but if you try to use those names from beginning those files won't build properly.</p><p><img src="/Uploads/Step120210304094941.PNG" style="width: 100%;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p><p>After adding the files click on the files one by one and set <b>Access modifier</b> to <b>Public&nbsp;</b></p><p><img src="/Uploads/Step220210304095232.PNG"></p><p>Now as our Resource Files are ready to use we will now move to startup.cs file for further steps.</p><p><span style="color: rgb(52, 52, 52); font-family: &quot;Segoe UI&quot;, Verdana, sans-serif; font-size: 22px;"><b>Step 2 - Changes in Startup.cs</b></span></p><p>So you can see we need few basic things here including <b>Session</b> and <b>AddHttpContextAccessor . </b>We will be using them in later steps.<br></p><pre>using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+
+namespace WebApplication1
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSession();
+            services.AddHttpContextAccessor();
+            services.AddControllersWithViews();
+            services.AddSingleton&lt;IHttpContextAccessor, HttpContextAccessor&gt;();
+            services.AddMvc().AddViewLocalization().AddSessionStateTempDataProvider();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+            app.UseSession();
+            app.UseEndpoints(endpoints =&gt;
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+    }
+}
+</pre><div><br></div><div>After configuring startup.cs now we have to use our resource files in our views. So the way to use them in the view is</div><div><br></div><pre>Resource.ResourceManager.GetString("Hello", new CultureInfo("Ar"))</pre>
+
+<p>You can directly use your Resource string by this line . This basically need the culture name for which you have to get your string and the string you want. It will look for the string as per the specified culture and then giving a localised string.</p><p>However , we can create a separate class with some common method to get this localised string in order to make it more simpler. We will be using session to store our active culture. You can choose from where you will get culture into session.</p><p>We will be creating a new class</p><p><br></p><pre> public static class CustomResourceHelper
+    {
+        public static string GetResourceString(IHttpContextAccessor httpContext, string data)
+        {
+            if(string.IsNullOrEmpty(httpContext.HttpContext.Session.GetString("culture")))
+                httpContext.HttpContext.Session.SetString("culture", "en-US");
+            return Resource.ResourceManager.GetString(data, new CultureInfo(httpContext.HttpContext.Session.GetString("culture")));
+        }
+    }</pre><p>This class will basically provide us a method to which we have to pass the httpContextAccessor Object and also the Resource string which you would like to have. You can make changes according to your need. And On View you can use it like&nbsp;<img src="/Uploads/Step-320210304100553.PNG"></p><p>So you can see we have used&nbsp; this to get our localised string for "Hello".The reason why we need HttpContextAccessor is because of the culture value which we have saved in that.</p><pre><font color="#666666"><span style="letter-spacing: normal; white-space: normal; background-color: rgb(255, 255, 255);">@CustomResourceHelper.GetResourceString(HttpContextAccessor, "Hello")</span></font></pre><p>You can see the change culture method which is saving the culture in the httpContextAccessor Session. Which we are using inside the class used on the view.</p><pre> public class HomeController : Controller
+    {
+        private readonly ILogger&lt;HomeController&gt; _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public HomeController(ILogger&lt;HomeController&gt; logger, IHttpContextAccessor httpContextAccessor)
+        {
+            _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult ChangeCulture(string culture)
+        {
+            _httpContextAccessor.HttpContext.Session.SetString("culture", culture);
+            return RedirectToAction("Index");
+        }
+    }</pre> <p>You can change your view like this&nbsp;</p><pre>@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Home Page";
+    var culture = string.IsNullOrWhiteSpace(HttpContextAccessor.HttpContext.Session.GetString("culture")) ? "en-US" : HttpContextAccessor.HttpContext.Session.GetString("culture");
+}
+&lt;select onchange="window.location.href='/Home/ChangeCulture?culture='+this.value"&gt;
+    @if (culture == "en-US")
+    {
+        &lt;option value="Ar"&gt;Arabic&lt;/option&gt;
+        &lt;option selected value="en-US"&gt;English&lt;/option&gt;
+    }
+    else
+    {
+        &lt;option selected value="Ar"&gt;Arabic&lt;/option&gt;
+        &lt;option  value="en-US"&gt;English&lt;/option&gt;
+    }
+&lt;/select&gt;
+&lt;div class="text-center"&gt;
+    &lt;h1 class="display-4"&gt;Welcome @CustomResourceHelper.GetResourceString(HttpContextAccessor, "Hello")&lt;/h1&gt;
+    &lt;p&gt;Learn about &lt;a href="https://docs.microsoft.com/aspnet/core"&gt;building Web apps with ASP.NET Core&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</pre><div><br></div><div>So, make the changes according to your need and run you project . You can download sample files also which we will provide along with this article .So the final output will be</div><div><img src="/Uploads/Step420210304101416.PNG"><img src="/Uploads/Step520210304101416.PNG"></div><div><br></div><div>So,you can see whenever we will change&nbsp; the dropdown language the text will change according to resource string . Download files or comment on article if you have any issues.</div>

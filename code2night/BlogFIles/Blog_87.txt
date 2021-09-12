@@ -1,0 +1,32 @@
+<p></p><h3>Issue- </h3><p>You might have faced issue converting string with dot notation to JSON Asp.Net. Have a look at this image</p><p><img src="/Uploads/6d25a068-17d5-46f2-865a-1fee4d4855cf20201009104834.jpg"></p><p>So as in the image you can see we have dot separated hierarchy which we have to convert in json. So we will have a look at how to do that in c#.</p><h3>Step-1</h3><p>So we will start by creating&nbsp; a class for our hierarchical data</p><pre><code class="line-numbers language-csharp">public class Treepath
+    {
+        public string Key { get; set; }
+        public Treepath children { get; set; }
+
+    }</code></pre>
+Now you can use this piece of code for converting your dot notation to JSON<p></p><p></p><pre><code class="line-numbers language-csharp">List&lt;Treepath&gt; trees = new List&lt;Treepath&gt;();
+            foreach (var path in treepath)
+            {
+                var item = new Treepath();
+                var sublevel = path.Split(".");
+                for (int i = 0; i &lt; 1; i++)
+                {
+                    var lastitem = new Treepath();
+                    for (int j = sublevel.Count()-1; j &gt; 0; j--)
+                    {
+                        if (sublevel[j] == sublevel.LastOrDefault())
+                        {
+                            lastitem.children = new Treepath { Key = sublevel[j], children = null };
+                        }
+                        else
+                        {
+                            lastitem.children = new Treepath { Key = sublevel[j], children =  lastitem.children  };
+                        }
+                    }
+                    lastitem.Key = sublevel[i];
+                    item = lastitem;
+                }
+                trees.Add(item);
+            }
+            var json = JsonConvert.SerializeObject(trees);</code></pre><p></p>
+

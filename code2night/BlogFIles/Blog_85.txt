@@ -1,0 +1,354 @@
+<h5>Step 1 : Create a project</h5>
+<pre> <code class="line-numbers language-csharp">Add two DLL File in your project from Nuget.org</code></pre><p><img src="/Uploads/e120201003101010.PNG"><br></p>
+<h5>Step 2 :Add Appsettings into webconfig file&nbsp;</h5>
+<pre><code class="line-numbers language-csharp"> &lt;appSettings&gt;
+		&lt;add key="Host" value="smtp.gmail.com" /&gt;
+		&lt;add key="EnableSsl" value="true" /&gt;
+		&lt;add key="UserName" value="Enteryouremail@gmail.com" /&gt;
+		&lt;add key="Password" value="Enteryourpassword" /&gt;
+		&lt;add key="Port" value="587" /&gt;
+&lt;/appSettings&gt;</code></pre>
+<h5>Step : 3 add a namespace into email.aspx.cs</h5><pre><code class="line-numbers language-csharp">using System.Web;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Xml;
+using iTextSharp.text;
+using iTextSharp.text.pdf.draw;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.xml;
+using iTextSharp.tool.xml;
+using iTextSharp.tool.xml.pipeline.css;
+using iTextSharp.tool.xml.parser;
+using iTextSharp.tool.xml.pipeline.html;
+using iTextSharp.tool.xml.pipeline.end;
+using iTextSharp.tool.xml.html;</code></pre>
+<h5>Step : 4 Complete code of email with html template and attachment of pdf&nbsp;&nbsp;</h5>
+<pre><code class="line-numbers language-csharp"> protected void Page_Load(object sender, EventArgs e)
+    {
+
+        //string emailaddress = "shubhambatra1994@gmail.com"; string ZipCode,
+        string EmailFirstName = "Shubham";
+        string EmailLastName = "Batra";
+        string EmailPaymentTransactionId = "Shubham@123";
+        string EmailCreatedOn = DateTime.Now.ToString("dd/MM/yyyy");
+        string Emailemailaddress = "shubhambatra1994 @gmail.com";
+        string EmailAmount = "shubhambatra1994@gmail.com";
+        string FullName = "Shubham Batra";
+        string PracticeLogo = HttpContext.Current.Server.MapPath("/code2night.png");
+
+        try
+        {
+            string recepientEmail = "shubhambatra1994@gmail.com";
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/HtmlPage.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            using (MailMessage mailMessage = new MailMessage())
+            {
+                // convert html to pdf 
+                string strHtml = string.Empty;
+                //HTML File path  
+                string htmlFileName2 = HttpContext.Current.Server.MapPath("~/HtmlPageforpdf.html");
+                //Image file path.
+                string imging = "";
+                if (PracticeLogo != "")
+                {
+                    imging = PracticeLogo;
+                }
+                //reading html code from html file
+                FileStream fsHTMLDocument = new FileStream(htmlFileName2, FileMode.Open, FileAccess.Read);
+                StreamReader srHTMLDocument = new StreamReader(fsHTMLDocument);
+                strHtml = srHTMLDocument.ReadToEnd();
+                srHTMLDocument.Close();
+                strHtml = strHtml.Replace("\r\n", "");
+                strHtml = strHtml.Replace("\0", "");
+                strHtml = strHtml.Replace("(EmailFirstName)", FullName);
+                strHtml = strHtml.Replace("(EmailAmount)", EmailAmount);
+                strHtml = strHtml.Replace("(EmailPaymentTransactionId)", EmailPaymentTransactionId);
+                strHtml = strHtml.Replace("(EmailCreatedOn)", EmailCreatedOn);
+                strHtml = strHtml.Replace("(imging)", imging);
+                //TestPDF.HtmlToPdfBuilder builder = new TestPDF.HtmlToPdfBuilder(iTextSharp.text.PageSize.A4);
+                //TestPDF.HtmlPdfPage first = builder.AddPage();
+                //first.AppendHtml(strHtml);
+                // byte[] filingpdf = builder.RenderPdf();
+
+                // second method
+
+                byte[] bytesArray = null;
+                using (var ms = new MemoryStream())
+                {
+                    var document = new Document();
+                    PdfWriter writer = PdfWriter.GetInstance(document, ms);
+                    document.Open();
+                    using (var strReader = new StringReader(strHtml))
+                    {
+                        //Set factories
+                        HtmlPipelineContext htmlContext = new HtmlPipelineContext(null);
+                        htmlContext.SetTagFactory(Tags.GetHtmlTagProcessorFactory());
+                        //Set css
+                        ICSSResolver cssResolver = XMLWorkerHelper.GetInstance().GetDefaultCssResolver(false);
+                        cssResolver.AddCssFile(HttpContext.Current.Server.MapPath("~/NewCSS/Clientdetail.css"), true);
+                        //Export
+                        IPipeline pipeline = new CssResolverPipeline(cssResolver, new HtmlPipeline(htmlContext, new PdfWriterPipeline(document, writer)));
+                        var worker = new XMLWorker(pipeline, true);
+                        var xmlParse = new XMLParser(true, worker);
+                        xmlParse.Parse(strReader);
+                        xmlParse.Flush();
+                    }
+                    document.Close();
+                    bytesArray = ms.ToArray();
+                }
+
+                // send email and replace text file 
+                body = body.Replace("{Logosendwithemail}", "companyLogo");
+                body = body.Replace("{EmailFirstName}", FullName);
+                body = body.Replace("{EmailAmount}", EmailAmount);
+                body = body.Replace("{EmailPaymentTransactionId}", EmailPaymentTransactionId);
+                body = body.Replace("{EmailCreatedOn}", EmailCreatedOn);
+                byte[] reader = { };
+                if (PracticeLogo != "")
+                {
+                    reader = File.ReadAllBytes( PracticeLogo);
+                   
+                    MemoryStream image1 = new MemoryStream(reader);
+                    AlternateView av = AlternateView.CreateAlternateViewFromString(body, null, System.Net.Mime.MediaTypeNames.Text.Html);
+                    LinkedResource headerImage = new LinkedResource(image1, System.Net.Mime.MediaTypeNames.Image.Jpeg);
+                    headerImage.ContentId = "companyLogo";
+                    headerImage.ContentType = new ContentType("image/jpg");
+                    av.LinkedResources.Add(headerImage);
+                    mailMessage.AlternateViews.Add(av);
+                    ContentType mimeType = new System.Net.Mime.ContentType("text/html");
+                    AlternateView alternate = AlternateView.CreateAlternateViewFromString(body, mimeType);
+                }
+                mailMessage.IsBodyHtml = true;
+                mailMessage.From = new MailAddress(ConfigurationManager.AppSettings["UserName"]);
+                mailMessage.Subject = "You Are Registered Successfully!";
+                mailMessage.Body = body;
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Attachments.Add(new Attachment(new MemoryStream(bytesArray), "receipt.pdf"));
+                mailMessage.To.Add(new MailAddress(recepientEmail));
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                smtp.Host = ConfigurationManager.AppSettings["Host"];
+                smtp.EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]);
+                System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+                NetworkCred.UserName = ConfigurationManager.AppSettings["UserName"];
+                NetworkCred.Password = ConfigurationManager.AppSettings["Password"];
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = NetworkCred;
+                smtp.Port = int.Parse(ConfigurationManager.AppSettings["Port"]);
+                smtp.Send(mailMessage);
+
+            }
+        }
+
+        catch (Exception ex)
+        {
+
+        }
+    }</code></pre>
+<h5>Step 5 : Add new html file&nbsp;</h5>
+<pre><code class="line-numbers language-csharp"> &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;title&gt;Appointment Confirmed&lt;/title&gt;
+
+
+
+    &lt;style&gt;
+        /*-- fonts --*/
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&amp;display=swap');
+
+        div, p, h1, h2, h3, h4, ol, li, ul {
+            font-family: 'Roboto', 'sans-serif';
+        }
+        /*-- fonts --*/
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, * {
+            font-family: 'Roboto', 'sans-serif';
+            box-sizing: border-box;
+        }
+
+
+
+
+        .bitmap {
+            width: 236px;
+            height: 56px;
+        }
+
+        .body {
+            width: 600px;
+            height: 734px;
+            background-color: #F4F5F5;
+            text-align: center;
+            margin: 0 auto;
+            padding: 50px 0 0;
+        }
+
+        .rectangle {
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 2px 4px 0 rgba(52, 61, 86, 0.04), 0 16px 32px 0 rgba(52, 61, 86, 0.2);
+            width: 504px;
+            /*height: 446px;*/
+            height: auto;
+            text-align: center;
+            margin: 48px auto 32px;
+            padding: 40px;
+        }
+
+        .hi-nikita {
+            color: #343D56;
+            font-size: 12px;
+            /*font-weight: 900;*/
+            line-height: 14px;
+            font-family: 'Roboto';
+            font-weight: bold;
+        }
+
+        .thanks-for-your-paym {
+            color: #031926;
+            font-size: 20px;
+            /*font-weight: 400;*/
+            font-weight: bold;
+            letter-spacing: -0.25px;
+            line-height: 24px;
+            font-family: 'Roboto';
+            margin: 10px 0 40px;
+        }
+
+        .amount-paid {
+            color: #343D56;
+            font-size: 12px;
+            /*font-weight: 400;*/
+            font-weight: bold;
+            line-height: 14px;
+            font-family: 'Roboto';
+        }
+
+        .ammount {
+            color: #031926;
+            font-size: 15px;
+            /*font-weight: 400;*/
+            font-weight: bold;
+            line-height: 38px;
+            font-family: 'Roboto';
+            margin: 10px 0 35px;
+        }
+
+        .confirmation-number {
+            color: #343D56;
+            font-size: 12px;
+            /*font-weight: 400;*/
+            font-weight: bold;
+            line-height: 14px;
+            font-family: 'Roboto';
+        }
+
+        .confnumber {
+            color: #031926;
+            font-size: 20px;
+            /*font-weight: 400;*/
+            font-weight: bold;
+            line-height: 24px;
+            font-family: 'Roboto';
+            margin: 10px 0 35px;
+        }
+
+        .date {
+            color: #343D56;
+            font-size: 12px;
+            /*font-weight: 400;*/
+            font-weight: bold;
+            line-height: 14px;
+            font-family: 'Roboto';
+        }
+
+        .may-20th-2020 {
+            color: #031926;
+            font-size: 20px;
+            /*font-weight: 400;*/
+            font-weight: bold;
+            line-height: 24px;
+            font-family: 'Roboto';
+            margin-top: 8px;
+        }
+
+        .you-have-received-th {
+            color: #343D56;
+            font-size: 11px;
+            /*font-weight: 400;*/
+            font-weight: bold;
+            line-height: 15px;
+            width: 452px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+            .you-have-received-th a {
+                color: #343D56;
+                font-family: 'Roboto';
+            }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="body"&gt;
+        &lt;img src="cid:{Logosendwithemail}" alt="Logo" class="bitmap" /&gt;
+
+
+        &lt;div class="rectangle"&gt;
+            &lt;div class="hi-nikita"&gt;Hi, {EmailFirstName}!&lt;/div&gt;
+            &lt;div class="thanks-for-your-paym"&gt;Welcome You Too Code2night.com!&lt;/div&gt;
+            &lt;div class="amount-paid"&gt;Your Account Email Id&lt;/div&gt;
+            &lt;div class="ammount"&gt;{EmailAmount}&lt;/div&gt;
+            &lt;div class="confirmation-number"&gt;Your Account Password&lt;/div&gt;
+            &lt;div class="confnumber"&gt;{EmailPaymentTransactionId}&lt;/div&gt;
+            &lt;div class="date"&gt;Date&lt;/div&gt;
+            &lt;div class="may-20th-2020"&gt;{EmailCreatedOn}&lt;/div&gt;
+            &lt;a style="color: #22BCE5" href="{Url}"&gt;&lt;/a&gt;&lt;br /&gt;
+        &lt;/div&gt;
+        &lt;div class="you-have-received-th"&gt;
+            You have received this mail because you have paid for dental services at sedadental.com. You can always unsubscribe from our mailing list, by clicking on Unsubscribe. You can also reply to this message, including &lt;a href="http://localhost:45905/shubham/4/Chrysanthemum.jpg"&gt; unsubscribe &lt;/a&gt; in the topic.
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+   
+
+&lt;/html&gt;</code></pre>
+<h5>Step 6 : add new html file for send pdf&nbsp;</h5>
+<pre><code class="line-numbers language-csharp">&lt;html&gt;
+
+&lt;body&gt;
+    &lt;div class="body"&gt;
+        &lt;img src="(imging)" alt="Logo" class="bitmap" style="width: 236px;height: 56px;" /&gt;
+
+        &lt;div class="rectangle_outer"&gt;
+            &lt;div class="rectangle"&gt;
+                &lt;div class="hi-nikita"&gt;Hi, (EmailFirstName)!&lt;/div&gt;
+                &lt;div class="thanks-for-your-paym"&gt;Thanks For Your Payment!&lt;/div&gt;
+                &lt;div class="amount-paid"&gt;Ammount Paid&lt;/div&gt;
+                &lt;div class="ammount"&gt;$(EmailAmount)&lt;/div&gt;
+                &lt;div class="confirmation-number"&gt;Confirmation Number&lt;/div&gt;
+                &lt;div class="confnumber"&gt;(EmailPaymentTransactionId)&lt;/div&gt;
+                &lt;div class="date"&gt;Date&lt;/div&gt;
+                &lt;div class="may-20th-2020"&gt;(EmailCreatedOn)&lt;/div&gt;
+                &lt;a style="color: #22BCE5" href="(Url)"&gt;&lt;/a&gt;&lt;br /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;<br></code></pre>
+<h5>Step : 7&nbsp; Final output&nbsp;</h5><p><img src="/Uploads/e220201003101927.PNG" style="width: 100%;"></p><p><img src="/Uploads/e320201003101927.PNG" style="width: 100%;"></p><p><img src="/Uploads/e420201003101928.PNG" style="width: 100%;"><br></p>
+

@@ -1,0 +1,324 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    
+    <UserSecretsId>c901150a-a1ed-4f61-8147-62887633ea6c</UserSecretsId>
+ 
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\lib\**" />
+    <Compile Remove="wwwroot\plugins\morphext\**" />
+    <Compile Remove="wwwroot\plugins\rs-plugin-5\**" />
+    <Compile Remove="wwwroot\plugins\summernote\lang\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\plugins\morphext\**" />
+    <Content Remove="wwwroot\plugins\rs-plugin-5\**" />
+    <Content Remove="wwwroot\plugins\summernote\lang\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\plugins\morphext\**" />
+    <EmbeddedResource Remove="wwwroot\plugins\rs-plugin-5\**" />
+    <EmbeddedResource Remove="wwwroot\plugins\summernote\lang\**" />
+    <None Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\plugins\morphext\**" />
+    <None Remove="wwwroot\plugins\rs-plugin-5\**" />
+    <None Remove="wwwroot\plugins\summernote\lang\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\CalendarController.cs" />
+    <Compile Remove="Controllers\FacebookLoginController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+    <Content Remove="Views\Shared\View.cshtml" />
+    <Content Remove="Views\Users\Blog.cshtml" />
+    <Content Remove="wwwroot\bootstrap-grid.css" />
+    <Content Remove="wwwroot\bootstrap-grid.css.map" />
+    <Content Remove="wwwroot\bootstrap-grid.min.css" />
+    <Content Remove="wwwroot\bootstrap-grid.min.css.map" />
+    <Content Remove="wwwroot\bootstrap-reboot.css" />
+    <Content Remove="wwwroot\bootstrap-reboot.css.map" />
+    <Content Remove="wwwroot\bootstrap-reboot.min.css" />
+    <Content Remove="wwwroot\bootstrap-reboot.min.css.map" />
+    <Content Remove="wwwroot\bootstrap.css" />
+    <Content Remove="wwwroot\bootstrap.css.map" />
+    <Content Remove="wwwroot\bootstrap.min.css" />
+    <Content Remove="wwwroot\bootstrap.min.css.map" />
+    <Content Remove="wwwroot\css\animate.css" />
+    <Content Remove="wwwroot\css\animations.css" />
+    <Content Remove="wwwroot\css\boootstrap.css" />
+    <Content Remove="wwwroot\css\custom.css" />
+    <Content Remove="wwwroot\css\JqueryUI.css" />
+    <Content Remove="wwwroot\css\layouthome.css" />
+    <Content Remove="wwwroot\css\print-invoice.css" />
+    <Content Remove="wwwroot\css\site.css" />
+    <Content Remove="wwwroot\css\style.css" />
+    <Content Remove="wwwroot\js\coming.soon.config.js" />
+    <Content Remove="wwwroot\js\google.map.config.js" />
+    <Content Remove="wwwroot\js\Jquery.min.js" />
+    <Content Remove="wwwroot\js\LayoutTop.js" />
+    <Content Remove="wwwroot\js\LayoutTop.min.js" />
+    <Content Remove="wwwroot\js\nicescroll.js" />
+    <Content Remove="wwwroot\js\platform.js" />
+    <Content Remove="wwwroot\js\site.js" />
+    <Content Remove="wwwroot\js\summernote.js" />
+    <Content Remove="wwwroot\js\swal.js" />
+    <Content Remove="wwwroot\LayoutFinal.js" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-bs4.css" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-bs4.js" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-bs4.js.map" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-bs4.min.css" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-bs4.min.js" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-bs4.min.js.LICENSE.txt" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-bs4.min.js.map" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-lite.css" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-lite.js" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-lite.js.map" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-lite.min.css" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-lite.min.js" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-lite.min.js.LICENSE.txt" />
+    <Content Remove="wwwroot\plugins\summernote\summernote-lite.min.js.map" />
+    <Content Remove="wwwroot\plugins\summernote\summernote.css" />
+    <Content Remove="wwwroot\plugins\summernote\summernote.js" />
+    <Content Remove="wwwroot\plugins\summernote\summernote.js.map" />
+    <Content Remove="wwwroot\plugins\summernote\summernote.min.js.LICENSE.txt" />
+    <Content Remove="wwwroot\plugins\summernote\summernote.min.js.map" />
+    <Content Remove="wwwroot\Sharee.js" />
+    <Content Remove="wwwroot\template_Optimized.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\LayoutTop.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_offline.html" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="AntiXSS" Version="4.3.0" />
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.50.0.2238" />
+    <PackageReference Include="GroupDocs.Viewer" Version="20.12.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.Web.Optimization" Version="1.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />
+ 
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+ 
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
+ 
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.14" />
+ 
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.14" />
+ 
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+ 
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.1.1" />
+ 
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.1.1" />
+ 
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <PackageReference Include="MimeKit" Version="2.9.2" />
+    <PackageReference Include="MimeMapping" Version="1.0.1.30" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
+    <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.7.0" />
+    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.1" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+    <None Include="wwwroot\adminplugins\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\adminplugins\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\adminplugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\adminplugins\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\adminplugins\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\adminplugins\bootstrap\js\bootstrap.js.map" />
+    <None Include="wwwroot\adminplugins\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\adminplugins\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\adminplugins\chart.js\Chart.bundle.js" />
+    <None Include="wwwroot\adminplugins\chart.js\Chart.bundle.min.js" />
+    <None Include="wwwroot\adminplugins\chart.js\Chart.css" />
+    <None Include="wwwroot\adminplugins\chart.js\Chart.js" />
+    <None Include="wwwroot\adminplugins\chart.js\Chart.min.css" />
+    <None Include="wwwroot\adminplugins\chart.js\Chart.min.js" />
+    <None Include="wwwroot\adminplugins\datatables\jquery.dataTables.js" />
+    <None Include="wwwroot\adminplugins\datatables\jquery.dataTables.min.js" />
+    <None Include="wwwroot\adminplugins\flot\jquery.flot.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.axislabels.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.browser.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.categories.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.composeImages.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.crosshair.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.drawSeries.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.errorbars.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.fillbetween.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.flatdata.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.hover.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.image.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.legend.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.logaxis.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.navigate.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.pie.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.resize.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.saturated.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.selection.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.stack.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.symbol.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.threshold.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.time.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.touch.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.touchNavigate.js" />
+    <None Include="wwwroot\adminplugins\flot\plugins\jquery.flot.uiConstants.js" />
+    <None Include="wwwroot\adminplugins\jquery\jquery.js" />
+    <None Include="wwwroot\adminplugins\jquery\jquery.min.js" />
+    <None Include="wwwroot\adminplugins\jquery\jquery.min.map" />
+    <None Include="wwwroot\adminplugins\jquery\jquery.slim.js" />
+    <None Include="wwwroot\adminplugins\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\adminplugins\jquery\jquery.slim.min.map" />
+    <None Include="wwwroot\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\build\config\postcss.config.js" />
+    <None Include="wwwroot\build\config\rollup.config.js" />
+    <None Include="wwwroot\build\js\AdminLTE.js" />
+    <None Include="wwwroot\build\js\CardRefresh.js" />
+    <None Include="wwwroot\build\js\CardWidget.js" />
+    <None Include="wwwroot\build\js\ControlSidebar.js" />
+    <None Include="wwwroot\build\js\DirectChat.js" />
+    <None Include="wwwroot\build\js\Dropdown.js" />
+    <None Include="wwwroot\build\js\ExpandableTable.js" />
+    <None Include="wwwroot\build\js\Fullscreen.js" />
+    <None Include="wwwroot\build\js\Layout.js" />
+    <None Include="wwwroot\build\js\PushMenu.js" />
+    <None Include="wwwroot\build\js\SidebarSearch.js" />
+    <None Include="wwwroot\build\js\SiteSearch.js" />
+    <None Include="wwwroot\build\js\Toasts.js" />
+    <None Include="wwwroot\build\js\TodoList.js" />
+    <None Include="wwwroot\build\js\Treeview.js" />
+    <None Include="wwwroot\build\npm\DocsPlugins.js" />
+    <None Include="wwwroot\build\npm\DocsPublish.js" />
+    <None Include="wwwroot\build\npm\Plugins.js" />
+    <None Include="wwwroot\build\npm\Publish.js" />
+    <None Include="wwwroot\build\npm\vnu-jar.js" />
+    <None Include="wwwroot\build\scss\adminlte.scss" />
+    <None Include="wwwroot\build\scss\mixins\_accent.scss" />
+    <None Include="wwwroot\build\scss\mixins\_backgrounds.scss" />
+    <None Include="wwwroot\build\scss\mixins\_cards.scss" />
+    <None Include="wwwroot\build\scss\mixins\_custom-forms.scss" />
+    <None Include="wwwroot\build\scss\mixins\_direct-chat.scss" />
+    <None Include="wwwroot\build\scss\mixins\_miscellaneous.scss" />
+    <None Include="wwwroot\build\scss\mixins\_navbar.scss" />
+    <None Include="wwwroot\build\scss\mixins\_sidebar.scss" />
+    <None Include="wwwroot\build\scss\mixins\_toasts.scss" />
+    <None Include="wwwroot\build\scss\pages\_404_500_errors.scss" />
+    <None Include="wwwroot\build\scss\pages\_e-commerce.scss" />
+    <None Include="wwwroot\build\scss\pages\_invoice.scss" />
+    <None Include="wwwroot\build\scss\pages\_lockscreen.scss" />
+    <None Include="wwwroot\build\scss\pages\_login_and_register.scss" />
+    <None Include="wwwroot\build\scss\pages\_mailbox.scss" />
+    <None Include="wwwroot\build\scss\pages\_profile.scss" />
+    <None Include="wwwroot\build\scss\pages\_projects.scss" />
+    <None Include="wwwroot\build\scss\parts\adminlte.components.scss" />
+    <None Include="wwwroot\build\scss\parts\adminlte.core.scss" />
+    <None Include="wwwroot\build\scss\parts\adminlte.extra-components.scss" />
+    <None Include="wwwroot\build\scss\parts\adminlte.pages.scss" />
+    <None Include="wwwroot\build\scss\parts\adminlte.plugins.scss" />
+    <None Include="wwwroot\build\scss\parts\_components.scss" />
+    <None Include="wwwroot\build\scss\parts\_core.scss" />
+    <None Include="wwwroot\build\scss\parts\_extra-components.scss" />
+    <None Include="wwwroot\build\scss\parts\_miscellaneous.scss" />
+    <None Include="wwwroot\build\scss\parts\_pages.scss" />
+    <None Include="wwwroot\build\scss\parts\_plugins.scss" />
+    <None Include="wwwroot\build\scss\plugins\_bootstrap-slider.scss" />
+    <None Include="wwwroot\build\scss\plugins\_bootstrap-switch.scss" />
+    <None Include="wwwroot\build\scss\plugins\_fullcalendar.scss" />
+    <None Include="wwwroot\build\scss\plugins\_icheck-bootstrap.scss" />
+    <None Include="wwwroot\build\scss\plugins\_jqvmap.scss" />
+    <None Include="wwwroot\build\scss\plugins\_mapael.scss" />
+    <None Include="wwwroot\build\scss\plugins\_miscellaneous.scss" />
+    <None Include="wwwroot\build\scss\plugins\_mixins.scss" />
+    <None Include="wwwroot\build\scss\plugins\_pace.scss" />
+    <None Include="wwwroot\build\scss\plugins\_select2.scss" />
+    <None Include="wwwroot\build\scss\plugins\_sweetalert2.scss" />
+    <None Include="wwwroot\build\scss\plugins\_toastr.scss" />
+    <None Include="wwwroot\build\scss\_adminlte.raw.scss" />
+    <None Include="wwwroot\build\scss\_alerts.scss" />
+    <None Include="wwwroot\build\scss\_bootstrap-variables.scss" />
+    <None Include="wwwroot\build\scss\_brand.scss" />
+    <None Include="wwwroot\build\scss\_buttons.scss" />
+    <None Include="wwwroot\build\scss\_callout.scss" />
+    <None Include="wwwroot\build\scss\_cards.scss" />
+    <None Include="wwwroot\build\scss\_carousel.scss" />
+    <None Include="wwwroot\build\scss\_colors.scss" />
+    <None Include="wwwroot\build\scss\_control-sidebar.scss" />
+    <None Include="wwwroot\build\scss\_direct-chat.scss" />
+    <None Include="wwwroot\build\scss\_dropdown.scss" />
+    <None Include="wwwroot\build\scss\_elevation.scss" />
+    <None Include="wwwroot\build\scss\_forms.scss" />
+    <None Include="wwwroot\build\scss\_info-box.scss" />
+    <None Include="wwwroot\build\scss\_layout.scss" />
+    <None Include="wwwroot\build\scss\_main-header.scss" />
+    <None Include="wwwroot\build\scss\_main-sidebar.scss" />
+    <None Include="wwwroot\build\scss\_miscellaneous.scss" />
+    <None Include="wwwroot\build\scss\_mixins.scss" />
+    <None Include="wwwroot\build\scss\_modals.scss" />
+    <None Include="wwwroot\build\scss\_navs.scss" />
+    <None Include="wwwroot\build\scss\_pagination.scss" />
+    <None Include="wwwroot\build\scss\_print.scss" />
+    <None Include="wwwroot\build\scss\_products.scss" />
+    <None Include="wwwroot\build\scss\_progress-bars.scss" />
+    <None Include="wwwroot\build\scss\_sidebar-mini.scss" />
+    <None Include="wwwroot\build\scss\_small-box.scss" />
+    <None Include="wwwroot\build\scss\_social-widgets.scss" />
+    <None Include="wwwroot\build\scss\_table.scss" />
+    <None Include="wwwroot\build\scss\_text.scss" />
+    <None Include="wwwroot\build\scss\_timeline.scss" />
+    <None Include="wwwroot\build\scss\_toasts.scss" />
+    <None Include="wwwroot\build\scss\_users-list.scss" />
+    <None Include="wwwroot\build\scss\_variables.scss" />
+    <None Include="wwwroot\plugins\jasny-bootstrap\js\jasny-bootstrap.js" />
+    <None Include="wwwroot\plugins\jquery.countdown\jquery.countdown.js" />
+    <None Include="wwwroot\plugins\jquery.countdown\jquery.plugin.js" />
+    <None Include="wwwroot\plugins\magnific-popup\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\plugins\owl-carousel\owl.carousel.js" />
+    <None Include="wwwroot\plugins\summernote\font\summernote.eot" />
+    <None Include="wwwroot\plugins\summernote\font\summernote.ttf" />
+    <None Include="wwwroot\plugins\summernote\font\summernote.woff" />
+    <None Include="wwwroot\plugins\summernote\font\summernote.woff2" />
+    <None Include="wwwroot\plugins\summernote\plugin\databasic\summernote-ext-databasic.css" />
+    <None Include="wwwroot\plugins\summernote\plugin\databasic\summernote-ext-databasic.js" />
+    <None Include="wwwroot\plugins\summernote\plugin\hello\summernote-ext-hello.js" />
+    <None Include="wwwroot\plugins\summernote\plugin\specialchars\summernote-ext-specialchars.js" />
+    <None Include="wwwroot\plugins\summernote\summernote.min.css" />
+    <None Include="wwwroot\plugins\summernote\summernote.min.js" />
+    <None Include="wwwroot\plugins\sweetalert2\sweetalert2.all.js" />
+    <None Include="wwwroot\plugins\sweetalert2\sweetalert2.all.min.js" />
+    <None Include="wwwroot\plugins\sweetalert2\sweetalert2.css" />
+    <None Include="wwwroot\plugins\sweetalert2\sweetalert2.js" />
+    <None Include="wwwroot\plugins\sweetalert2\sweetalert2.min.css" />
+    <None Include="wwwroot\plugins\sweetalert2\sweetalert2.min.js" />
+    <None Include="wwwroot\plugins\vide\jquery.vide.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="wwwroot\client_secret.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,108 @@
+﻿@model List<Code2Night.DAL.Common.Category>
+@{
+    ViewData["Title"] = "InsertCategory";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript" src="/plugins/jquery.min.js"></script>
+<section class="main-container" style="        margin-top: 0px;
+        width: 100%
+">
+
+    <div class="container">
+        <div class="row">
+            <div class="" style="width:100%">
+                <h2 class="title">Insert Category</h2>
+                <hr>
+                <div class="form-horizontal">
+                    <div class="form-group has-feedback" style="display:flex">
+                        <div class="col-md-8 col-sm-12">
+                            <label for="inputName" class="col-sm-3 control-label">Category Name <span class="text-danger small">*</span></label>
+                            <div class="col-sm-12 col-md-12">
+                                <input type="text" class="form-control" id="CategoryName" placeholder="Category Name" required="">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="col-md-12 col-sm-12"> <input type="submit" style="margin-top:31px;" name="buttonsubmit" id="InsertCategory" onclick="InsertCategory()" class="btn btn-primary" value="Insert Category"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- main end -->
+
+        </div>
+    </div>
+</section>
+<div class="card-body p-0">
+    <table class="table table-striped projects">
+        <thead>
+            <tr>
+                <th style="width: 1%">
+                    #
+                </th>
+                <th style="width: 15%">
+                    Category
+                </th>
+                <th style="width: 20%">
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.categoryid
+                    </td>
+                    <td>
+                        @item.categoryname
+                    </td>
+                    <td class="project-actions text-right">
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Category", new { id = item.categoryid })" onclick="return confirm('Are you sure you want to Delete this category?')">
+                            <i class="fas fa-trash">
+                            </i>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+
+
+    $(function () {
+        $("#InsertCategory").click(function () {
+            if ($("#CategoryName").val().trim() == "") {
+                alert("Please insert category name.");
+                return false;
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/Category/InsertCategory",
+                    data: { "categoryname": $("#CategoryName").val() },
+                    success: function (response) {
+                        window.location.reload();
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        });
+    });
+
+
+
+
+
+</script>

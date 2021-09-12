@@ -1,0 +1,72 @@
+
+<h3>Step-1 First of all add a nugget package for Microsoft Exchange Services which will let you connect to Outlook from within your web application. We will use this to get our Outlook appointments and then for saving appointment also.</h3><h3><img src="/Uploads/Step-120201003040458.PNG"></h3>
+<h3>Step-2 Add these namespaces to your controller</h3><pre>using Microsoft.Exchange.WebServices.Data;
+using CalendarView = Microsoft.Exchange.WebServices.Data.CalendarView;</pre>
+<h3>Step-3 we will use this to get appointments from our outlook account. You can replace your outlook username and password&nbsp; and then just run this piece of code.</h3>
+<pre>  public ActionResult GetAppointments()
+        {
+            string ewsUrl = "https://outlook.office365.com/EWS/Exchange.asmx";
+            string userName = "youroutlookmail";
+            string password = "youroutlookpassword";
+
+            ExchangeService servicex = new ExchangeService();
+            servicex.Url = new Uri(ewsUrl);
+            servicex.UseDefaultCredentials = true;
+            servicex.Credentials = new WebCredentials(userName, password);
+            DateTime startDate = DateTime.Now;
+            DateTime endDate = startDate.AddDays(30);
+            const int NUM_APPTS = 5;
+            // Initialize the calendar folder object with only the folder ID. 
+            CalendarFolder calendar = CalendarFolder.Bind(servicex, WellKnownFolderName.Calendar, new PropertySet());
+            // Set the start and end time and number of appointments to retrieve.
+            CalendarView cView = new CalendarView(startDate, endDate, NUM_APPTS);
+            // Limit the properties returned to the appointment's subject, start time, and end time.
+            cView.PropertySet = new PropertySet(AppointmentSchema.Subject, AppointmentSchema.Start, AppointmentSchema.End);
+            // Retrieve a collection of appointments by using the calendar view.
+            FindItemsResults&lt;Appointment&gt; appointments = calendar.FindAppointments(cView);
+            Debug.WriteLine("\nThe first " + NUM_APPTS + " appointments on your calendar from " + startDate.Date.ToShortDateString() +
+                              " to " + endDate.Date.ToShortDateString() + " are: \n");
+
+            foreach (Appointment a in appointments)
+            {
+                /*Here you will get your appointments*/
+                Debug.Write("Subject: " + a.Subject.ToString() + " ");
+                Debug.Write("Start: " + a.Start.ToString() + " ");
+                Debug.Write("End: " + a.End.ToString());
+                clsAppointment app = new clsAppointment();
+                app.Subject = a.Subject.ToString();
+                app.StartDate = a.Start;
+                app.EndDate = a.End;
+               
+
+            }
+            return View();
+        }</pre>
+<h3>Step-4 After getting appointments now in this step we will see how to add new appointments. We will use same exchange service to Add Appointments in our Microsoft Outlook account.</h3>
+<pre> public ActionResult AddAppointments()
+        {
+            string ewsUrl = "https://outlook.office365.com/EWS/Exchange.asmx";
+            string userName = "yourOutlookEmail";
+            string password = "youroutlookpassword";
+
+            ExchangeService servicex = new ExchangeService();
+            servicex.Url = new Uri(ewsUrl);
+            servicex.UseDefaultCredentials = true;
+            servicex.Credentials = new WebCredentials(userName, password);
+
+         
+                Appointment appointment = new Appointment(servicex);
+                // Set the properties on the appointment object to create the appointment.
+                appointment.Subject = "Tennis lesson";
+                appointment.Body = "Focus on backhand this week.";
+                appointment.Start = DateTime.Now.AddDays(2);
+                appointment.End = appointment.Start.AddHours(1);
+                appointment.Location = "Tennis club";
+                appointment.ReminderDueBy = DateTime.Now;
+
+
+                // Save the appointment to your calendar.
+                appointment.Save(SendInvitationsMode.SendToNone);
+                return View();
+            }</pre>
+<h3>Conclusion- So this is how you can integrate outlook appointments with your Asp.Net MVC web application</h3>

@@ -1,0 +1,194 @@
+﻿@model Code2Night.Models.AritclesModel
+@{
+    ViewData["Title"] = "Articles";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript" src="/plugins/jquery.min.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/summernote.css" rel="stylesheet" />
+<link href="~/adminplugins/summernote/summernote.css" rel="stylesheet" />
+<script src="~/adminplugins/summernote/summernote.js"></script>
+<section class="main-container" style="margin-top: 0px;width: 100%">
+
+    <div class="container">
+        <div class="row">
+            <div class="" style="width:100%">
+                <h2 class="title">Topics</h2>
+                <hr>
+                <div class="form-horizontal">
+                    @using (Html.BeginForm("SaveArticle", "Category", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-md-12" style="display: flex;padding-bottom: 25px;">
+                            <div class="col-md-6">
+                                <label for="categoryid" class="col-sm-3 control-label">Topic<span class="text-danger small">*</span></label>
+                                @Html.DropDownListFor(x => x.ArticleDetails.topicid, new SelectList(Model.GetTopicsTitle, "topicid", "title"), new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="categoryid" class="col-sm-6 control-label">Article Url<span class="text-danger small">*</span></label>
+                                @Html.TextBoxFor(x => x.ArticleDetails.articleurl, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="display:flex">
+                            <div class="col-md-6">
+                                <label for="categoryid" class="col-sm-5 control-label">Introduction<span class="text-danger small">*</span></label>
+                                @Html.TextAreaFor(x => x.ArticleDetails.topicArticleIntroduction, new { @class = "form-control" })
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="categoryid" class="col-sm-4 control-label">Article Title<span class="text-danger small">*</span></label>
+                                @Html.TextAreaFor(x => x.ArticleDetails.articletitle, new { @class = "form-control" })
+                            </div>
+
+                        </div>
+                        <div class="col-md-12" style="display:flex">
+                            <div class="col-md-12">
+                                <label for="categoryid" class="col-sm-6 control-label">Article Body<span class="text-danger small">*</span></label>
+                                @Html.TextAreaFor(x => x.ArticleDetails.ArticleBody, new { @class = "form-control", @id = "summernote" })
+                                @Html.HiddenFor(x=>x.ArticleDetails.articleid)
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-12" style="display:flex">
+                            <div class="col-md-6">
+                                <div class="col-md-12 col-sm-12"> <input type="button" onclick="Validate()" style="margin-top:31px;margin-bottom:31px" name="buttonsubmit" id="InsertCategory" class="btn btn-success" value="Submit Article"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- main end -->
+
+        </div>
+    </div>
+</section>
+<div class="card-body p-0">
+    <table class="table table-striped projects">
+        <thead>
+            <tr>
+                <th style="width: 1%">
+                    #
+                </th>
+                <th style="width: 15%">
+                    Article Title
+                </th>
+                <th style="width: 15%">
+                    Article Introduction
+                </th>
+            
+
+                <th style="width: 20%">
+                    Article Url
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.GetArticles)
+            {
+                <tr>
+                    <td>
+                        @item.articleid
+                    </td>
+                    <td>
+                        @item.articletitle
+                    </td>
+                    <td>
+                        @item.topicArticleIntroduction
+                    </td>
+                    
+                    <td>
+                        @item.articleurl
+                    </td>
+                    <td class="project-actions text-right">
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("EditArticle", "Category", new { id = item.articleid })">
+                            <i class="fas fa-pen-square">
+                            </i>
+                            Edit
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("DeleteArticle", "Category", new { id = item.articleid })" onclick="return confirm('Are you sure you want to Delete this article?')">
+                            <i class="fas fa-trash">
+                            </i>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("#summernote").summernote({
+            height: 300,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true,                  // set focus to editable area after initializing summernote
+            callbacks: {
+                onImageUpload: function (files) {
+                    for (let i = 0; i < files.length; i++) {
+                        UploadImage(files[i]);
+                    }
+                }
+            }
+        });
+    });
+
+     function UploadImage(file) {
+        var url = '@Url.Action("UploadFile", "Blog")';
+
+        formData = new FormData();
+        formData.append("aUploadedFile", file);
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (FileUrl) {
+               // alert(FileUrl);
+                var imgNode = document.createElement('img');
+                imgNode.src = FileUrl;
+                $('#summernote').summernote('insertNode', imgNode);
+            },
+            error: function (data) {
+                alert(data.responseText);
+            }
+        });
+    }
+
+    var Validate = function () {
+        if ($("#ArticleDetails_topicid").val().trim() == "") {
+            alert("Please insert topic id ");
+            return false;
+        }
+        else if ($("#ArticleDetails_articleurl").val().trim() == "") {
+            alert("Please insert article url ");
+            return false;
+        }
+        else if ($("#ArticleDetails_topicArticleIntroduction").val().trim() == "") {
+            alert("Please insert topic Article Introduction");
+            return false;
+        }
+        else if ($("#ArticleDetails_articletitle").val().trim() == "") {
+            alert("Please insert article title ");
+            return false;
+        }
+        else if ($('#summernote').summernote('isEmpty')) {
+            alert('Please insert article body');
+            return false;
+        }
+        else if ($('#summernote').val().replace(/&nbsp;/g, '').replace(/ /g, '') == "<p></p>")
+        {
+            alert('Please do not insert white space in article body');
+            return false;
+        }
+        else {
+            $('form').submit();
+        }
+    }
+</script>

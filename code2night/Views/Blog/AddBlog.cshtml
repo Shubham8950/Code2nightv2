@@ -1,0 +1,451 @@
+﻿@model Code2Night.DAL.Common.Blog
+@{
+    ViewBag.Title = "Add Blog | Code2Night.com";
+    ViewBag.MetaDescription = "Welcome To Code2night, write your own blog and reach to the whole world.";
+    ViewBag.MetaKeywords = "Add Blog,Code2Night,New Blogs,Code,Programming,Tutorials";
+    ViewBag.Canonical = "https://www.code2night.com/Blog/AddBlog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.OpenGraphUrl = "https://www.code2night.com/Blog/AddBlog";
+    ViewBag.OpenGraphDescription = "Welcome To Code2night, check out latest programming blogs with detailed description to help you out";
+    ViewBag.OpenGraphTitle = "Add Blog | Code2Night.com";
+}
+@section Styles
+    {
+    <style>
+        .btn-default {
+            background-color: white !important;
+            color: black !important;
+            border-color: black !important;
+        }
+
+            .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+                color: #0066ff !important;
+                background-color: #cd3c2e;
+                border-color: #cd3c2e;
+            }
+
+        .note-toolbar {
+            position: static !important;
+            z-index: 500;
+        }
+
+        .btn-default:hover {
+            background-color: white !important;
+            color: black !important;
+            border-color: black !important;
+        }
+
+        .tokenfield {
+            height: auto !important;
+        }
+
+        .panel-heading a {
+            font-weight: 400;
+            padding: 12px 35px 12px 15px;
+            display: inline-block;
+            width: 100%;
+            background-color: transparent;
+            color: #ffffff;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .btn.btn-sm {
+            padding: 8px;
+            font-size: 12px;
+            min-width: 55px;
+        }
+
+        .btn {
+            padding: 4px 2px !important;
+        }
+
+        .main h1#Title.page-title, #blogbody #blog p {
+            display: inline-block;
+            word-break: break-all;
+        }
+    </style>
+
+    <link href="~/adminplugins/select2/css/select2.min.css" rel="stylesheet" />
+
+    <link href='/plugins/summernote/summernote.min.css' rel="stylesheet" />
+}
+<section class="main-container">
+
+    <div class="container">
+        <div class="row">
+
+            <!-- main start -->
+            <!-- ================ -->
+            @if (Model.Id > 0)
+            {
+                <div class="main col-md-6" style="word-break:break-all">
+
+                    <!-- page-title start -->
+                    <!-- ================ -->
+
+                    <h1 class="page-title" id="Title">@Model.Title</h1>
+                    <!-- page-title end -->
+                    <!-- blogpost start -->
+                    <article class="clearfix blogpost full">
+                        <div class="blogpost-body">
+                            <div class="side">
+                                <div class="post-info">
+                                    <span class="day">@Model.Date.Day</span>
+                                    <span class="month">@Model.Date.ToString("MMM") @Model.Date.Year</span>
+                                </div>
+                                <div id="affix"><span class="share">Share This</span><div id="share"></div></div>
+                            </div>
+                            <div class="blogpost-content">
+                                <header>
+                                    <div class="submitted"><i class="fa fa-user pr-5"></i> by <a href="#">@(string.IsNullOrEmpty(Convert.ToString(HttpContextAccessor.HttpContext.Session.GetString("UserName"))) ? "Author" : (Convert.ToString(HttpContextAccessor.HttpContext.Session.GetString("UserName"))))</a></div>
+                                </header>
+                                <blockquote>
+                                    <p id="previewIntroduction">@Model.BlogIntroduction</p>
+                                </blockquote>
+
+                                <div id="blogbody">
+                                    <p id="blog">@Html.Raw(Model.BlogBody)</p>
+                                </div>
+                            </div>
+                            <footer class="clearfix">
+                                <ul class="links pull-left">
+
+                                    <li><i class="fa fa-tags pr-5"></i> <a href="#" id="mytags" class="text-capitalize"></a><a href="#" id="demotags" class="text-capitalize">@(Model.Tags!=null?Model.Tags.Replace("-"," "):"")</a></li>
+                                </ul>
+                            </footer>
+                        </div>
+                    </article>
+                </div>
+            }
+            else
+            {
+                <div class="main col-md-6" style="word-break:break-all">
+
+                    <!-- page-title start -->
+                    <!-- ================ -->
+
+                    <h1 class="page-title" id="Title">Blogpost Title (Dummy Blog)</h1>
+                    <!-- page-title end -->
+                    <!-- blogpost start -->
+                    <article class="clearfix blogpost full">
+                        <div class="blogpost-body">
+                            <div class="side">
+                                <div class="post-info">
+                                    <span class="day">@DateTime.Now.Day</span>
+                                    <span class="month">@DateTime.Now.ToString("MMM") @DateTime.Now.Year</span>
+                                </div>
+                                <div id="affix"><span class="share">Share This</span><div id="share"></div></div>
+                            </div>
+                            <div class="blogpost-content">
+                                <header>
+                                    <div class="submitted"><i class="fa fa-user pr-5"></i> by <a href="#">@(string.IsNullOrEmpty((Convert.ToString(HttpContextAccessor.HttpContext.Session.GetString("UserName")))) ? "Author" : (Convert.ToString(HttpContextAccessor.HttpContext.Session.GetString("UserName"))))</a></div>
+                                </header>
+                                <blockquote>
+                                    <p id="previewIntroduction">Please Enter a suitable description for your blog . It must be max 500 characters and must define what is your blog for..</p>
+                                </blockquote>
+                                <div id="demoblog">
+
+                                    <p>
+                                        The journal (the truncation of the language `` weblog '') is a speech or informational site printed on the Web consisting of separate, often intimate diary-style book entries (posts ) . Posts are typically exhibited in reverse chronological order, so that the most new place seems Firstly, in the top of the page. Until 2009, blogs were normally the study of a single person, occasionally of a small group, and frequently covered a single person or issue. At this 2010s, `` multi-author blogs '' (MABs) have produced, with posts published by huge amounts of writers and sometimes professionally edited. MABs from newspapers, different media outlets, universities, think tanks, support groups, and related institutions responsible for the increasing amount of blog communication.
+                                    </p><p>
+                                        This growth of Twitter and other `` microblogging '' organizations helps incorporate MABs and single-author blogs into this broadcast media. Journal can also be used as a verb, meaning to keep or bring knowledge to the blog.
+                                    </p>
+                                </div>
+                                <div id="blogbody" style="display:none">
+                                    <p id="blog"></p>
+                                </div>
+                            </div>
+                            <footer class="clearfix">
+                                <ul class="links pull-left">
+                                    <li><i class="fa fa-comment-o pr-5"></i> <a href="#">22 comments</a> |</li>
+                                    <li><i class="fa fa-tags pr-5"></i> <a href="#" id="mytags" class="text-capitalize"></a><a href="#" id="demotags" class="text-capitalize">tags1, tag2</a></li>
+                                </ul>
+                            </footer>
+                        </div>
+                    </article>
+                </div>
+            }
+            <!-- main end -->
+            <!-- sidebar start -->
+            <aside class="col-md-5 col-md-offset-1">
+                <div class="sidebar">
+                    <form asp-action="AddBlog" asp-controller="Blog" enctype="multipart/form-data" data-ajax="true" data-ajax-method="POST" novalidate data-ajax-success="OnAddBlogSuccess" data-ajax-begin="return Validate()" id="frmBlog">
+                        <div class="block clearfix">
+                            <h3 class="title">Write New Blog</h3>
+                            <div class="separator"></div>
+                            <nav>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li>
+                                        <label for="title">Title</label>
+                                        @Html.HiddenFor(x => x.Id)
+                                        <input type="text" class="form-control" onkeydown="ChangeTitle(this)" value="@Model.Title" name="Title" onkeyup="ChangeTitle(this)" id="title" />
+                                        <label for="title">About Blog (max 500 characters)</label>
+                                        @Html.TextAreaFor(x => x.BlogIntroduction, new { @onkeydown = "ChangeIntroduction(this)", @class = "form-control", @maxlength = "500" })
+
+                                        <label for="blogbody">Article</label><div class="example">
+                                            <div class="summernote">@Html.Raw(Model.BlogBody)</div>
+                                        </div>
+                                        <input type="hidden" name="BlogBody" value="@Model.BlogBody" id="BlogBody" />
+                                    </li>
+                                    <li>
+                                        <label for="tokenfield">Categories</label>
+                                        <input type="text" class="form-control" id="tokenfield" name="Tags" onchange="ChangeTags(this)" value='@(Model.Tags)' placeholder="Type Tags and hit enter" />
+                                    </li>
+                                    <li>
+                                        <label for="title">Video Embed Link</label>
+                                        <input type="text" class="form-control" value="@Model.VideoEmbed" name="VideoEmbed" id="videoembed" />
+                                    </li>
+                                    <li>
+                                    <li>
+                                        <label for="title">Upload Documents</label>
+                                        <input type="file" name="documents" />
+                                        @Html.HiddenFor(x => x.Document)
+                                    </li>
+                                    <li style="margin-top:10px;height:100px">
+                                        <label for="Visibility">Visibility</label>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="radio" style="float:left">
+                                                <label for="Visibility2">
+                                                    <input type="radio" name="Visibility" @(Model.IsPrivate ? "checked" : "") id="Visibility2" value="Private">
+                                                    Private
+                                                </label>
+                                            </div>
+                                            <div class="radio" style=" float: left; margin-top: 9px; margin-left: 10px; ">
+                                                <label for="Visibility1">
+                                                    <input type="radio" name="Visibility" @(!Model.IsPrivate ? "checked" : "") id="Visibility1" value="Public">
+                                                    Public
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <button id="submit" value="Submit Blog" class="btn btn-success">Submit Blog</button>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+@section Scripts
+    {
+    <script type='text/javascript' src='/plugins/jquery.min.js'></script>
+    <script asp-append-version="true" src="~/bootstrap/js/bootstrap.min.js"></script>
+    <script asp-append-version="true" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script asp-append-version="true" src="~/adminplugins/select2/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ajax-unobtrusive@3.2.6/dist/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js" integrity="sha512-kZv5Zq4Cj/9aTpjyYFrt7CmyTUlvBday8NGjD9MxJyOY/f2UfRYluKsFzek26XWQaiAp7SZ0ekE7ooL9IYMM2A==" crossorigin="anonymous"></script>
+    <script type='text/javascript' src='/plugins/sweetalert2/sweetalert2.min.js'></script>
+    <script type='text/javascript' src='/Tags/bootstrap-tokenfield.min.js'></script>
+    <script>
+    var Validate = function () {
+        if ($('#title').val() == "") {
+            alert("Title cannot be blank !");
+            return false;
+        }
+        if ($('#BlogBody').val() == "") {
+            alert("Blog Body cannot be blank !");
+            return false;
+        }
+        if ($('#BlogIntroduction').val() == "") {
+            alert("Blog Introduction cannot be blank !");
+            return false;
+        }
+        ShowLoader();
+    }
+    $(document).ready(function () {
+       window.addEventListener("submit", function (e) {
+           var form = e.target;
+           e.preventDefault();
+           var valid = true;
+           if ($('#title').val() == "") {
+              // alert("Title cannot be blank !");
+               valid = false;
+               return false;
+           }
+           if ($('#BlogBody').val() == "") {
+               //alert("Blog Body cannot be blank !");
+               valid = false;
+               return false;
+           }
+           if ($('#BlogIntroduction').val() == "") {
+              // alert("Blog Introduction cannot be blank !");
+               valid = false;
+               return false;
+           }
+           if (valid) {
+               ShowLoader();
+               if (form.getAttribute("enctype") === "multipart/form-data") {
+                   if (form.dataset.ajax) {
+                       e.preventDefault();
+                       e.stopImmediatePropagation();
+                       var xhr = new XMLHttpRequest();
+                       xhr.open(form.method, form.action);
+                       xhr.onreadystatechange = function (data) {
+                           HideLoader();
+                           if (xhr.readyState == 4 && xhr.status == 200) {
+                               var response = JSON.parse(xhr.responseText);
+
+                               Swal.fire({
+                                   position: 'top-end',
+                                   type: 'success',
+                                   title: "Blog Submitted Successfully",
+                                   showConfirmButton: false,
+                                   timer: 3000
+                               });
+                               setTimeout(
+                                   function () {
+                                       window.location.href = "/Blog/AddBlog";
+                                   }
+                                   , 3000);
+                           }
+                           else {
+                               console.log(data);
+                           }
+                       }
+                   };
+                   xhr.send(new FormData(form));
+               }
+           }
+
+        }, true);
+
+       $(".summernote").summernote({
+           callbacks: {
+               onChange: function (contents, $editable) {
+                   console.log('onChange:', contents, $editable);
+                   if (contents == "") {
+                       $("#blog").hide();
+                       $("#demoblog").show();
+
+                   }
+                   else {
+                       debugger;
+                       $('body').append('<div style="display:none;" id="testdiv"></div>');
+                       //var string = "";
+                       //$('div.note-editable').children().each((index, element) => {
+                       //    $('#testdiv').val('');
+                       //    if ($(element).is('pre') && $(element).find('code.language-csharp').length==0) {
+                       //        var textArea = document.createElement('textarea');
+                       //        textArea.innerHTML = $(element).find('code').html();
+
+                       //        $('#testdiv').text(textArea.value);
+                       //        string +='<pre><code>'+ $('#testdiv').html()+'</code></pre>';
+                       //    }
+                       //    else {
+                       //        string += $(element).html();
+                       //    }
+                       //});
+                       $('#testdiv').remove();
+                       $('#BlogBody').val(contents);
+                       $("#blog").html(contents);
+                      // $(".note-editable").html('');
+                      // $(".note-editable").html(string);
+
+                       $("#blog").show();
+                       $("#blogbody").show();
+                       $("#demoblog").hide();
+                   }
+
+               },
+
+               onImageUpload: function (files) {
+                   for (let i = 0; i < files.length; i++) {
+                       UploadImage(files[i]);
+                   }
+               }
+
+           }
+       });
+
+   });
+    var ChangeTags = function (ctrl) {
+       console.log($(ctrl).val());
+       if ($(ctrl).val() == "") {
+           $("#mytags").hide();
+           $("#demotags").show();
+       }
+       else {
+           $("#mytags").html($(ctrl).val());
+           $("#mytags").show();
+           $("#demotags").hide();
+       }
+   }
+    var ChangeIntroduction=function(ctrl)
+   {
+       if ($(ctrl).val() == "")
+       {
+           $("#previewIntroduction").html('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.');
+       }
+       else
+       {
+           $("#previewIntroduction").html($(ctrl).val());
+       }
+
+    }
+    var ChangeTitle = function (ctrl) {
+        if ($(ctrl).val() == "") {
+            $("#Title").html('BlogPost Title (Dummy Blog)');
+        }
+        else {
+            $("#Title").html($(ctrl).val());
+        }
+    }
+    $('#tokenfield').tokenfield({
+        autocomplete: {
+
+            source: [],
+            delay: 100
+        },
+        showAutocompleteOnFocus: true
+    })
+    var OnAddBlogSuccess = function (reponse) {
+        if (response.data == 0) {
+            }
+            else {
+                Swal.fire({
+                    position: 'top-end',
+                    type: 'success',
+                    title: "Blog Submitted Successfully",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                setTimeout(
+                    function () {
+                        window.location.href = '@Url.Action("AddBlog","Blog")';
+                    }
+                , 3000);
+
+            }
+    }
+
+     function UploadImage(file) {
+        var url = '@Url.Action("UploadFile", "Blog")';
+
+        formData = new FormData();
+        formData.append("aUploadedFile", file);
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (FileUrl) {
+               // alert(FileUrl);
+                var imgNode = document.createElement('img');
+                imgNode.src = FileUrl;
+                $('.summernote').summernote('insertNode', imgNode);
+            },
+            error: function (data) {
+                alert(data.responseText);
+            }
+        });
+    }
+    </script>
+}

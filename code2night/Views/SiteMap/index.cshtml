@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div style="padding:50px;">
+    <a class="btn btn-primary" href='@Url.Action("GenerateSiteMap","SiteMap")'>Generate SiteMap</a>
+    @if (ViewBag.IsFileAvailable)
+    {
+        <a class="btn btn-primary" style="margin-left:10px;"  href='@Url.Action("DownloadFile","SiteMap")'>Download SiteMap</a>
+    }
+
+</div>
+
