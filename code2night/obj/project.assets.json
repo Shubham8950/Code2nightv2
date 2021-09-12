@@ -13670,11 +13670,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Code2nightv2\\code2night\\Code2Night.csproj",
+      "projectUniqueName": "E:\\Code2nightv2Git\\Code2nightv2\\code2night\\Code2Night.csproj",
       "projectName": "Code2Night",
-      "projectPath": "E:\\Code2nightv2\\code2night\\Code2Night.csproj",
+      "projectPath": "E:\\Code2nightv2Git\\Code2nightv2\\code2night\\Code2Night.csproj",
       "packagesPath": "C:\\Users\\Shubham Saini\\.nuget\\packages\\",
-      "outputPath": "E:\\Code2nightv2\\code2night\\obj\\",
+      "outputPath": "E:\\Code2nightv2Git\\Code2nightv2\\code2night\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
