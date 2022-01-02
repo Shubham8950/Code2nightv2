@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Cz2gXeanjw0nmKs1HQWNpvB1DT2ZJETm3r5DEuqVFqoAeigm2Ix2kaTN0Um7GLbC3Dtl3rgTYcCUo5COFEGkFw==",
+  "dgSpecHash": "xfVOTJPg4NF2O9lWbDFtRe3gWZTTGN3rodB4F7jD3a8gGtcXKt9kh7Q09vha3+dEGbShySB4zCuB/TL0fw+EqA==",
   "success": true,
   "projectFilePath": "E:\\Code2nightv2Git\\Code2nightv2\\code2night\\Code2Night.csproj",
   "expectedPackageFiles": [
@@ -84,7 +84,7 @@
     "C:\\Users\\Shubham Saini\\.nuget\\packages\\microsoft.aspnetcore.nodeservices\\2.1.1\\microsoft.aspnetcore.nodeservices.2.1.1.nupkg.sha512",
     "C:\\Users\\Shubham Saini\\.nuget\\packages\\microsoft.aspnetcore.owin\\2.1.1\\microsoft.aspnetcore.owin.2.1.1.nupkg.sha512",
     "C:\\Users\\Shubham Saini\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.1.1\\microsoft.aspnetcore.razor.2.1.1.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.razor.design\\2.2.0\\microsoft.aspnetcore.razor.design.2.2.0.nupkg.sha512",
+    "C:\\Users\\Shubham Saini\\.nuget\\packages\\microsoft.aspnetcore.razor.design\\2.2.0\\microsoft.aspnetcore.razor.design.2.2.0.nupkg.sha512",
     "C:\\Users\\Shubham Saini\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\2.1.1\\microsoft.aspnetcore.razor.language.2.1.1.nupkg.sha512",
     "C:\\Users\\Shubham Saini\\.nuget\\packages\\microsoft.aspnetcore.razor.runtime\\2.1.1\\microsoft.aspnetcore.razor.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\Shubham Saini\\.nuget\\packages\\microsoft.aspnetcore.responsecaching\\2.1.1\\microsoft.aspnetcore.responsecaching.2.1.1.nupkg.sha512",

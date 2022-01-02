@@ -44,11 +44,13 @@ using Code2Night.DAL.Common;
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("front no-trans"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
+        #pragma warning disable 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        #pragma warning restore 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         #pragma warning disable 0169
         private string __tagHelperStringValueBuffer;
         #pragma warning restore 0169
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
         {
@@ -79,7 +81,7 @@ using Code2Night.DAL.Common;
             WriteLiteral("<link href=\"/plugins/magnific-popup/magnific-popup.css\" rel=\"stylesheet\">\r\n<link href=\"/css/animations.css\" rel=\"stylesheet\">\r\n<link href=\"/plugins/owl-carousel/owl.carousel.css\" rel=\"stylesheet\">\r\n");
             EndContext();
             BeginContext(336, 1798, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c92a08d3183a100d970c4fab0621a6283bd28f8c4502", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c92a08d3183a100d970c4fab0621a6283bd28f8c4578", async() => {
                 BeginContext(365, 459, true);
                 WriteLiteral(@"
     <div class=""scrollToTop""><i class=""icon-up-open-big""></i></div>
@@ -100,12 +102,16 @@ using Code2Night.DAL.Common;
 
 #line default
 #line hidden
-                BeginContext(913, 415, true);
+                BeginContext(913, 359, true);
                 WriteLiteral(@"                                <div class=""col-md-4"">
                                     <div class=""image-box mb-20 object-non-visible"" data-animation-effect=""fadeInLeft"" data-effect-delay=""300"">
                                         <div class=""overlay-container"">
-                                            <img src=""Content/images/portfolio-1.jpg"" alt="""">
-                                            <a");
+                                            <img src=""Content/images/portfolio-1.jpg""");
+                EndContext();
+                BeginWriteAttribute("alt", " alt=\"", 1272, "\"", 1278, 0);
+                EndWriteAttribute();
+                BeginContext(1279, 49, true);
+                WriteLiteral(">\r\n                                            <a");
                 EndContext();
                 BeginWriteAttribute("href", " href=\"", 1328, "\"", 1397, 1);
 #line 27 "E:\Code2nightv2Git\Code2nightv2\code2night\Views\Tutorials\Index.cshtml"

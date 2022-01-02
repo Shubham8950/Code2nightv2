@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Code2night_Latest</_PublishTargetUrl>
+    <History>True|2022-01-02T15:51:33.9075312Z;True|2022-01-02T21:15:56.9393219+05:30;True|2022-01-02T20:31:47.5967475+05:30;True|2021-10-03T22:44:31.8742059+05:30;True|2021-09-23T10:36:47.5122561+05:30;True|2021-09-21T00:35:11.9363430+05:30;True|2021-09-21T00:31:29.8637350+05:30;</History>
+  </PropertyGroup>
+</Project>

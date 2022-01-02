@@ -44,11 +44,13 @@ using Code2Night.DAL.Common;
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("pull-right link"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
+        #pragma warning disable 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        #pragma warning restore 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         #pragma warning disable 0169
         private string __tagHelperStringValueBuffer;
         #pragma warning restore 0169
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
         {
@@ -228,7 +230,7 @@ WriteAttributeValue("", 1532, Url.Action("Index","Users"), 1532, 28, false);
             WriteLiteral("</span>\r\n                                    </div>\r\n                                    <div class=\"blogpost-content\">\r\n                                        <header>\r\n                                            <h2 class=\"title\">");
             EndContext();
             BeginContext(3935, 90, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b32ad6955295c19b17f02790045d962bde4b39711907", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b32ad6955295c19b17f02790045d962bde4b39711983", async() => {
                 BeginContext(4011, 10, false);
 #line 69 "E:\Code2nightv2Git\Code2nightv2\code2night\Views\Blog\Tags.cshtml"
                                                                                                                                     Write(blog.Title);
@@ -260,7 +262,7 @@ AddHtmlAttributeValue("", 3961, System.Web.HttpUtility.UrlEncode(blog.BlogUrl), 
             WriteLiteral("</h2>\r\n                                            <div class=\"submitted\"><i class=\"fa fa-user pr-5\"></i> by ");
             EndContext();
             BeginContext(4134, 76, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b32ad6955295c19b17f02790045d962bde4b39713978", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b32ad6955295c19b17f02790045d962bde4b39714054", async() => {
                 BeginContext(4191, 15, false);
 #line 70 "E:\Code2nightv2Git\Code2nightv2\code2night\Views\Blog\Tags.cshtml"
                                                                                                                                                          Write(blog.AuthorName);
@@ -329,7 +331,7 @@ AddHtmlAttributeValue("", 4172, blog.AuthorName, 4172, 16, false);
             WriteLiteral("                                            ");
             EndContext();
             BeginContext(5160, 192, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b32ad6955295c19b17f02790045d962bde4b39717668", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b32ad6955295c19b17f02790045d962bde4b39717744", async() => {
                 BeginContext(5222, 21, false);
 #line 86 "E:\Code2nightv2Git\Code2nightv2\code2night\Views\Blog\Tags.cshtml"
                                                                                                     Write(str.Replace("-", " "));
@@ -381,7 +383,7 @@ AddHtmlAttributeValue("", 5181, System.Web.HttpUtility.UrlEncode(str), 5181, 38,
             WriteLiteral("                                        </li>\r\n                                    </ul>\r\n                                    ");
             EndContext();
             BeginContext(5645, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b32ad6955295c19b17f02790045d962bde4b39720634", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b32ad6955295c19b17f02790045d962bde4b39720710", async() => {
                 BeginContext(5710, 22, true);
                 WriteLiteral("<span>Read more</span>");
                 EndContext();

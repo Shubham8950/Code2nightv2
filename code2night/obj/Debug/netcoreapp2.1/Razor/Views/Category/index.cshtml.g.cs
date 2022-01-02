@@ -52,16 +52,13 @@ using Code2Night.DAL.Common;
 
 #line default
 #line hidden
-            BeginContext(147, 1824, true);
-            WriteLiteral(@"
-<script type=""text/javascript"" src=""/plugins/jquery.min.js""></script>
-<section class=""main-container"" style=""        margin-top: 0px;
-        width: 100%
-"">
-
-    <div class=""container"">
-        <div class=""row"">
-            <div class="""" style=""width:100%"">
+            BeginContext(147, 237, true);
+            WriteLiteral("\r\n<script type=\"text/javascript\" src=\"/plugins/jquery.min.js\"></script>\r\n<section class=\"main-container\" style=\"        margin-top: 0px;\r\n        width: 100%\r\n\">\r\n\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div");
+            EndContext();
+            BeginWriteAttribute("class", " class=\"", 384, "\"", 392, 0);
+            EndWriteAttribute();
+            BeginContext(393, 611, true);
+            WriteLiteral(@" style=""width:100%"">
                 <h2 class=""title"">Insert Category</h2>
                 <hr>
                 <div class=""form-horizontal"">
@@ -69,13 +66,17 @@ using Code2Night.DAL.Common;
                         <div class=""col-md-8 col-sm-12"">
                             <label for=""inputName"" class=""col-sm-3 control-label"">Category Name <span class=""text-danger small"">*</span></label>
                             <div class=""col-sm-12 col-md-12"">
-                                <input type=""text"" class=""form-control"" id=""CategoryName"" placeholder=""Category Name"" required="""">
+                                <input type=""text"" class=""form-control"" id=""CategoryName"" placeholder=""Category Name""");
+            EndContext();
+            BeginWriteAttribute("required", " required=\"", 1004, "\"", 1015, 0);
+            EndWriteAttribute();
+            BeginContext(1016, 955, true);
+            WriteLiteral(@">
 
                             </div>
                         </div>
                         <div class=""col-md-4 col-sm-12"">
-                        ");
-            WriteLiteral(@"    <div class=""col-md-12 col-sm-12""> <input type=""submit"" style=""margin-top:31px;"" name=""buttonsubmit"" id=""InsertCategory"" onclick=""InsertCategory()"" class=""btn btn-primary"" value=""Insert Category""></div>
+                            <div class=""col-md-12 col-sm-12""> <input type=""submit"" style=""margin-top:31px;"" name=""buttonsubmit"" id=""InsertCategory"" onclick=""InsertCategory()"" class=""btn btn-primary"" value=""Insert Category""></div>
                         </div>
                     </div>
                 </div>

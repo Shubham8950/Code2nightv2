@@ -30,5 +30,11 @@ namespace Code2Night.Controllers
            var result= _incomeRepo.AddIncome(model);
             return Json(result);
         }
+
+        public ActionResult Delete(int id)
+        {
+            Connection.Delete(id, "sprIncome", "Delete", "IncomeId");
+            return RedirectToAction("Index");
+        }
     }
 }

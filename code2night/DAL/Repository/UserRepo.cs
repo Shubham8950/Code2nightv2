@@ -33,6 +33,7 @@ namespace Code2Night.DAL.Repository
 
         public Users UserLogin(string UserName, string Password)
         {
+          
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@Activity", "Login"));
             list.Add(new SqlParameter("@UserName", UserName));
@@ -172,12 +173,12 @@ namespace Code2Night.DAL.Repository
 
             var fromEmail = new MailAddress("info@code2night.com", "Code2night");
             var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "87Lkce~2"; // Replace with actual password
-            string subject = "Your account is successfully created!";
+            var fromEmailPassword = "@1Dz09dp"; // Replace with actual password
+            string subject = "Welcome to Code2night";
 
             string body = "<br/><br/>We are excited to tell you that your Code2night account is" +
                 " successfully created. Please click on the below link to verify your account" +
-                " <br/><br/><a href='" + link + "'>" + link + "</a> ";
+                " <br/><br/><a href='" + link + "'>Activate Now</a> ";
 
             var smtp = new SmtpClient
             {

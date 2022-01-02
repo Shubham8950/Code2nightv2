@@ -44,9 +44,6 @@ using Code2Night.DAL.Common;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            BeginContext(78, 2, true);
-            WriteLiteral("\r\n");
-            EndContext();
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

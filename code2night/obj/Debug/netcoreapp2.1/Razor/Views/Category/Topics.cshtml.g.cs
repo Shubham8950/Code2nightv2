@@ -52,7 +52,7 @@ using Code2Night.DAL.Common;
 
 #line default
 #line hidden
-            BeginContext(137, 518, true);
+            BeginContext(137, 371, true);
             WriteLiteral(@"
 <script type=""text/javascript"" src=""/plugins/jquery.min.js""></script>
 <script src=""/Scripts/jquery.validate.unobtrusive.js""></script>
@@ -63,11 +63,12 @@ using Code2Night.DAL.Common;
 
     <div class=""container"">
         <div class=""row"">
-            <div class="""" style=""width:100%"">
-                <h2 class=""title"">Topics</h2>
-                <hr>
-                <div class=""form-horizontal"">
-");
+            <div");
+            EndContext();
+            BeginWriteAttribute("class", " class=\"", 508, "\"", 516, 0);
+            EndWriteAttribute();
+            BeginContext(517, 138, true);
+            WriteLiteral(" style=\"width:100%\">\r\n                <h2 class=\"title\">Topics</h2>\r\n                <hr>\r\n                <div class=\"form-horizontal\">\r\n");
             EndContext();
 #line 20 "E:\Code2nightv2Git\Code2nightv2\code2night\Views\Category\Topics.cshtml"
                      using (Html.BeginForm("SaveTopic", "Category", FormMethod.Post, new { @enctype = "multipart/form-data" }))

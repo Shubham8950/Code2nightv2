@@ -6075,7 +6075,7 @@
       ]
     },
     "Microsoft.AspNetCore.Razor.Design/2.2.0": {
-      "sha512": "ex8MZwgoyqHim1L6/65FnfjdSMtSKSuSU3DVoiCADZACc05T7f8uRB7SnDIP5LPQKLUBLilfNkd1p14RLyfdQA==",
+      "sha512": "VLWK+ZtMMNukY6XjxYHc7mz33vkquoEzQJHm/LCF5REVxIaexLr+UTImljRRJBdUDJluDAQwU+59IX0rFDfURA==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor.design/2.2.0",
       "hasTools": true,
@@ -13663,9 +13663,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Shubham Saini\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Shubham Saini\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -13676,13 +13674,8 @@
       "packagesPath": "C:\\Users\\Shubham Saini\\.nuget\\packages\\",
       "outputPath": "E:\\Code2nightv2Git\\Code2nightv2\\code2night\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\Shubham Saini\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13834,7 +13827,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   },

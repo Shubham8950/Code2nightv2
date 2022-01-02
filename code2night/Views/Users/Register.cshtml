@@ -166,12 +166,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>*@
     @*@Scripts.Render("~/bundles/Tags")*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js" integrity="sha512-kZv5Zq4Cj/9aTpjyYFrt7CmyTUlvBday8NGjD9MxJyOY/f2UfRYluKsFzek26XWQaiAp7SZ0ekE7ooL9IYMM2A==" crossorigin="anonymous"></script>
-
+    <script src="/adminplugins/select2/js/select2.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#skills').select2();
-
-
+    $(document).ready(function () {
+        $('#skills').select2();
     });
     function validateFileType() {
         var fileName = document.getElementById("profileimage").value;
@@ -194,13 +192,13 @@
             valid = false;
             return false;
         }
-        if ($('#profileimage').val() == "") {
-            toastr.warning("Please Select Profile Picture!");
-            valid = false;
-            return false;
-        }
+        //if ($('#profileimage').val() == "") {
+        //    toastr.warning("Please Select Profile Picture!");
+        //    valid = false;
+        //    return false;
+        //}
         if ($("#Password").val() != $("#ConfirmPassword").val()) {
-            toastr.error("Please Select Profile Picture!");
+            toastr.error("Password and confirm password must be same!");
             valid = false;
             return false;
         }

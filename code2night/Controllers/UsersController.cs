@@ -28,7 +28,8 @@ namespace Code2Night.Controllers
 
         public  IActionResult Index()
         {
-            if(this.GetUserRoleCookieValue()== "Admin")
+          
+            if (this.GetUserRoleCookieValue()== "Admin")
             {
                 ViewBag.IsAdmin = true;
             }

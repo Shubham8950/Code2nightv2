@@ -49,11 +49,13 @@ using System.Web.Mvc;
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("pull-right link"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
+        #pragma warning disable 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        #pragma warning restore 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         #pragma warning disable 0169
         private string __tagHelperStringValueBuffer;
         #pragma warning restore 0169
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
         {
@@ -246,7 +248,7 @@ WriteAttributeValue(" ", 2055, count%2==0?"pull-right":"", 2056, 29, false);
                                                     <li><i class=""fa fa-comment-o pr-5""></i> ");
             EndContext();
             BeginContext(4196, 59, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38202ca753eaa769c2fdc16ed7538c375bec651912295", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38202ca753eaa769c2fdc16ed7538c375bec651912371", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -282,7 +284,7 @@ AddHtmlAttributeValue("", 4222, item.BlogUrl, 4222, 13, false);
             WriteLiteral("</a></li>\r\n                                                </ul>\r\n                                                ");
             EndContext();
             BeginContext(4508, 125, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38202ca753eaa769c2fdc16ed7538c375bec651914612", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38202ca753eaa769c2fdc16ed7538c375bec651914688", async() => {
                 BeginContext(4607, 22, true);
                 WriteLiteral("<span>Read more</span>");
                 EndContext();
@@ -326,16 +328,13 @@ AddHtmlAttributeValue("", 4558, System.Web.HttpUtility.UrlEncode(item.BlogUrl), 
 
 #line default
 #line hidden
-            BeginContext(5068, 545, true);
-            WriteLiteral(@"                            <!-- timeline item start -->
-
-
-
-                        </div>
-                        <!-- timeline end -->
-
-                        <div class=""text-center"">
-                            <a href="""" class=""btn btn-default"">Load more</a>
+            BeginContext(5068, 226, true);
+            WriteLiteral("                            <!-- timeline item start -->\r\n\r\n\r\n\r\n                        </div>\r\n                        <!-- timeline end -->\r\n\r\n                        <div class=\"text-center\">\r\n                            <a");
+            EndContext();
+            BeginWriteAttribute("href", " href=\"", 5294, "\"", 5301, 0);
+            EndWriteAttribute();
+            BeginContext(5302, 311, true);
+            WriteLiteral(@" class=""btn btn-default"">Load more</a>
                         </div>
 
                     </div>

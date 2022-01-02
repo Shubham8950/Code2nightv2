@@ -15,7 +15,7 @@
                 <h2 class="title">Income</h2>
                 <hr>
                 <div class="form-horizontal">
-                    <div class="form-group has-feedback" >
+                    <div class="form-group has-feedback">
                         <div class="col-md-12 col-sm-12">
                             <label for="inputName" class="col-sm-3 control-label">Amount <span class="text-danger small">*</span></label>
                             <div class="col-sm-12 col-md-12">
@@ -26,14 +26,14 @@
                         <div class="col-md-12 col-sm-12">
                             <label for="inputName" class="col-sm-3 control-label">Date <span class="text-danger small">*</span></label>
                             <div class="col-sm-12 col-md-12">
-                                <input type="date" class="form-control" id="date" style="max-width:350px"  placeholder="Payment Date" required="">
+                                <input type="date" class="form-control" id="date" style="max-width:350px" placeholder="Payment Date" required="">
 
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12">
                             <label for="inputName" class="col-sm-3 control-label">Mode <span class="text-danger small">*</span></label>
                             <div class="col-sm-12 col-md-12">
-                              <select id="mode" style="max-width:350px" class="form-control" name="Mode"><option>Please Select</option><option value="Freelancer">Freelancer</option><option value="Upwork">Upwork</option><option value="TranferWise">TranferWise</option></select>
+                                <select id="mode" style="max-width:350px" class="form-control" name="Mode"><option>Please Select</option><option value="Freelancer">Freelancer</option><option value="Upwork">Upwork</option><option value="TranferWise">TranferWise</option><option value="Other">Other</option></select>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12">
@@ -72,27 +72,27 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @item.IncomeId
-                </td>
-                <td>
-                    @item.Amount
-                </td>
-                <td>
-                    @item.PaymentDate.ToString("dd-MMM-yyyy")
-                </td>
-                <td>
-                    @item.PaymentMode
-                </td>
-                <td class="project-actions text-right">
-                    <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "IncomeDashBoard", new { id = item.IncomeId })" onclick="return confirm('Are you sure you want to Delete this category?')">
-                        <i class="fas fa-trash">
-                        </i>
-                        Delete
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @item.IncomeId
+                    </td>
+                    <td>
+                        @item.Amount
+                    </td>
+                    <td>
+                        @item.PaymentDate.ToString("dd-MMM-yyyy")
+                    </td>
+                    <td>
+                        @item.PaymentMode
+                    </td>
+                    <td class="project-actions text-right">
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "IncomeDashBoard", new { id = item.IncomeId })" onclick="return confirm('Are you sure you want to Delete this category?')">
+                            <i class="fas fa-trash">
+                            </i>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -120,13 +120,13 @@
                 return false;
             }
             else {
-                var promise=GetAjaxDataPromise("/IncomeDashBoard/InsertIncome", { Amount: $("#Amount").val().trim(), PaymentDate: $("#date").val().trim(), PaymentMode: $("#mode").val().trim() });
+                var promise = GetAjaxDataPromise("/IncomeDashBoard/InsertIncome", { Amount: $("#Amount").val().trim(), PaymentDate: $("#date").val().trim(), PaymentMode: $("#mode").val().trim() });
 
                 promise.done(function (response) {
                     alert("Saved Successfully");
                     window.location.reload();
                 })
-               
+
             }
         });
     });

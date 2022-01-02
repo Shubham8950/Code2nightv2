@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
+   
 
     <script data-ad-client="ca-pub-2622840091485569" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -14,18 +15,16 @@
     <script async custom-element="amp-auto-ads"
             src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
-    
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114851264-8"></script>
     <link rel="alternate" href="https://www.code2night.com" hreflang="en-us" />
     <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'UA-114851264-8');
-        </script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-114851264-8');
+    </script>
     <title>@ViewBag.Title</title>
-
     @if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.MetaDescription)))
     {
         <meta name="description" content="@ViewBag.MetaDescription" />
@@ -389,14 +388,24 @@
             </div>
         </footer>
     </div>
-    <script async src="~/js/layoutMinifiedjs.min.js"></script>
     <script src="~/js/custom.js"></script>
-    <script  src="/adminplugins/select2/js/select2.min.js"></script>
 
-    @*<script  type='text/javascript' src='/plugins/summernote/summernote.min.js'></script>*@
+    <script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
+    @*<script src="~/js/layoutMinifiedjs.min.js"></script>*@
+    <script src="/adminplugins/select2/js/select2.min.js"></script>
+    <script src="~/js/code.min.js"></script>
+    <script src="~/js/custom.min.js"></script>
+    <script src="~/plugins/jquery.sharrre.min.js"></script>
+    <script src="~/js/BlogIndex.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
 
-    @*<script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>*@
+    <script src="~/plugins/modernizr.js"></script>
+    <script src="~/plugins/jquery.browser.js"></script>
+    <script src="~/plugins/SmoothScroll.js"></script>
+    <script src="~/plugins/isotope/isotope.pkgd.min.js"></script>
+    <script src="~/plugins/summernote/summernote.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  
     <script>
         $(document).ready(function () {
             $('.links').each(function (val, elem) {
@@ -408,9 +417,57 @@
                 }
             });
         })
-        $(document).ready(function () { LoadPartialView("/Blog/TagsList", "tagsList", {}); });
+        $(document).ready(function () {
+            LoadPartialView("/Blog/TagsList", "tagsList", {}); $(".summernote").summernote({
+                callbacks: {
+                    onChange: function (contents, $editable) {
+                        console.log('onChange:', contents, $editable);
+                        if (contents == "") {
+                            $("#blog").hide();
+                            $("#demoblog").show();
+
+                        }
+                        else {
+                            debugger;
+                            $('body').append('<div style="display:none;" id="testdiv"></div>');
+                            //var string = "";
+                            //$('div.note-editable').children().each((index, element) => {
+                            //    $('#testdiv').val('');
+                            //    if ($(element).is('pre') && $(element).find('code.language-csharp').length==0) {
+                            //        var textArea = document.createElement('textarea');
+                            //        textArea.innerHTML = $(element).find('code').html();
+
+                            //        $('#testdiv').text(textArea.value);
+                            //        string +='<pre><code>'+ $('#testdiv').html()+'</code></pre>';
+                            //    }
+                            //    else {
+                            //        string += $(element).html();
+                            //    }
+                            //});
+                            $('#testdiv').remove();
+                            $('#BlogBody').val(contents);
+                            $("#blog").html(contents);
+                            // $(".note-editable").html('');
+                            // $(".note-editable").html(string);
+
+                            $("#blog").show();
+                            $("#blogbody").show();
+                            $("#demoblog").hide();
+                        }
+
+                    },
+
+                    onImageUpload: function (files) {
+                        for (let i = 0; i < files.length; i++) {
+                            UploadImage(files[i]);
+                        }
+                    }
+
+                }
+            });
+        });
     </script>
     @RenderSection("scripts", required: false)
-
+    <script src="~/plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 </body>
         </html>

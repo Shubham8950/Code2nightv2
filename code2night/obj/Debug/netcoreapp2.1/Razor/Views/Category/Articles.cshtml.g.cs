@@ -47,11 +47,13 @@ using Code2Night.DAL.Common;
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/adminplugins/summernote/summernote.css"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("src", new global::Microsoft.AspNetCore.Html.HtmlString("~/adminplugins/summernote/summernote.js"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
+        #pragma warning disable 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        #pragma warning restore 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         #pragma warning disable 0169
         private string __tagHelperStringValueBuffer;
         #pragma warning restore 0169
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
         {
@@ -79,7 +81,7 @@ using Code2Night.DAL.Common;
             WriteLiteral("\r\n<script type=\"text/javascript\" src=\"/plugins/jquery.min.js\"></script>\r\n<script src=\"/Scripts/jquery.validate.unobtrusive.js\"></script>\r\n<script src=\"/Scripts/jquery.validate.unobtrusive.min.js\"></script>\r\n");
             EndContext();
             BeginContext(343, 49, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8e98a7f9cf879695724ddf9dc3f2803942130dca5544", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8e98a7f9cf879695724ddf9dc3f2803942130dca5620", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -98,7 +100,7 @@ using Code2Night.DAL.Common;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(394, 73, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8e98a7f9cf879695724ddf9dc3f2803942130dca6796", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8e98a7f9cf879695724ddf9dc3f2803942130dca6872", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -117,7 +119,7 @@ using Code2Night.DAL.Common;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(469, 63, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8e98a7f9cf879695724ddf9dc3f2803942130dca8048", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8e98a7f9cf879695724ddf9dc3f2803942130dca8124", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -131,17 +133,13 @@ using Code2Night.DAL.Common;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(532, 293, true);
-            WriteLiteral(@"
-<section class=""main-container"" style=""margin-top: 0px;width: 100%"">
-
-    <div class=""container"">
-        <div class=""row"">
-            <div class="""" style=""width:100%"">
-                <h2 class=""title"">Topics</h2>
-                <hr>
-                <div class=""form-horizontal"">
-");
+            BeginContext(532, 146, true);
+            WriteLiteral("\r\n<section class=\"main-container\" style=\"margin-top: 0px;width: 100%\">\r\n\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div");
+            EndContext();
+            BeginWriteAttribute("class", " class=\"", 678, "\"", 686, 0);
+            EndWriteAttribute();
+            BeginContext(687, 138, true);
+            WriteLiteral(" style=\"width:100%\">\r\n                <h2 class=\"title\">Topics</h2>\r\n                <hr>\r\n                <div class=\"form-horizontal\">\r\n");
             EndContext();
 #line 21 "E:\Code2nightv2Git\Code2nightv2\code2night\Views\Category\Articles.cshtml"
                      using (Html.BeginForm("SaveArticle", "Category", FormMethod.Post, new { @enctype = "multipart/form-data" }))

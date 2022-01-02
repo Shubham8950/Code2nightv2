@@ -48,11 +48,13 @@ using Code2Night.DAL.Common;
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("role", new global::Microsoft.AspNetCore.Html.HtmlString("form"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("comment-form"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
+        #pragma warning disable 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        #pragma warning restore 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         #pragma warning disable 0169
         private string __tagHelperStringValueBuffer;
         #pragma warning restore 0169
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
         {
@@ -90,7 +92,7 @@ using Code2Night.DAL.Common;
                 ");
             EndContext();
             BeginContext(493, 2953, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c32c93602e49bd9edc18719c1872117bea4034e86164", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c32c93602e49bd9edc18719c1872117bea4034e86240", async() => {
                 BeginContext(529, 1308, true);
                 WriteLiteral(@"
                     <div class=""form-group has-feedback"">
@@ -116,7 +118,7 @@ using Code2Night.DAL.Common;
                             ");
                 EndContext();
                 BeginContext(1837, 46, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c32c93602e49bd9edc18719c1872117bea4034e87948", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c32c93602e49bd9edc18719c1872117bea4034e88024", async() => {
                     BeginContext(1854, 20, true);
                     WriteLiteral("Please Select Status");
                     EndContext();
@@ -138,7 +140,7 @@ using Code2Night.DAL.Common;
                 WriteLiteral("\r\n                            ");
                 EndContext();
                 BeginContext(1913, 42, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c32c93602e49bd9edc18719c1872117bea4034e89456", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c32c93602e49bd9edc18719c1872117bea4034e89532", async() => {
                     BeginContext(1938, 8, true);
                     WriteLiteral("Employed");
                     EndContext();
@@ -160,7 +162,7 @@ using Code2Night.DAL.Common;
                 WriteLiteral("\r\n                            ");
                 EndContext();
                 BeginContext(1985, 47, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c32c93602e49bd9edc18719c1872117bea4034e810951", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c32c93602e49bd9edc18719c1872117bea4034e811027", async() => {
                     BeginContext(2012, 11, true);
                     WriteLiteral("Un-Employed");
                     EndContext();
@@ -178,7 +180,7 @@ using Code2Night.DAL.Common;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 EndContext();
-                BeginContext(2032, 1407, true);
+                BeginContext(2032, 658, true);
                 WriteLiteral(@"
                         </select>
 
@@ -190,13 +192,22 @@ using Code2Night.DAL.Common;
                     </div>
                     <div class=""form-group has-feedback"">
                         <label for=""JobIndustry"">Specify Industry if looking for job (Optional)</label>
-                        <input type=""text"" class=""form-control"" id=""JobIndustry"" placeholder="""" name=""JobIndustry"">
+                        <input type=""text"" class=""form-control"" id=""JobIndustry""");
+                EndContext();
+                BeginWriteAttribute("placeholder", " placeholder=\"", 2690, "\"", 2704, 0);
+                EndWriteAttribute();
+                BeginContext(2705, 355, true);
+                WriteLiteral(@" name=""JobIndustry"">
                         <i class=""fa fa-pencil form-control-feedback""></i>
                     </div>
                     <div class=""form-group has-feedback"">
                         <label for=""Email"">Specify Email if looking for job (Optional)</label>
-                        <input type=""text"" class=""form-control"" id=""Em");
-                WriteLiteral(@"ail"" placeholder="""" name=""Email"">
+                        <input type=""text"" class=""form-control"" id=""Email""");
+                EndContext();
+                BeginWriteAttribute("placeholder", " placeholder=\"", 3060, "\"", 3074, 0);
+                EndWriteAttribute();
+                BeginContext(3075, 364, true);
+                WriteLiteral(@" name=""Email"">
                         <i class=""fa fa-envelope-o form-control-feedback""></i>
                     </div>
                     <input type=""button"" value=""Submit"" onclick=""SaveFeedback()"" class=""btn btn-default"">

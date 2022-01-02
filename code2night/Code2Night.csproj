@@ -82,7 +82,6 @@
     <Content Remove="wwwroot\plugins\summernote\summernote-lite.min.js.LICENSE.txt" />
     <Content Remove="wwwroot\plugins\summernote\summernote-lite.min.js.map" />
     <Content Remove="wwwroot\plugins\summernote\summernote.css" />
-    <Content Remove="wwwroot\plugins\summernote\summernote.js" />
     <Content Remove="wwwroot\plugins\summernote\summernote.js.map" />
     <Content Remove="wwwroot\plugins\summernote\summernote.min.js.LICENSE.txt" />
     <Content Remove="wwwroot\plugins\summernote\summernote.min.js.map" />

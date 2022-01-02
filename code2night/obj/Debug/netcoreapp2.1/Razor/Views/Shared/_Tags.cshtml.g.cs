@@ -43,11 +43,13 @@ using Code2Night.DAL.Common;
     public class Views_Shared__Tags : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Code2Night.DAL.Common.MyBlogs>
     {
         #line hidden
+        #pragma warning disable 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        #pragma warning restore 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         #pragma warning disable 0169
         private string __tagHelperStringValueBuffer;
         #pragma warning restore 0169
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
         {
@@ -72,7 +74,7 @@ using Code2Night.DAL.Common;
             WriteLiteral("    ");
             EndContext();
             BeginContext(44, 162, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "58f27bcde6b33e09752a5b1e2eece488bdb0e1cc3858", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "58f27bcde6b33e09752a5b1e2eece488bdb0e1cc3934", async() => {
                 BeginContext(50, 149, true);
                 WriteLiteral("\r\n        <script data-ad-client=\"ca-pub-2622840091485569\" async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>\r\n    ");
                 EndContext();
@@ -105,7 +107,7 @@ using Code2Night.DAL.Common;
             WriteLiteral("        <div class=\"tag\">\r\n\r\n            ");
             EndContext();
             BeginContext(440, 55, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "58f27bcde6b33e09752a5b1e2eece488bdb0e1cc5646", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "58f27bcde6b33e09752a5b1e2eece488bdb0e1cc5722", async() => {
                 BeginContext(469, 22, false);
 #line 15 "E:\Code2nightv2Git\Code2nightv2\code2night\Views\Shared\_Tags.cshtml"
                                    Write(item.Replace("-", " "));
