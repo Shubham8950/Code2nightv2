@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="blogpost-content">
                                         <header>
-                                            <h2 class="title"><a href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(blog.BlogUrl)">@blog.Title</a></h2>
+                                            <h2 class="title"><a href="~/Blog/MyBlog/@System.Web.HttpUtility.UrlEncode(blog.BlogUrl)">@blog.Title</a></h2>
                                             <div class="submitted"><i class="fa fa-user pr-5"></i> by <a href="~/Blog/Author/@blog.AuthorId-@blog.AuthorName">@blog.AuthorName</a></div>
                                         </header>
                                         <p>@Html.Raw(blog.BlogIntroduction)</p>
@@ -89,7 +89,7 @@
                                                 }
                                         </li>
                                     </ul>
-                                    <a class="pull-right link" href="~/Blog/MyBlog?id=@blog.BlogUrl"><span>Read more</span></a>
+                                    <a class="pull-right link" href="~/Blog/MyBlog/@blog.BlogUrl"><span>Read more</span></a>
                                 </footer>
                             </article>
                             <!-- blogpost end -->

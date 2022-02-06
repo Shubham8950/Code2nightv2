@@ -20,5 +20,15 @@ namespace Code2Night.DAL.Repository
             var result = Insert("sprFeedback", DynamicParameter);
             return result;
         }
+        public string SaveProblem(string Name, string ProblemDescription, string ProblemSuggestion)
+        {
+            var DynamicParameter = new DynamicParameters();
+            DynamicParameter.Add("@Name", Name);
+            DynamicParameter.Add("@ProblemDescription", ProblemDescription);
+            DynamicParameter.Add("@ProblemSuggestion", ProblemSuggestion);
+          
+            var result = Insert("sprProblem", DynamicParameter);
+            return result;
+        }
     }
 }

@@ -1,0 +1,145 @@
+<p><b>Card Types -&nbsp;</b></p><p>So to start from , there are different types of card available around the world and some use there own format which can be different than others. Some of those Cards are these</p><p>Amex(American Express) -&nbsp;<span style="margin: 0px 8px 0px 0px; padding: 0px; border: 0px; overflow-wrap: break-word; display: inline-block; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap;">3714</span><span style="margin: 0px 8px 0px 0px; padding: 0px; border: 0px; overflow-wrap: break-word; display: inline-block; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap;">496353</span><span style="margin: 0px; padding: 0px; border: 0px; overflow-wrap: break-word; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap;">98431</span></p><p>MasterCard -&nbsp;<span style="margin: 0px 8px 0px 0px; padding: 0px; border: 0px; overflow-wrap: break-word; display: inline-block; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap; background-color: rgb(247, 250, 252);">5200</span><span style="margin: 0px 8px 0px 0px; padding: 0px; border: 0px; overflow-wrap: break-word; display: inline-block; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap; background-color: rgb(247, 250, 252);">8282</span><span style="margin: 0px 8px 0px 0px; padding: 0px; border: 0px; overflow-wrap: break-word; display: inline-block; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap; background-color: rgb(247, 250, 252);">8282</span><span style="margin: 0px; padding: 0px; border: 0px; overflow-wrap: break-word; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap; background-color: rgb(247, 250, 252);">8210</span></p><p><span style="margin: 0px; padding: 0px; border: 0px; overflow-wrap: break-word;"><span style="margin: 0px; padding: 0px; border: 0px; overflow-wrap: break-word;">VISA -&nbsp;<span style="margin: 0px 8px 0px 0px; padding: 0px; border: 0px; overflow-wrap: break-word; display: inline-block; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap;">4000</span><span style="margin: 0px 8px 0px 0px; padding: 0px; border: 0px; overflow-wrap: break-word; display: inline-block; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap;">0566</span><span style="margin: 0px 8px 0px 0px; padding: 0px; border: 0px; overflow-wrap: break-word; display: inline-block; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap;">5566</span><span style="margin: 0px; padding: 0px; border: 0px; overflow-wrap: break-word; color: rgb(60, 66, 87); font-family: Menlo, Consolas, monospace; font-size: 14px; white-space: nowrap;">5556</span></span></span></p><p><span style="color: rgb(0, 0, 0); font-family: Verdana, sans-serif, Geneva; font-size: 17px; letter-spacing: 0.238px; text-align: justify;">So, you can see some difference in the formatting across cards and so it becomes tough&nbsp; to implement correct formatting while the user types the card number. So for implementing that we will take one input box and add some script on page</span></p><p><span style="color: rgb(0, 0, 0); font-family: Verdana, sans-serif, Geneva; font-size: 17px; letter-spacing: 0.238px; text-align: justify;"><br></span><br></p><p><span style="margin: 0px; padding: 0px; border: 0px; overflow-wrap: break-word;"><span style="margin: 0px; padding: 0px; border: 0px; overflow-wrap: break-word;"><br></span><br></span></p><pre> &lt;div class="col-md-6" style="padding:50px;"&gt;
+
+    &lt;input type="text" id="txtcard" onkeypress="return formatCardNumber(event)" /&gt;
+
+&lt;/div&gt;
+ &lt;script&gt;
+ 
+ var defaultFormat = /(?:^|\s)(\d{4})$/;
+
+   var cards = [
+        {
+            type: 'maestro',
+            patterns: [5018, 502, 503, 506, 56, 58, 639, 6220, 67],
+            format: defaultFormat,
+            length: [12, 13, 14, 15, 16, 17, 18, 19],
+            cvcLength: [3],
+            luhn: true
+        }, {
+            type: 'forbrugsforeningen',
+            patterns: [600],
+            format: defaultFormat,
+            length: [16],
+            cvcLength: [3],
+            luhn: true
+        }, {
+            type: 'dankort',
+            patterns: [5019],
+            format: defaultFormat,
+            length: [16],
+            cvcLength: [3],
+            luhn: true
+        }, {
+            type: 'visa',
+            patterns: [4],
+            format: defaultFormat,
+            length: [13, 16],
+            cvcLength: [3],
+            luhn: true
+        }, {
+            type: 'mastercard',
+            patterns: [51, 52, 53, 54, 55, 22, 23, 24, 25, 26, 27],
+            format: defaultFormat,
+            length: [16],
+            cvcLength: [3],
+            luhn: true
+        }, {
+            type: 'amex',
+            patterns: [34, 37],
+            format: /(\d{1,4})(\d{1,6})?(\d{1,5})?/,
+            length: [15],
+            cvcLength: [3, 4],
+            luhn: true
+        }, {
+            type: 'dinersclub',
+            patterns: [30, 36, 38, 39],
+           format: /^(\d{4}|\d{4}\s\d{6})$/,
+            length: [14],
+            cvcLength: [3],
+            luhn: true
+        }, {
+            type: 'discover',
+            patterns: [60, 64, 65, 622],
+            format: defaultFormat,
+            length: [16],
+            cvcLength: [3],
+            luhn: true
+        }, {
+            type: 'unionpay',
+            patterns: [62, 88],
+            format: defaultFormat,
+            length: [16, 17, 18, 19],
+            cvcLength: [3],
+            luhn: false
+        }, {
+            type: 'jcb',
+            patterns: [35],
+            format: defaultFormat,
+            length: [16],
+            cvcLength: [3],
+            luhn: true
+        }
+    ];
+  var formatCardNumber = function (e) {
+        var $target, card, digit, length, re, upperLength, value;
+        digit = String.fromCharCode(e.which);
+        if (!/^\d+$/.test(digit)) {
+            return;
+        }
+        $target = $(e.currentTarget);
+      value = $target.val();
+      debugger;
+        card = cardFromNumber(value + digit);
+      length = (value.replace(/\D/g, '') + digit).length;
+      if (length &gt; Math.max.apply(null, card.length)) {
+          return false;
+      }
+        upperLength = 16;
+        if (card) {
+            upperLength = card.length[card.length.length - 1];
+        }
+        if (length &gt;= upperLength) {
+            return;
+        }
+        if (($target.prop('selectionStart') != null) &amp;&amp; $target.prop('selectionStart') !== value.length) {
+            return;
+        }
+        if (card &amp;&amp; card.type === 'amex') {
+            re = /^(\d{4}|\d{4}\s\d{6})$/;
+        } else {
+            if (card != null &amp;&amp; card != undefined) {
+                re = card.format// /(?:^|\s)(\d{4})$/;
+            }
+            else {
+                re =  /(?:^|\s)(\d{4})$/;
+            }
+        }
+        if (re.test(value)) {
+            e.preventDefault();
+            return setTimeout(function () {
+                return $target.val(value + ' ' + digit);
+            });
+        } else if (re.test(value + digit)) {
+            e.preventDefault();
+            return setTimeout(function () {
+                return $target.val(value + digit + ' ');
+            });
+        }
+    };
+   var cardFromNumber = function (num) {
+        var card, p, pattern, _i, _j, _len, _len1, _ref;
+        num = (num + '').replace(/\D/g, '');
+        for (_i = 0, _len = cards.length; _i &lt; _len; _i++) {
+            card = cards[_i];
+            _ref = card.patterns;
+            for (_j = 0, _len1 = _ref.length; _j &lt; _len1; _j++) {
+                pattern = _ref[_j];
+                p = pattern + '';
+                if (num.substr(0, p.length) === p) {
+                    return card;
+                }
+            }
+        }
+    };
+	&lt;/script&gt;</pre><p>So, this code is using jquery so make sure you have added the jquery reference on the page before using this. So, about this script in this we have added some predefined card formats in the array along with there max character size. And we are calling&nbsp;<span style="background-color: rgb(245, 245, 245); color: rgb(51, 51, 51); font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 13px;">formatCardNumber&nbsp;&nbsp;</span>&nbsp;on keypress of input box. Which find the card type based on starting characters and format accordingly. You can see the output with different card number and output format</p><p>With MasterCard</p><p><img src="/Uploads/Mastercard20211021045419.PNG"></p><p>With Visa card Format</p><p><img src="/Uploads/Visa20211021045443.PNG"></p><p>With Amex Card Format</p><p><img src="/Uploads/Amex20211021045513.PNG"></p><p>So, you can see the formatting working differently with different card types. So this is how we can implement Card Number formatting with Jquery. If you have any issues you can comment and ask.</p>
+

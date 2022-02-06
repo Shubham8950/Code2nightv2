@@ -1,0 +1,12 @@
+<p><b>Google Map Places API-</b></p><p>Google Map places api help us to integrate a dynamic place search in any input box which searches from the places available on google map and gives exact locations. For integrating google map api in Asp.Net MVC you have to follow these steps:</p><p><b>Step 1</b>-&nbsp;</p><p>First of all you have to create a account on <b>google console . </b>After creating the account on google console you have to create api key for places api. Remember, places api is paid and you have to add a billing account for making that work. Once you get api key, you have to follow further steps :-</p><p>So , you have to add a input box and then add the following script into your view.</p><pre> &lt;script src="https://maps.googleapis.com/maps/api/js?v=3.11&amp;sensor=false&amp;libraries=places&amp;key=&lt;You Key HERE&gt;" type="text/javascript"&gt;&lt;/script&gt;</pre> <p>Remember, in this script you have to place your api key in place of <b>&lt;Your Key Here&gt;</b><your key="" here=""></your></p><p>After&nbsp; placing your api key in the script you have to add the script given into your view.</p><pre>google.maps.event.addDomListener(window, 'load', function () {
+                var places = new google.maps.places.Autocomplete(document.getElementById('PickUpLocation'));
+                google.maps.event.addListener(places, 'place_changed', function () {
+                    var place = places.getPlace();
+                    var address = place.formatted_address;
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
+
+                 
+                });
+            });
+			</pre><p>So , just place this script on your view and pass the id of your input box. After that, just reload the page and your will see whenever you will type any name. It will show places related to that search. Have a look at below result.</p><p><img src="/Uploads/map20210731010218.PNG">So, this is how will see it finally and use it for places search in future. If you have any issues you can comment&nbsp; and ask.</p>

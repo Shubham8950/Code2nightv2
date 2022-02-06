@@ -8,7 +8,7 @@
     "@@type" : "Article",
     "name" : "@item.Title",
     "headline" : "@item.Title",
-    "url" : "https://www.code2night.com/Blog/MyBlog?id=@(System.Web.HttpUtility.UrlEncode(item.BlogUrl))",
+    "url" : "https://www.code2night.com/Blog/MyBlog/@(System.Web.HttpUtility.UrlEncode(item.BlogUrl))",
     "author" : {
     "@@type" : "Person",
     "name" : "@item.AuthorName"
@@ -46,7 +46,7 @@
                 </div>
                 <div class="blogpost-content">
                     <header>
-                        <h2 itemprop="headline" class="title"><a href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(blog.BlogUrl)">@blog.Title</a></h2>
+                        <h2 itemprop="headline" class="title"><a href="~/Blog/MyBlog/@System.Web.HttpUtility.UrlEncode(blog.BlogUrl)">@blog.Title</a></h2>
                         <div class="submitted">
                             <i class="fa fa-user pr-5"></i> by <a itemprop="author" href="~/Blog/Author/@blog.AuthorId-@blog.AuthorName">@blog.AuthorName</a><a style="
     color: black;
@@ -75,7 +75,7 @@
             }
         </li>
     </ul>
-    <a class="pull-right link" itemprop="url" href="~/blog/MyBlog?id=@(System.Web.HttpUtility.UrlEncode(blog.BlogUrl))"><span>Read more</span></a>
+    <a class="pull-right link" itemprop="url" href="~/blog/MyBlog/@(System.Web.HttpUtility.UrlEncode(blog.BlogUrl))"><span>Read more</span></a>
 </footer>
 </article>
 <!-- blogpost end -->

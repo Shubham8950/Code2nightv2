@@ -1,0 +1,125 @@
+<p>So, starting from the beginning we will need few libraries for using Jquery Autocomplete . Basically, that is included in Jquery UI js. So we need to add these scripts in our webpage</p><p><br></p><pre>&lt;link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"&gt;
+&lt;script src="https://code.jquery.com/jquery-1.12.4.js"&gt;&lt;/script&gt;
+&lt;script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"&gt;&lt;/script&gt;
+</pre><div><br></div><p>So, after adding these scripts in the head section of your webpage. We have to add this code in our webpage</p><pre> &lt;script&gt;
+        
+
+        $(document).ready(function () {
+
+            var datalist = ["hindi", "english", "math", "science", "geography", "socialscience", "sanskrit"]
+            $("#TestAutocomplete").autocomplete({
+                source: datalist,
+
+                response: function (event, ui) {
+                    ui.content.push({
+                        value: '', label: "Add new item"
+                    });
+                    ui.content.push({
+                        value: event.target.value, label: event.target.value
+                    });
+                },
+
+
+            }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                if (item.value == '') {
+                    return $('&lt;li class="ui-state-disabled" style="padding-left:5px;"&gt;' + item.label + '&lt;/li&gt;').appendTo(ul);
+                }
+                var expression = new RegExp(this.term, 'gi');
+                var highlight = item.label.replace(expression, "&lt;span style='font-weight:bold;'&gt;" + this.term + "&lt;/span&gt;")
+                return $("&lt;li&gt;")
+                    .append("&lt;a&gt;" + highlight + "&lt;/a&gt;")
+                    .appendTo(ul);
+
+
+            }
+        })
+
+
+
+    &lt;/script&gt;</pre><p>So, this function will be placed in document ready which will initialize the autocomplete. You will notice that we have create a array variable there. Which contains all the items of the Autocomplete.</p><pre>.data("ui-autocomplete")._renderItem = function (ul, item) {
+                if (item.value == '') {
+                    return $('&lt;li class="ui-state-disabled" style="padding-left:5px;"&gt;' + item.label + '&lt;/li&gt;').appendTo(ul);
+                }
+                var expression = new RegExp(this.term, 'gi');
+                var highlight = item.label.replace(expression, "&lt;span style='font-weight:bold;'&gt;" + this.term + "&lt;/span&gt;")
+                return $("&lt;li&gt;")
+                    .append("&lt;a&gt;" + highlight + "&lt;/a&gt;")
+                    .appendTo(ul);
+
+
+            }</pre><p>This method is fired whenever Jquery Autocomplete tries to create html for rendering. Here we have adding bold wherever searche text is found.</p><pre>
+@{
+    ViewData["Title"] = "Autocomplete";
+}
+&lt;style&gt;
+
+    .ui-state-active,
+    .ui-widget-content .ui-state-active,
+    .ui-widget-header .ui-state-active,
+    a.ui-button:active,
+    .ui-button:active,
+    .ui-button.ui-state-active:hover {
+        background: transparent !important;
+        font-weight: normal;
+        color: black !important;
+        width: 100% !important;
+        min-width: 200px !important;
+        border:0px!important;
+    }
+&lt;/style&gt;
+
+&lt;link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"&gt;
+&lt;script src="https://code.jquery.com/jquery-1.12.4.js"&gt;&lt;/script&gt;
+&lt;script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"&gt;&lt;/script&gt;
+
+
+&lt;div style="margin-top:50px;"&gt;
+    &lt;label for="TestAutocomplete"&gt;Subjects&lt;/label&gt;
+    &lt;input type="text" id="TestAutocomplete" class="validate" /&gt;
+
+
+&lt;/div&gt;
+@section scripts{
+    &lt;script&gt;
+        
+
+        $(document).ready(function () {
+
+            var datalist = ["hindi", "english", "math", "science", "geography", "socialscience", "sanskrit"]
+            $("#TestAutocomplete").autocomplete({
+                source: datalist,
+
+                response: function (event, ui) {
+                    ui.content.push({
+                        value: '', label: "Add new item"
+                    });
+                    ui.content.push({
+                        value: event.target.value, label: event.target.value
+                    });
+                },
+
+
+            }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                if (item.value == '') {
+                    return $('&lt;li class="ui-state-disabled" style="padding-left:5px;"&gt;' + item.label + '&lt;/li&gt;').appendTo(ul);
+                }
+                var expression = new RegExp(this.term, 'gi');
+                var highlight = item.label.replace(expression, "&lt;span style='font-weight:bold;'&gt;" + this.term + "&lt;/span&gt;")
+                return $("&lt;li&gt;")
+                    .append("&lt;a&gt;" + highlight + "&lt;/a&gt;")
+                    .appendTo(ul);
+
+
+            }
+        })
+
+
+
+    &lt;/script&gt;
+}
+
+
+
+</pre><p>So , this is the complete code available for Jquery Autocomplete. You can also download the source code by downloading from the attachment button. Or you can have a look at our youtube video for more details.</p>
+
+

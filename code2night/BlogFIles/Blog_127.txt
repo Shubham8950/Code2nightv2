@@ -1,0 +1,33 @@
+<p><br></p><h3>FCM(Firebase Cloud Messaging)</h3><p>Firebase is used for sending notifications or cloud messaging. For sending notifications on Android devices we must have a firebase account. After you create firebase account you will get your firebase server key. We will see the next steps</p><h3>Controller-</h3><p>So, we will use </p><pre>https://fcm.googleapis.com/fcm/send</pre><p>this api for sending notifications, we will see how to pass required data and server key.So for this api you need to add some data which we will serialize and send with the request . So your Firebase model must be like this</p><pre>public class FirebaseModel
+    {
+        [JsonProperty(PropertyName = "to")]
+        public string To { get; set; }
+
+        [JsonProperty(PropertyName = "data")]
+        public NotificationModel Data { get; set; }
+    }
+	
+public class NotificationModel
+    {
+       
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("body")]
+        public string Body { get; set; }
+    }</pre><p>So you have to add these models in your .net project. After adding these models, we have to create one http request to the fcm api. You can check out this code </p><pre>FirebaseModel firebaseModel = new FirebaseModel();
+firebaseModel.Data = new NotificationModel();
+firebaseModel.To = "Android Device Token";
+firebaseModel.Data.Body = "Test Notificaton";
+var serverKey = "Enter your firebase server key";
+var authorizationServerKey = string.Format("key={0}", serverKey);
+HttpRequestMessage httpRequest = null;
+HttpClient httpClient = null;
+
+var jsonBody = JsonConvert.SerializeObject(firebaseModel);
+
+                   
+httpRequest = new HttpRequestMessage(HttpMethod.Post, "https://fcm.googleapis.com/fcm/send");
+httpRequest.Headers.TryAddWithoutValidation("Authorization", authorizationServerKey );<br>
+httpRequest.Content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+httpClient = new HttpClient();
+var result = await httpClient.SendAsync(httpRequest);</pre><p>So here we are addng some dummy data with device token in the firebase model. Then we are serializing the data and sending to the fcm api.</p><p>After this, you can check you will receive one fcm notification on the device for which device token was specified.</p><p>So, this is how we can send fcm notifications using asp.net for android.</p>

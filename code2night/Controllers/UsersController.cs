@@ -5,10 +5,15 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
+using GoogleAuthentication.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,24 +24,106 @@ namespace Code2Night.Controllers
         private IUserRepo _userrepo;
         private HomeViewModel home = new HomeViewModel();
         private readonly IBlog _blogrepo;
-
-        public UsersController(IUserRepo userrepo, IBlog blog) : base(new BlogRepo(), new TutorialRepo())
+        IConfiguration _iconfiguration;
+        IHostingEnvironment _env;
+        public UsersController(IUserRepo userrepo, IBlog blog, IConfiguration iconfiguration, IHostingEnvironment env) : base(new BlogRepo(), new TutorialRepo())
         {
             _userrepo = userrepo;
             _blogrepo = blog;
+            _iconfiguration = iconfiguration;
+            _env = env;
         }
 
-        public  IActionResult Index()
+        public IActionResult Index()
         {
-          
-            if (this.GetUserRoleCookieValue()== "Admin")
+
+            if (this.GetUserRoleCookieValue() == "Admin")
             {
                 ViewBag.IsAdmin = true;
             }
-            var GetBlogs =_blogrepo.GetBlogs();
+            var GetBlogs = _blogrepo.GetBlogsPaging();
+          
+            
             return View(GetBlogs);
         }
 
+        public async Task<IActionResult> GoogleLoginCallback(string code)
+        {
+            try
+            {
+                var ClientSecret = _iconfiguration.GetValue<string>("Google_Id:client_secret");
+                var ClientID = _iconfiguration.GetValue<string>("Google_Id:client_id");
+                var url = _iconfiguration.GetValue<string>("Google_Id:redirect_uri");
+                var token = await GoogleAuth.GetAuthAccessToken(code, ClientID, ClientSecret, url);
+                ErrorLogs(JsonConvert.SerializeObject(token));
+                var userProfile = await GoogleAuth.GetProfileResponseAsync(token.AccessToken.ToString());
+                var googleUser = JsonConvert.DeserializeObject<GoogleProfile>(userProfile);
+                var getusr = _userrepo.GetUsers();
+                if (getusr.Where(x => x.Email == googleUser.Email).Any())
+                {
+                    var user = _userrepo.CheckUserExists(googleUser.Email);
+                    if (user.UserRole == "Admin")
+                    {
+                        SaveUserCookies(user);
+                        return RedirectToAction("Index", "DashboardGraph");
+                    }
+                    else
+                    {
+                        SaveUserCookies(user);
+                        return RedirectToAction("index", "Users");
+                    }
+                }
+                else
+                {
+                    Users user = new Users()
+                    {
+                        Username = googleUser.Email,
+                        Email = googleUser.Email,
+                        ContactNo = "",
+                        Password = "",
+                        Name = googleUser.Name,
+                        UserRole = "Author",
+                        IsActive = false,
+                        ProfileDescription = "",
+                        Skills = "",
+                        ProfileImage = ""
+                    };
+                    int i = _userrepo.AddNewAccount(user, true);
+                    user = _userrepo.CheckUserExists(googleUser.Email);
+                    if (user.UserRole == "Admin")
+                    {
+                        SaveUserCookies(user);
+                        return RedirectToAction("Index", "DashboardGraph");
+                    }
+                    else
+                    {
+                        SaveUserCookies(user);
+                        return RedirectToAction("index", "Users");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogs(ex.Message);
+            }
+            return RedirectToAction("index", "Users");
+        }
+        public void ErrorLogs(string msg)
+        {
+            if (!Directory.Exists(_env.ContentRootPath + "/log"))
+            {
+                Directory.CreateDirectory(_env.ContentRootPath + "/log");
+            }
+            var filename = _env.ContentRootPath + "/log/LogFile.txt";
+            var sw = new System.IO.StreamWriter(filename, true);
+            sw.WriteLine(DateTime.Now.ToString() + ": " + msg);
+            sw.Close();
+        }
+        public IActionResult BindPagingBlog(int pageNumber)
+        {
+            var GetBlogs = _blogrepo.GetBlogsPaging(pageNumber);
+            return PartialView("_BlogHome", GetBlogs);
+        }
         public IActionResult Login()
         {
             if (GetUserCookieValue("UserId") != null && !string.IsNullOrEmpty(GetUserCookieValue("UserId")) && GetUserCookieValue("UserId") != "0")
@@ -54,6 +141,10 @@ namespace Code2Night.Controllers
             {
                 CloseUserSession();
             }
+            var ClientID = _iconfiguration.GetValue<string>("Google_Id:client_id");
+            var url = _iconfiguration.GetValue<string>("Google_Id:redirect_uri");
+            var response = GoogleAuth.GetAuthUrl(ClientID, url);
+            ViewBag.response = response;
             return View();
         }
 

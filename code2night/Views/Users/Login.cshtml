@@ -2,8 +2,9 @@
 @{
     ViewBag.Title = "Login | Code2Night.com";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}<script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"  />
+}
+<script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <div class="page-intro">
     <div class="container">
         <div class="row">
@@ -53,16 +54,24 @@
                                         <input id="Remember" type="checkbox"> Remember me.
                                     </label>
                                 </div>
-                                <button type="submit" onclick="Login()" class="btn btn-group btn-default btn-sm">Log In</button>
-                                @*<ul>
-                                        <li><a href="#">Forgot your password?</a></li>
-                                    </ul>
-                                    <span class="text-center text-muted">Login with</span>
-                                    <ul class="social-links colored circle clearfix">
-                                        <li class="facebook"><a target="_blank" href="http://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a target="_blank" href="http://www.twitter.com/"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a target="_blank" href="http://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>*@
+                                <div style="display:flex">
+                                    <button type="submit"  style="
+    height: 39px;
+    margin-top: 9px;
+" onclick="Login()" class="btn btn-group btn-default btn-sm">Log In</button>
+                                    <span style="
+    padding: 20px 30px;
+"> OR </span>
+                                    <a style="
+    height: 50px;
+    margin-top: 5px;
+" href="@(ViewBag.response)"><img src="~/GoogleSignIn.png" /></a>
+                                </div>
+                            
+                            
+
+
+
                             </div>
                         </div>
                     </div>
@@ -80,22 +89,24 @@
 
 @section Scripts
     {
-<script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script>
+    <script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Compiled and minified CSS -->
+   
     <script>
-       
+
     var Login=function()
     {
         if ($("#UserName").val() == "") {
             toastr.error("Please Enter UserName !");
-           
-            
+
+
             return false;
         }
         if ($("#Password").val() == "") {
             toastr.error("Please Enter Password !");
-           
-           
+
+
             return false;
         }
         var promises = GetAjaxDataPromise('@Url.Action("Login", "Users")', { UserName: $("#UserName").val(), Password: $("#Password").val(), Remember: $("#Remember").is("checked") });
@@ -104,8 +115,8 @@
             if (response[0] === "0") {
                 console.log(response);
                 toastr.error(response[1]);
-              
-              
+
+
             }
             else {
                 var data = response;

@@ -1,0 +1,46 @@
+<h4><b>Understanding Requirements</b></h4><p>So , the first step always is to understand the requirements. The thing&nbsp; which we are trying to figure out is basically how to create real time chat in your application. So for that part , we will need .Net core api solution which we will use for back end. Then we need vue js application that will serve as interface for initiating the chat.&nbsp;</p><p><b>SignalR in .Net core</b></p><p>So, first of all you have to install SignalR in your .Net core application. Go to your nugget packages and install&nbsp;Microsoft.AspNetCore.SignalR</p><pre>Microsoft.AspNetCore.SignalR<br></pre><p>after installing this nugget package you have to goto your startup.cs and add&nbsp;&nbsp; <b>services.AddSignalR();</b> in&nbsp;<b>ConfigureServices</b> method.</p><pre>  services.AddSignalR();<br></pre><p> Now add this in your&nbsp;<b>Configure </b>method in startup.cs</p><pre>  app.UseCors(options =&gt; options.WithOrigins("http://localhost:8080").AllowAnyMethod()
+                           .AllowAnyHeader()
+                           .AllowCredentials());     </pre><pre>app.UseEndpoints(endpoints =&gt;
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub&lt;ChatHub&gt;("/chatHub");
+            });</pre><p>After adding these we will have to create a new class named ChatHub as we have mentioned that in previous code. So take a new class and the we need this code</p><pre>public class ChatHub : Hub
+    {
+      
+        public ChatHub()
+        {
+         
+
+        }
+        public async Task SendMessage(string message)
+        {
+                    await Clients.All.SendAsync("ReceiveMessage", message);
+            
+        }
+
+    }<br></pre><p> You will need to add reference to SignalR using Microsoft.AspNetCore.SignalR; in the class.</p><pre>using Microsoft.AspNetCore.SignalR;</pre><p> This send Message method will act as hub whenever any message will be sent. After this run your .Net core application and now we will go to our&nbsp; user interface part which will be in vue.js.</p><h4><b>Setting Up SignalR in Vue.js</b></h4><p>So, for setting up SignalR in vue.js . We have to install npm package. Go to your terminal and execute</p><pre>npm i @aspnet/signalr</pre><p>After, this package is installed we have to go to the component and import it using</p><pre>import * as signalR from "@aspnet/signalr";</pre><p> After, this now we have to add SignalR connection and implement <b>ReceiveMessage </b>handler which will be called whenever any message is received by <b>signalR </b>port and also a <b>SendMessage </b>handler which will actually send message to signalR.</p><pre>data() {
+    return {
+ 
+      userMessage: "",
+      connection: "",
+    
+    };
+  },<br></pre><pre> this.connection = new signalR.HubConnectionBuilder()
+        .withUrl(process.env.VUE_APP_URL +"/chatHub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+      
+       console.log(this.connection)
+      this.connection.start().catch(function (err) {
+        return console.error(err.toSting());
+      });</pre><p>So, this will be used for setting up signalR connection. So you have to use this whenever you want to connect to signalR on your component. The url with ChatHub must be the api url where we had created ChatHub class earlier.</p><p>Now , we have to implement send Message handler . So we will add</p><pre>  this.connection
+          .invoke(
+            "SendMessage",
+           this.userMessage,
+           
+          )
+          .catch(function (err) {
+            return console.error(err.toString());
+          });<br></pre><p>You have to add this line to the method where you are sending your message . It could be in the method you call when clicking on Send Message button. We have passed user message to that.</p><p>Now whenever Send Message is done, we also need to bind Receive Message handler to show the message to other user. For that we have to add</p><pre>this.connection.on("ReceiveMessage", (tr, data) =&gt; {
+       /*Do whatever you want to show the message */
+      });</pre><p>This, will be triggered whenever you will send any message. You can receive the message here and show to other user.So, this is how we can implement signarR in .Net core with Vue.js. You can try this out and if you have any issue you can comment on the article.</p>

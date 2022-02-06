@@ -1,325 +1,325 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=how-to-set-date-and-time-format-in-iis-manager</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/how-to-set-date-and-time-format-in-iis-manager</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=exception-handling-aspnet-core</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/exception-handling-aspnet-core</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=exception-handling-and-creating-exception-logs-in-aspnet-mvc</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/exception-handling-and-creating-exception-logs-in-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=stopping-browser-reload-on-saving-file-in-visual-studio-aspnet</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/stopping-browser-reload-on-saving-file-in-visual-studio-aspnet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=mvc-crud-operation-with-interfaces-and-repository-pattern-with-adonet</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/mvc-crud-operation-with-interfaces-and-repository-pattern-with-adonet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=jquery-full-calender-integrated-with-aspnet</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/jquery-full-calender-integrated-with-aspnet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=slick-slider</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/slick-slider</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=mvc-crud-operation-with-entity-framework</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/mvc-crud-operation-with-entity-framework</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=intergrate-summernote-text-editor-into-aspnet-mvc</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/intergrate-summernote-text-editor-into-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=a-non-fatal-error-occured-during-cluster-initialisation-in-postgre-sql</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/a-non-fatal-error-occured-during-cluster-initialisation-in-postgre-sql</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=microsoft-outlook-add-appointment-and-get-appointment-using-aspnet-mvc</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/microsoft-outlook-add-appointment-and-get-appointment-using-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=send-email-with-html-template-and-pdf-using-aspnet-csharp</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/send-email-with-html-template-and-pdf-using-aspnet-csharp</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=microsoft-outlook-get-and-add-contacts-aspnet-mvc</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/microsoft-outlook-get-and-add-contacts-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=convert-string-with-dot-notation-to-json-aspnet</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/convert-string-with-dot-notation-to-json-aspnet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=http-error-5025---ancm-out-of-process-startup-failure</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/http-error-5025---ancm-out-of-process-startup-failure</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=payumoney-integration-with-aspnet-mvc</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/payumoney-integration-with-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=code-syntax-higlighter-using-prism-js</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/code-syntax-higlighter-using-prism-js</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=using-ajax-in-aspnet-mvc</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/using-ajax-in-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=implement-stripe-payment-gateway-in-aspnet</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/implement-stripe-payment-gateway-in-aspnet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=how-to-upload-image-file-using-ajax-and-jquery</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/how-to-upload-image-file-using-ajax-and-jquery</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=configurationbuilder-does-not-contain-a-definition-for-setbasepath</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/configurationbuilder-does-not-contain-a-definition-for-setbasepath</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=globalization-and-localization-in-aspnet-core-with-resource-files</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/globalization-and-localization-in-aspnet-core-with-resource-files</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=url-encryption-in-aspnet-mvc</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/url-encryption-in-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=slick-slider-with-single-slide</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/slick-slider-with-single-slide</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=how-to-reload-child-components-in-vuejs</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/how-to-reload-child-components-in-vuejs</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=visual-studio-not-refreshing-changes-in-browser-on-reload</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/visual-studio-not-refreshing-changes-in-browser-on-reload</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.code2night.com/blog/myblog?id=zoom-c%23-wrapper-integration-</loc>
+    <loc>https://www.code2night.com/blog/MyBlog/zoom-c%23-wrapper-integration-</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=how-to-set-date-and-time-format-in-iis-manager</loc>
+    <loc>https://code2night.com/blog/MyBlog/how-to-set-date-and-time-format-in-iis-manager</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=exception-handling-aspnet-core</loc>
+    <loc>https://code2night.com/blog/MyBlog/exception-handling-aspnet-core</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=exception-handling-and-creating-exception-logs-in-aspnet-mvc</loc>
+    <loc>https://code2night.com/blog/MyBlog/exception-handling-and-creating-exception-logs-in-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=stopping-browser-reload-on-saving-file-in-visual-studio-aspnet</loc>
+    <loc>https://code2night.com/blog/MyBlog/stopping-browser-reload-on-saving-file-in-visual-studio-aspnet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=mvc-crud-operation-with-interfaces-and-repository-pattern-with-adonet</loc>
+    <loc>https://code2night.com/blog/MyBlog/mvc-crud-operation-with-interfaces-and-repository-pattern-with-adonet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=jquery-full-calender-integrated-with-aspnet</loc>
+    <loc>https://code2night.com/blog/MyBlog/jquery-full-calender-integrated-with-aspnet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=slick-slider</loc>
+    <loc>https://code2night.com/blog/MyBlog/slick-slider</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=mvc-crud-operation-with-entity-framework</loc>
+    <loc>https://code2night.com/blog/MyBlog/mvc-crud-operation-with-entity-framework</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=intergrate-summernote-text-editor-into-aspnet-mvc</loc>
+    <loc>https://code2night.com/blog/MyBlog/intergrate-summernote-text-editor-into-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=a-non-fatal-error-occured-during-cluster-initialisation-in-postgre-sql</loc>
+    <loc>https://code2night.com/blog/MyBlog/a-non-fatal-error-occured-during-cluster-initialisation-in-postgre-sql</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=microsoft-outlook-add-appointment-and-get-appointment-using-aspnet-mvc</loc>
+    <loc>https://code2night.com/blog/MyBlog/microsoft-outlook-add-appointment-and-get-appointment-using-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=send-email-with-html-template-and-pdf-using-aspnet-csharp</loc>
+    <loc>https://code2night.com/blog/MyBlog/send-email-with-html-template-and-pdf-using-aspnet-csharp</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=microsoft-outlook-get-and-add-contacts-aspnet-mvc</loc>
+    <loc>https://code2night.com/blog/MyBlog/microsoft-outlook-get-and-add-contacts-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=convert-string-with-dot-notation-to-json-aspnet</loc>
+    <loc>https://code2night.com/blog/MyBlog/convert-string-with-dot-notation-to-json-aspnet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=http-error-5025---ancm-out-of-process-startup-failure</loc>
+    <loc>https://code2night.com/blog/MyBlog/http-error-5025---ancm-out-of-process-startup-failure</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=payumoney-integration-with-aspnet-mvc</loc>
+    <loc>https://code2night.com/blog/MyBlog/payumoney-integration-with-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=code-syntax-higlighter-using-prism-js</loc>
+    <loc>https://code2night.com/blog/MyBlog/code-syntax-higlighter-using-prism-js</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=using-ajax-in-aspnet-mvc</loc>
+    <loc>https://code2night.com/blog/MyBlog/using-ajax-in-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=implement-stripe-payment-gateway-in-aspnet</loc>
+    <loc>https://code2night.com/blog/MyBlog/implement-stripe-payment-gateway-in-aspnet</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=how-to-upload-image-file-using-ajax-and-jquery</loc>
+    <loc>https://code2night.com/blog/MyBlog/how-to-upload-image-file-using-ajax-and-jquery</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=configurationbuilder-does-not-contain-a-definition-for-setbasepath</loc>
+    <loc>https://code2night.com/blog/MyBlog/configurationbuilder-does-not-contain-a-definition-for-setbasepath</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=globalization-and-localization-in-aspnet-core-with-resource-files</loc>
+    <loc>https://code2night.com/blog/MyBlog/globalization-and-localization-in-aspnet-core-with-resource-files</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=url-encryption-in-aspnet-mvc</loc>
+    <loc>https://code2night.com/blog/MyBlog/url-encryption-in-aspnet-mvc</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=slick-slider-with-single-slide</loc>
+    <loc>https://code2night.com/blog/MyBlog/slick-slider-with-single-slide</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=how-to-reload-child-components-in-vuejs</loc>
+    <loc>https://code2night.com/blog/MyBlog/how-to-reload-child-components-in-vuejs</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=visual-studio-not-refreshing-changes-in-browser-on-reload</loc>
+    <loc>https://code2night.com/blog/MyBlog/visual-studio-not-refreshing-changes-in-browser-on-reload</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://code2night.com/blog/myblog?id=zoom-c%23-wrapper-integration-</loc>
+    <loc>https://code2night.com/blog/MyBlog/zoom-c%23-wrapper-integration-</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>

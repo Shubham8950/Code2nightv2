@@ -8,4 +8,3 @@
  and enter in the window which is shown in the image and then click join</p><img src="/Uploads/Screenshot_2520210612111329.png"><h3><b>13. Now a new indow will open and your meeting will start. </b></h3><p>After entering meeting passocde you will see a new window on join where you can see your meeting has started. You can have a look at the image. You can start you meeting from zoom UI. After starting meeting. You can use your sdk to join that.</p><img src="/Uploads/Screenshot_2620210612111544.png"><img src="/Uploads/Screenshot_2720210612111644.png"><p>So this is how we can use zoom sdk in window c# wrapper. If you have any issue you can ask. Complete guidance will be provided.</p>
 
 
-

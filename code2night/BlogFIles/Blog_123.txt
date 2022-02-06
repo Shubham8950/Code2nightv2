@@ -1,0 +1,51 @@
+<h3><b>QR Code Generator</b></h3><p>So , sometimes we all need to show some data in Barcode or QR Code format in our website . For that purpose we will use Jquery QR Code Generator library . This is a free jquery library that takes data as input and created a QR Code representing the same data which can be scanned from mobile devices.So for that purpose first of all we need to add these libraries , as shown in the image. We will provide these libraries along with complete source code for you to download.</p><p><img src="/Uploads/Files20210905122851.PNG">So, after adding these libraries in your project , we will add them on our webpage.</p><pre> &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="/Content/QRCode/jquery.qrcode.min.js"&gt;&lt;/script&gt;
+&lt;script src="/Content/QRCode/qrcode.js"&gt;&lt;/script&gt;</pre><p>So , after adding the scripts we have to add the data which you want to convert in the QR Code in specific format, So the sample data should be in this format<span style="background-color: rgb(245, 245, 245); color: rgb(51, 51, 51); font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 13px;"></span></p><pre>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="/Content/QRCode/jquery.qrcode.min.js"&gt;&lt;/script&gt;
+&lt;script src="/Content/QRCode/qrcode.js"&gt;&lt;/script&gt;
+&lt;div class="jumbotron"&gt;
+    &lt;h1&gt;QR Code Generator&lt;/h1&gt;
+
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+    &lt;div class="QrCode"&gt;&lt;/div&gt;
+&lt;/div&gt;
+@*&lt;div id="textarea" style="display:none"&gt;@Html.Raw(template)&lt;/div&gt;*@
+@section scripts{
+    &lt;script&gt;
+        $(document).ready(function () {
+            var data = "BEGIN:VCARD\nVERSION:3.0\nFN:CodeFlow\nTITLE:QR Code\nTEL;TYPE=HOME,VOICE:8877665545\nEMAIL;WORK;INTERNET:abc@gmail.com\nEND:VCARD";
+            renderQR(data);
+        })
+
+        function renderQR(data) {
+            $('.QrCode').html('');
+            $('.QrCode').qrcode({
+                width: 300,
+                height: 300,
+                text: data
+            });
+        }
+    &lt;/script&gt;
+}
+
+</pre><div><br></div><p>So , in this first we have created the sample data and added that in the textarea and while generating QR code we are picking the data from textarea.This script is used for QR Code Generator.</p><pre>&lt;script&gt;
+     $(document).ready(function () {
+            var data = "BEGIN:VCARD\nVERSION:3.0\nFN:CodeFlow\nTITLE:QR Code\nTEL;TYPE=HOME,VOICE:8877665545\nEMAIL;WORK;INTERNET:abc@gmail.com\nEND:VCARD";
+            renderQR(data);
+        })
+
+        function renderQR(data) {
+            $('.QrCode').html('');
+            $('.QrCode').qrcode({
+                width: 300,
+                height: 300,
+                text: data
+            });
+        }
+&lt;/script&gt;</pre><p>So , this we generate a QR code which you can see in the below screenshot</p><p><img src="/Uploads/QRCodes20210905123302.PNG"></p><p>And when you scan this code in your mobile device you can see the actual data which you have passed while generating QR Code.</p><p><img src="/Uploads/WhatsApp Image 2021-09-05 at 12.17.1220210905123347.jpeg">So, this is how we can generate QR Code or Barcode in Asp.Net Mvc. If you get any issue with this you can comment on the video and let us know. You can see the <b>attachment</b> button above to <b>download</b> the <b>source code</b>.</p>
+
+
+
+

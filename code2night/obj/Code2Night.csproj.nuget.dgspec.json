@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[1.50.0.2238, )"
             },
+            "GoogleAuthentication": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "GroupDocs.Viewer": {
               "target": "Package",
               "version": "[20.12.0, )"
@@ -129,7 +133,7 @@
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[12.0.3, )"
+              "version": "[13.0.1, )"
             },
             "System.Reflection": {
               "target": "Package",

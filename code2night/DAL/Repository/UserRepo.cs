@@ -30,7 +30,21 @@ namespace Code2Night.DAL.Repository
         {
             return GetTableById("sprSkills", "").DataTableToList<SelectListItem>();
         }
+        public Users CheckUserExists(string Email)
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@Email", Email));
+           
 
+            var userlist = GetTableByCustomParameters("sprCheckUserExists", list).DataTableToList<Users>();
+            if (userlist.Any())
+            {
+                return userlist.FirstOrDefault();
+            }
+            else
+                return new Users();
+          
+        }
         public Users UserLogin(string UserName, string Password)
         {
           
@@ -87,7 +101,7 @@ namespace Code2Night.DAL.Repository
             return Convert.ToInt64(Insert("sprUsers", DynamicParameter));
         }
 
-        public int AddNewAccount(Users user)
+        public int AddNewAccount(Users user,bool isSocialLogin=false)
         {
 
             var DynamicParameter = new DynamicParameters();
@@ -113,7 +127,7 @@ namespace Code2Night.DAL.Repository
             list.Add(new SqlParameter("@Skills", user.Skills));
             list.Add(new SqlParameter("@ProfileImage", user.ProfileImage));
           
-            if (exists < 1)
+            if (exists < 1 && !isSocialLogin)
             {
                 SendVerificationLinkEmail(user.Email, activationcode);
                 SaveData("sprUsers", list);

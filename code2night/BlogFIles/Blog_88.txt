@@ -3,3 +3,4 @@ Microsoft.AspNetCore.App 2.2.8 [C:\Program Files\dotnet\shared\Microsoft.AspNetC
 Microsoft.NETCore.App 2.2.8 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]</code></pre>
 <br><p>Now the most important part is&nbsp;</p><h5>Restart your system:-</h5><p>Now After restarting your system you can check . Your issue will be solved.&nbsp;</p><h4>If the issue remains:-</h4><ol><li>you can check your if your application pool identity has whole permissions. Just change application pool identity to local system so it can have complete permissions.</li><li>Make sure Enable 32 bit application option is set to true in application pool identity in IIS.</li></ol><h4><p></p></h4><p><br></p><p><br></p>
 
+

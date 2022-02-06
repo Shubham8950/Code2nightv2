@@ -1,0 +1,39 @@
+<p><span style="color: rgb(52, 52, 52); font-family: &quot;Segoe UI&quot;, Verdana, sans-serif; font-size: 22px;"><b>ExcelDataReader</b></span><br></p><p>Excel Data Reader is a c# library which is used for reading data from excel in table format and we can fill the data in DataTable or DataSet. So , for installing ExcelDataReader. You have to go to</p><p>Project -&gt; Manage Nugget Packages&nbsp;</p><p>Now add two nugget packages. <b>ExcelDataReader</b> and <b>ExcelDataReader.DataSet . </b>You can check in the given image</p><p><img src="/Uploads/Excel20210920095626.PNG"></p><p>So, after you have added these two nugget packages in your project. You have to go to your c# code and use this</p><p><br></p><pre>private DataTable ReadData()
+        {
+            var filePath = HttpContext.Current.Server.MapPath("~/ExcelFile/Test.xlsx");
+            var dataTable = new DataTable();
+            using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+            {
+                IExcelDataReader excelReader;
+                if (Path.GetExtension(filePath).ToUpper() == ".XLS")
+                {
+                    excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
+                }
+                else
+                {
+                    excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+                }
+
+                var result = excelReader.AsDataSet();
+                excelReader = ExcelReaderFactory.CreateReader(stream);
+
+                var conf = new ExcelDataSetConfiguration
+                {
+                    ConfigureDataTable = _ =&gt; new ExcelDataTableConfiguration
+                    {
+                        UseHeaderRow = true
+                    }
+                };
+                var dataSet = excelReader.AsDataSet(conf);
+                dataTable = dataSet.Tables[0];
+                dataTable.Rows.RemoveAt(0);
+            }
+            return dataTable;
+        }</pre><p>So , first of all you must place a <b>xlsx </b>file&nbsp; in your project.&nbsp;<span style="background-color: rgb(245, 245, 245); color: rgb(51, 51, 51); font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 13px;"></span></p><pre>var filePath = HttpContext.Current.Server.MapPath("~/ExcelFile/Test.xlsx");</pre><p></p><p>So , this was a sample file. Placed inside Excel folder inside project root.</p><pre> var conf = new ExcelDataSetConfiguration
+ {
+    ConfigureDataTable = _ =&gt; new ExcelDataTableConfiguration
+    {
+        UseHeaderRow = true
+    }
+ };
+ var dataSet = excelReader.AsDataSet(conf);</pre><p>This , will return you data as dataSet. UseHeaderRow will take first row as column headers. So, this is how you can ready your excel data and populate in datatable or dataset in Asp.Net.</p>

@@ -15,8 +15,8 @@
     ViewBag.Title = Model.MyBlog.Title + " | Code2night.com";
     ViewBag.MetaDescription = Model.MyBlog.BlogIntroduction;
     ViewBag.MetaKeywords = "Code2Night,Code,Programming,Tutorials," + string.Join(",", List);
-    ViewBag.Canonical = "https://www.code2night.com/Blog/MyBlog?id=" + System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl);
-    ViewBag.OpenGraphUrl = "https://www.code2night.com/Blog/MyBlog?id=" + System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl);
+    ViewBag.Canonical = "https://www.code2night.com/Blog/MyBlog/" + System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl);
+    ViewBag.OpenGraphUrl = "https://www.code2night.com/Blog/MyBlog/" + System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl);
     ViewBag.OpenGraphDescription = Model.MyBlog.BlogIntroduction;
     ViewBag.OpenGraphTitle = Model.MyBlog.Title;
 }
@@ -200,7 +200,7 @@
                             </div>
                             <header>
                                 <h2 itemprop="headline" class="title">
-                                    <a href="~/Blog/MyBlog?id=@(System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl))">
+                                    <a href="~/Blog/MyBlog/@(System.Web.HttpUtility.UrlEncode(Model.MyBlog.BlogUrl))">
                                         <h1 class="page-title" style="
         font-size: 25px;
         text-align: left;

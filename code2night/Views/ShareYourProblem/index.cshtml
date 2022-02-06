@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Share Your Problem";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<meta name="description" content="We are collecting data regarding employment effected during lockdown. This is just small feedback form that will be used for analysis purpose." />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3 mt-2" style="margin-top: 5%">
+            <div class="comments-form">
+                <h2 class="title">Share Your Problem</h2>
+                <form role="form" id="comment-form">
+                    <div class="form-group has-feedback">
+                        <label for="Name">Your Name*</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Name" name="Name" required>
+                        <i class="fa fa-user form-control-feedback"></i>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="skill">Specify Your Problem*</label>
+                        <textarea class="form-control" id="ProblemDescription" placeholder="ProblemDescription" name="ProblemDescription" required></textarea>
+                        <i class="fa fa-pencil form-control-feedback"></i>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="skill">Suggestion*</label>
+                        <textarea type="text" class="form-control" id="ProblemSuggestion" placeholder="ProblemSuggestion" name="ProblemSuggestion" required></textarea>
+                        <i class="fa fa-pencil form-control-feedback"></i>
+                    </div>
+                    <input type="button" value="Submit" onclick="return SaveProblem()" class="btn btn-default">
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+    var Share = function () {
+        window.location.href = 'https://wa.me/?text=' + window.location.href;
+    }
+    var SaveProblem=function()
+    {
+        debugger;
+        if ($("#Name").val().replace(/ /g, '') == '') {
+            toastr.error('Name is Required');
+            return false;
+        }
+        if ($("#ProblemDescription").val().replace(/ /g, '') == '') {
+            toastr.error('Need to know your problem');
+            return false;
+        }
+        if ($("#ProblemSuggestion").val().replace(/ /g, '') == '') {
+            toastr.error('Need your suggestion for solving the problem');
+            return false;
+        }
+
+        var promises = GetAjaxDataPromise('@Url.Action("Saveproblem", "ShareYourProblem")', { Name: $("#Name").val(), ProblemDescription: $("#ProblemDescription").val(), ProblemSuggestion: $("#ProblemSuggestion").val()});
+            promises.done(function (response) {
+                toastr.success('Thanks for your response');
+                $('input[type=text],textarea,select').val('');
+
+
+            });
+    }
+    </script>
+

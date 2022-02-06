@@ -8,7 +8,7 @@ namespace Code2Night.DAL.Interfaces
     {
         List<Blog> GetBlogs();
         Task<List<Blog>> GetBlogsAsync();
-
+        List<Blog> GetBlogsPaging(int pageNumber = 0);
         Task<IEnumerable<Blog>> GetFilterBlog(int? pageNumber, int pageSize, string search, bool IsFilter);
 
         string AddBlog(Blog blog);

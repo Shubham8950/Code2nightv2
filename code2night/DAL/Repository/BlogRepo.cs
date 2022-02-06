@@ -17,6 +17,15 @@ namespace Code2Night.DAL.Repository
             var blog =  GetTableById("sprBlogs", "ListBlogFile").DataTableToList<Blog>();
             return blog;
         }
+        public List<Blog> GetBlogsPaging(int pageNumber=0)
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@Activity", "ListBlogFilePaging"));
+            list.Add(new SqlParameter("@PageNumber", pageNumber));
+
+            var blogList = GetTableByCustomParameters("sprBlogs", list).DataTableToList<Blog>();
+            return blogList;
+        }
         public async Task<List<Blog>> GetBlogsAsync()
         {
 

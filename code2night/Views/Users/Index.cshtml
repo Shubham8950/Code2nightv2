@@ -3,11 +3,7 @@
     ViewBag.Title = "Index | Code2night.com";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    #video.iframe {
-        width: 100% !important;
-    }
-</style>
+
 <section class="main-container" style="padding: 0px 0px">
     <div class="container">
         <div class="row">
@@ -16,36 +12,14 @@
                 <!-- ================ -->
                 <h3 class="page-title">Latest Blog</h3>
                 <div class="separator-2"></div>
-                @foreach (var item in Model.Where(x => x.IsApproved).OrderByDescending(x => x.Date))
-                {
-                    <article class="clearfix blogpost object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
-                        <div class="blogpost-body">
-                            <div class="post-info">
-                                <span class="day">@item.Date.ToString("dd")</span>
-                                <span class="month">@item.Date.ToString("MMM yyyy")</span>
-                            </div>
-                            <div class="blogpost-content">
-                                <header>
-                                    <h2 class="title" style="font-weight: 400 !important;"><a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></h2>
-                                    <div class="submitted" style="font-size:14px !important;">
-                                        <i class="fa fa-user pr-5"></i> by <a  href="/Blog/Author/@(item.AuthorId)-@(item.AuthorName)">@item.AuthorName</a><a style="color: black;margin-left: 16px;"><i class="fa fa-eye"></i>@item.TotalView</a>
-                                        @if (!string.IsNullOrEmpty(item.VideoEmbed))
-                                        {
-                                            <a onclick="ShowVideo('@item.VideoEmbed')" data-toggle="modal" data-target="#myModal" style="margin-left:5px;font-size:14px;color:black;" href="http://www.youtube.com/">
+                <div id="AllBlogs">
 
-                                                <i class="fa fa-youtube-play" style="color: #e84c3d
-"></i>  Watch Video
-                                            </a>
-                                         }
-                                    </div>
+                    @Html.Partial("_BlogHome", Model)
 
-                                </header>
-                                <p style="font-size:13px !important">@item.BlogIntroduction</p>
-                            </div>
-                        </div>
+                </div>
+                <div id="pagination">
 
-                    </article>
-                }
+                </div>
             </div>
 
             <aside class="col-md-4">
@@ -65,7 +39,7 @@
                                 <li>
                                     <i class="fa fa-line-chart"></i>
                                     @*<p>@item.Title</p>*@
-                                    <p class="title"><a style="color: black;" target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></p>
+                                    <p class="title"><a style="color: black;" target="_blank" href="~/Blog/MyBlog/@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></p>
 
                                 </li>
                             </ul>
@@ -78,11 +52,19 @@
                             @foreach (var item in Model)
                             {
                                 <div class="image-box-body">
-                                    <h3 class="title"><a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></h3>
+                                    <h3 class="title"><a target="_blank" href="~/Blog/MyBlog/@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></h3>
                                     <p></p>
-                                    <a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)" class="link"><span>Read More</span></a>
+                                    <a target="_blank" href="~/Blog/MyBlog/@System.Web.HttpUtility.UrlEncode(item.BlogUrl)" class="link"><span>Read More</span></a>
                                 </div>
                             }
+                        </div>
+                    </div>
+                    <div class="block clearfix">
+                       
+                        <div class="separator"></div>
+                        <div class="image-box">
+                            <img src="~/Content/Banner.jpeg" />
+                           
                         </div>
                     </div>
                 </div>
@@ -212,8 +194,37 @@
         </div>
     </div>
 </div>
+
+@section Scripts{ 
+<script src="~/jquery.simplePagination.js"></script>
 <script>
     var ShowVideo = function (data) {
         $('#video').html(data);
     }
+    $(function () {
+        var items = $("#AllBlogs").find(".blogpost");
+       
+        @*$('#pagination').pagination({
+            items: @Model.FirstOrDefault().TotalRecords,
+            itemsOnPage: 20,
+            cssStyle: 'light-theme',
+            onPageClick: function (pageNumber) {
+                $('#DivLoader_SMS').show();
+                // We need to show and hide `tr`s appropriately.
+                var promise = $.get('/Users/BindPagingBlog?pageNumber=' + (pageNumber - 1))
+                promise.done(function (data) {
+                    $("#AllBlogs").html(data);
+                    $('#DivLoader_SMS').hide();
+                })
+                //var showFrom = perPage * (pageNumber - 1);
+                //var showTo = showFrom + perPage;
+
+                //// We'll first hide everything...
+                //items.hide()
+                //    // ... and then only show the appropriate rows.
+                //    .slice(showFrom, showTo).show();
+            }
+        });*@
+    });
 </script>
+}

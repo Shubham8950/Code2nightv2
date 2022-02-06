@@ -47,7 +47,7 @@
                                 <li>
                                     <i class="fa fa-line-chart"></i>
                                     @*<p>@item.Title</p>*@
-                                    <p class="title"><a style="color: black;" target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></p>
+                                    <p class="title"><a style="color: black;" target="_blank" href="~/Blog/MyBlog/@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></p>
 
                                 </li>
                             </ul>
@@ -60,9 +60,9 @@
                             @foreach (var item in Model)
                             {
                                 <div class="image-box-body">
-                                    <h3 class="title"><a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></h3>
+                                    <h3 class="title"><a target="_blank" href="~/Blog/MyBlog/@System.Web.HttpUtility.UrlEncode(item.BlogUrl)">@item.Title</a></h3>
                                     <p></p>
-                                    <a target="_blank" href="~/Blog/MyBlog?id=@System.Web.HttpUtility.UrlEncode(item.BlogUrl)" class="link"><span>Read More</span></a>
+                                    <a target="_blank" href="~/Blog/MyBlog/@System.Web.HttpUtility.UrlEncode(item.BlogUrl)" class="link"><span>Read More</span></a>
                                 </div>
                             }
                         </div>

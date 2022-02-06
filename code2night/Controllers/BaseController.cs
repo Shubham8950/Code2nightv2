@@ -16,11 +16,11 @@ namespace Code2Night.Controllers
 {
     public class BaseController : Controller
     {
-        public const string Urls = "https://www.code2night.com/Blog/MyBlog?id=";
+        public const string Urls = "https://www.code2night.com/Blog/MyBlog/";
         public const string Urls2 = "https://www.code2night.com/Blog/MyBlog/";
         public const string TagUrl = "https://www.code2night.com/blog/tags/";
         public const string TopicUrl = "https://www.code2night.com/Tutorials/Article/";
-        public const string Urls1 = "https://code2night.com/Blog/MyBlog?id=";
+        public const string Urls1 = "https://code2night.com/Blog/MyBlog/";
         public const string TagUrl1 = "https://code2night.com/blog/tags/";
         public const string TopicUrl1 = "https://code2night.com/Tutorials/Article/";
         public const string JsonBeautifier = "https://www.code2night.com/JsonBeautifier";

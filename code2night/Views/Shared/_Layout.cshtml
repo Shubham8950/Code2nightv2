@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script asp-append-version="true" type='text/javascript' src='/plugins/jquery.min.js'></script>
-   
+
 
     <script data-ad-client="ca-pub-2622840091485569" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -83,6 +83,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
+    <link href="~/simplePagination.css" rel="stylesheet" />
 
     @RenderSection("Styles", false)
     <style>
@@ -137,12 +138,68 @@
                 font-family: Verdana,sans-serif,Geneva !important;
                 color: black;
             }
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        .loadersmallbg {
+            background: rgba(0, 0, 0, .2);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            z-index: 100;
+        }
+
+        .loadersmall {
+            border: 5px solid #f3f3f3;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+            border-top: 5px solid #555;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            z-index: 999;
+            position: fixed;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 450px;
+        }
+
+        @@keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .bg-gr {
+            background: rgba(191,191,191,0.6);
+            width: 100%;
+            padding: 0px;
+            position: fixed;
+            z-index: 99999;
+            height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+        }
     </style>
 </head>
 <body>
-    <amp-auto-ads type="adsense"
-                  data-ad-client="ca-pub-2622840091485569">
-    </amp-auto-ads>
+   
     <div class="header-top">
         <div class="container">
             <div class="row">
@@ -257,6 +314,9 @@
     </header>
     <div class="">
         @RenderBody()
+        <amp-auto-ads type="adsense"
+                      data-ad-client="ca-pub-2622840091485569">
+        </amp-auto-ads>
         <footer id="footer">
             <div class="footer">
                 <div class="container" style="margin-bottom:1%">
@@ -264,7 +324,8 @@
                         <div class="col-md-6">
                             <div class="footer-content">
                                 <div class="logo-footer">
-                                    <a href="@Url.Action("index","Users")"><img id="logo" src="/Content/images/logo_white.png" title="Code2night" alt="Code2night" style="height: 35px;"></a>
+                                    <a href="@Url.Action("index","Users")"
+<img id="logo" src="/Content/images/logo_white.png" title="Code2night" alt="Code2night" style="height: 35px;"></a>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -274,14 +335,14 @@
                                                 <a target="_blank" href="http://www.facebook.com/sharer.php?u=https://code2night.com"><i class="fa fa-facebook"></i></a>
                                             </li>
                                             @*<li class="reddit">
-                                                    <a target="_blank" href="http://reddit.com/submit?url=https://code2night.com&title=Code2Night"><i class="fa fa-reddit"></i></a>
-                                                </li>
-                                                <li class="linkedin">
-                                                    <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=https://code2night.com"><i class="fa fa-linkedin"></i></a>
-                                                </li>
-                                                <li class="tumblr">
-                                                    <a target="_blank" href="http://www.tumblr.com/share/link?url=https://code2night.com&title=Code2Night"><i class="fa fa-tumblr"></i></a>
-                                                </li>*@
+                                                <a target="_blank" href="http://reddit.com/submit?url=https://code2night.com&title=Code2Night"><i class="fa fa-reddit"></i></a>
+                                            </li>
+                                            <li class="linkedin">
+                                                <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=https://code2night.com"><i class="fa fa-linkedin"></i></a>
+                                            </li>
+                                            <li class="tumblr">
+                                                <a target="_blank" href="http://www.tumblr.com/share/link?url=https://code2night.com&title=Code2Night"><i class="fa fa-tumblr"></i></a>
+                                            </li>*@
                                         </ul>
                                     </div>
                                     <div class="col-sm-6">
@@ -318,11 +379,11 @@
                                         <li>
                                             @if (Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext) == null && string.IsNullOrEmpty(Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext)) || Encrypt.GetUserCookieValue("UserId", HttpContextAccessor.HttpContext) == "0")
                                             {
-                                                <a class="links" href="@Url.Action("Login","Users")"> Post Blog </a>
+                                            <a class="links" href="@Url.Action("Login","Users")"> Post Blog </a>
                                             }
                                             else
                                             {
-                                                <a class="links" href="/Blog/AddBlog"> Post Blog </a>
+                                            <a class="links" href="/Blog/AddBlog"> Post Blog </a>
                                             }
                                         </li>
 

@@ -1,0 +1,68 @@
+<h3 style="margin: 2rem 0px 1.5rem; letter-spacing: 0.238px; text-align: justify; background-color: rgb(250, 250, 250); color: rgb(24, 23, 23) !important; font-size: 18px !important;">FCM(Firebase Cloud Messaging)</h3><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(64, 60, 60); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; background-color: rgb(250, 250, 250);">Firebase is used for sending notifications or cloud messaging. For sending notifications on Android devices we must have a firebase account. After you create firebase account you will get your firebase server key. We will see the next steps&nbsp;</p><h3 style="margin: 2rem 0px 1.5rem; letter-spacing: 0.238px; text-align: justify; background-color: rgb(250, 250, 250); color: rgb(24, 23, 23) !important; font-size: 18px !important;">Controller-</h3><p style="margin-top: 1.5rem; margin-bottom: 1.5rem; color: rgb(64, 60, 60); font-size: 17px; text-align: justify; letter-spacing: 0.238px; font-family: Verdana, sans-serif, Geneva; background-color: rgb(250, 250, 250);">So, we will use</p><pre>https://fcm.googleapis.com/fcm/send</pre><p>This api for sending notifications, we will see how to pass required data and server key. So for this api you need to add some data which we will serialize and send with the request . So your Firebase model must be like this.</p><p><br></p><pre>public class FirebaseModel
+{
+        [JsonProperty(PropertyName = "to")]
+        public string To { get; set; }
+
+        [JsonProperty(PropertyName = "data")]
+        public NotificationModel Data { get; set; }
+}
+	
+public class NotificationModel
+{
+       
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("body")]
+        public string Body { get; set; }
+}</pre><p>Now, use this code for sending notifications on IOS, Sender Id and server key can be taken from FCM registration.</p><pre>FirebaseModel firebaseModel = new FirebaseModel();
+firebaseModel.Data = new NotificationModel();
+firebaseModel.To = "IOS Device Token";
+firebaseModel.Data.Body = "Test Notificaton";<br></pre><pre> WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+               tRequest.Method = "post";
+               
+               //serverKey - Key from Firebase cloud messaging server  
+				var serverKey ="Your server key"
+               tRequest.Headers.Add(string.Format("Authorization: key={0}", serverKey));
+               //Sender Id - From firebase project setting  
+				var senderId = "Enter your SenderId"; 
+               tRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
+               tRequest.ContentType = "application/json";
+               var totoken ="Enter your IOS Device Token";
+               var payload = new
+               {
+                   to = totoken,
+                   priority = "high",
+                   content_available = true,
+                   notification = new
+                   {
+                       body = firebaseModel.Data.Body,
+                       title = firebaseModel.Data.Title,
+                       badge = 1
+                   },
+                   data = firebaseModel
+	  
+               };
+	  
+               string postbody = JsonConvert.SerializeObject(payload).ToString();
+               Byte[] byteArray = Encoding.UTF8.GetBytes(postbody);
+               tRequest.ContentLength = byteArray.Length;
+               using (Stream dataStream = tRequest.GetRequestStream())
+               {
+                   dataStream.Write(byteArray, 0, byteArray.Length);
+                   using (WebResponse tResponse = tRequest.GetResponse())
+                   {
+                       using (Stream dataStreamResponse = tResponse.GetResponseStream())
+                       {
+                           if (dataStreamResponse != null) using (StreamReader tReader = new StreamReader(dataStreamResponse))
+                               {
+                                   String sResponseFromServer = tReader.ReadToEnd();
+                                   //result.Response = sResponseFromServer;
+                               }
+                       }
+                   }
+               }</pre><p>So here we are addng some dummy data with device token in the firebase model. Then we are serializing the data and sending to the fcm api.
+
+After this, you can check you will receive one fcm notification on the device for which device token was specified.
+
+So, this is how we can send fcm notifications using asp.net for IOS.</p>
+

@@ -7,9 +7,10 @@ namespace Code2Night.DAL.Interfaces
 {
     public interface IUserRepo
     {
+        Users CheckUserExists(string Email);
         List<Users> GetUsers();
 
-        int AddNewAccount(Users user);
+        int AddNewAccount(Users user, bool isSocialLogin = false);
 
         long ActivateAccount(Guid ActivationCode);
 

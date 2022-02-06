@@ -1,0 +1,413 @@
+<p>So, starting from the beginning we often use html audio , video tags for managing and playing music in our website. Which is bit complicated to use when it comes to user interface and easiness to use. Specially while working with songlist, it becomes hard for that to be managed in simple audio video html tags. So we need a better music player library to help us creating some better user interface for music player. So we will be using JPlayer for that purpose.</p><p><br></p><h3><b>jPlayer- Html5 Music Player</b></h3>
+<p>So, jPlayer is a html5 audio and video music player library using jquery. So we can use that accorss multiples languages without much issue. So for implementing jplayer first of all you need to place these folder in your project. We will provide these files in attachment which you can download later.</p><p><img src="/Uploads/jplayr20210904124003.PNG"></p><p>So, just have a look at the opened folder on right side, these are the needed jplayer libraries which we need to add in the project. After you have added this in you project you have to link those on your page.</p><p><br></p><pre> <link href="~/dist/skin/pink.flag/css/jplayer.pink.flag.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="~/lib/jquery.min.js"></script>
+     &lt;link href="~/dist/skin/pink.flag/css/jplayer.pink.flag.min.css" rel="stylesheet" type="text/css" /&gt;
+    &lt;script type="text/javascript" src="~/lib/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="~/dist/jplayer/jquery.jplayer.min.js"&gt;&lt;/script&gt;
+    &lt;script src="~/dist/add-on/jplayer.playlist.min.js"&gt;&lt;/script&gt;<script src="~/dist/jplayer/jquery.jplayer.min.js"></script>
+    <script src="~/dist/add-on/jplayer.playlist.min.js"></script></pre><p>After you have added these libraries on your webpage, we can now add rest of the code on the page.&nbsp;</p><pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        /*.jquery_jplayer_N{
+            display:none;
+        }*/
+    &lt;/style&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;!-- Website Design By: www.happyworm.com --&gt;
+    &lt;title&gt;Demo : The jPlayerPlaylist Object&lt;/title&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+    &lt;link href="~/dist/skin/pink.flag/css/jplayer.pink.flag.min.css" rel="stylesheet" type="text/css" /&gt;
+    &lt;script type="text/javascript" src="~/lib/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="~/dist/jplayer/jquery.jplayer.min.js"&gt;&lt;/script&gt;
+    &lt;script src="~/dist/add-on/jplayer.playlist.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+    //&lt;![CDATA[
+        $(document).ready(function () {
+
+
+
+            var myPlaylist = new jPlayerPlaylist({
+                jPlayer: "#jquery_jplayer_N",
+                cssSelectorAncestor: "#jp_container_N"
+            }, [
+                    {
+                        title: "Cro Magnon Man",
+                        artist: "The Stark Palace",
+                        mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+                        poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+                    },
+                    {
+                        title: "Your face",
+                        artist: "The Stark Palace2",
+                        mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
+                        poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+                    }
+                ], {
+                    playlistOptions: {
+                        enableRemoveControls: true
+                    },
+                    swfPath: "../../dist/jplayer",
+                    supplied: "webmv, ogv, m4v, oga, mp3",
+                    useStateClassSkin: true,
+                    autoBlur: false,
+                    smoothPlayBar: true,
+                    keyEnabled: true,
+                    audioFullScreen: true
+                });
+
+           
+            // The remove commands
+
+            $("#playlist-remove").click(function () {
+                myPlaylist.remove();
+            });
+
+            $("#playlist-remove--2").click(function () {
+                myPlaylist.remove(-2);
+            });
+            $("#playlist-remove--1").click(function () {
+                myPlaylist.remove(-1);
+            });
+            $("#playlist-remove-0").click(function () {
+                myPlaylist.remove(0);
+            });
+            $("#playlist-remove-1").click(function () {
+                myPlaylist.remove(1);
+            });
+            $("#playlist-remove-2").click(function () {
+                myPlaylist.remove(2);
+            });
+
+            // The shuffle commands
+
+            $("#playlist-shuffle").click(function () {
+                myPlaylist.shuffle();
+            });
+
+            $("#playlist-shuffle-false").click(function () {
+                myPlaylist.shuffle(false);
+            });
+            $("#playlist-shuffle-true").click(function () {
+                myPlaylist.shuffle(true);
+            });
+
+            // The select commands
+
+            $("#playlist-select--2").click(function () {
+                myPlaylist.select(-2);
+            });
+            $("#playlist-select--1").click(function () {
+                myPlaylist.select(-1);
+            });
+            $("#playlist-select-0").click(function () {
+                myPlaylist.select(0);
+            });
+            $("#playlist-select-1").click(function () {
+                myPlaylist.select(1);
+            });
+            $("#playlist-select-2").click(function () {
+                myPlaylist.select(2);
+            });
+
+            // The next/previous commands
+
+            $("#playlist-next").click(function () {
+                myPlaylist.next();
+            });
+            $("#playlist-previous").click(function () {
+                myPlaylist.previous();
+            });
+
+            // The play commands
+
+            $("#playlist-play").click(function () {
+                myPlaylist.play();
+            });
+
+            $("#playlist-play--2").click(function () {
+                myPlaylist.play(-2);
+            });
+            $("#playlist-play--1").click(function () {
+                myPlaylist.play(-1);
+            });
+            $("#playlist-play-0").click(function () {
+                myPlaylist.play(0);
+            });
+            $("#playlist-play-1").click(function () {
+                myPlaylist.play(1);
+            });
+            $("#playlist-play-2").click(function () {
+                myPlaylist.play(2);
+            });
+
+            // The pause command
+
+            $("#playlist-pause").click(function () {
+                myPlaylist.pause();
+            });
+
+            // Changing the playlist options
+
+            // Option: autoPlay
+
+            $("#playlist-option-autoPlay-true").click(function () {
+                myPlaylist.option("autoPlay", true);
+            });
+            $("#playlist-option-autoPlay-false").click(function () {
+                myPlaylist.option("autoPlay", false);
+            });
+
+            // Option: enableRemoveControls
+
+            $("#playlist-option-enableRemoveControls-true").click(function () {
+                myPlaylist.option("enableRemoveControls", true);
+            });
+            $("#playlist-option-enableRemoveControls-false").click(function () {
+                myPlaylist.option("enableRemoveControls", false);
+            });
+
+            // Option: displayTime
+
+            $("#playlist-option-displayTime-0").click(function () {
+                myPlaylist.option("displayTime", 0);
+            });
+            $("#playlist-option-displayTime-fast").click(function () {
+                myPlaylist.option("displayTime", "fast");
+            });
+            $("#playlist-option-displayTime-slow").click(function () {
+                myPlaylist.option("displayTime", "slow");
+            });
+            $("#playlist-option-displayTime-2000").click(function () {
+                myPlaylist.option("displayTime", 2000);
+            });
+
+            // Option: addTime
+
+            $("#playlist-option-addTime-0").click(function () {
+                myPlaylist.option("addTime", 0);
+            });
+            $("#playlist-option-addTime-fast").click(function () {
+                myPlaylist.option("addTime", "fast");
+            });
+            $("#playlist-option-addTime-slow").click(function () {
+                myPlaylist.option("addTime", "slow");
+            });
+            $("#playlist-option-addTime-2000").click(function () {
+                myPlaylist.option("addTime", 2000);
+            });
+
+            // Option: removeTime
+
+            $("#playlist-option-removeTime-0").click(function () {
+                myPlaylist.option("removeTime", 0);
+            });
+            $("#playlist-option-removeTime-fast").click(function () {
+                myPlaylist.option("removeTime", "fast");
+            });
+            $("#playlist-option-removeTime-slow").click(function () {
+                myPlaylist.option("removeTime", "slow");
+            });
+            $("#playlist-option-removeTime-2000").click(function () {
+                myPlaylist.option("removeTime", 2000);
+            });
+
+            // Option: shuffleTime
+
+            $("#playlist-option-shuffleTime-0").click(function () {
+                myPlaylist.option("shuffleTime", 0);
+            });
+            $("#playlist-option-shuffleTime-fast").click(function () {
+                myPlaylist.option("shuffleTime", "fast");
+            });
+            $("#playlist-option-shuffleTime-slow").click(function () {
+                myPlaylist.option("shuffleTime", "slow");
+            });
+            $("#playlist-option-shuffleTime-2000").click(function () {
+                myPlaylist.option("shuffleTime", 2000);
+            });
+
+            // Equivalent commands
+
+            $("#playlist-equivalent-1-a").click(function () {
+                myPlaylist.add({
+                    title: "Your Face",
+                    artist: "The Stark Palace",
+                    mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
+                    oga: "http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg",
+                    poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+                }, true);
+            });
+
+            $("#playlist-equivalent-1-b").click(function () {
+                myPlaylist.add({
+                    title: "Your Face",
+                    artist: "The Stark Palace",
+                    mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
+                    oga: "http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg",
+                    poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+                });
+                myPlaylist.play(-1);
+            });
+
+            // AVOID COMMANDS
+
+            $("#playlist-avoid-1").click(function () {
+                myPlaylist.remove(2); // Removes the 3rd item
+                myPlaylist.remove(3); // Ignored unless removeTime=0: Where it removes the 4th item, which was originally the 5th item.
+            });
+
+
+        });
+//]]&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="jp_container_N" class="jp-video jp-video-270p" role="application" aria-label="media player"&gt;
+        &lt;div class="jp-type-playlist"&gt;
+            &lt;div id="jquery_jplayer_N" class="jp-jplayer"&gt;&lt;/div&gt;
+            &lt;div class="jp-gui"&gt;
+                &lt;div class="jp-video-play"&gt;
+                    &lt;button class="jp-video-play-icon" role="button" tabindex="0"&gt;play&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="jp-interface"&gt;
+                    &lt;div class="jp-progress"&gt;
+                        &lt;div class="jp-seek-bar"&gt;
+                            &lt;div class="jp-play-bar"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="jp-current-time" role="timer" aria-label="time"&gt;&amp;nbsp;&lt;/div&gt;
+                    &lt;div class="jp-duration" role="timer" aria-label="duration"&gt;&amp;nbsp;&lt;/div&gt;
+                    &lt;div class="jp-details"&gt;
+                        &lt;div class="jp-title" aria-label="title"&gt;&amp;nbsp;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="jp-controls-holder"&gt;
+                        &lt;div class="jp-volume-controls"&gt;
+                            &lt;button class="jp-mute" role="button" tabindex="0"&gt;mute&lt;/button&gt;
+                            &lt;button class="jp-volume-max" role="button" tabindex="0"&gt;max volume&lt;/button&gt;
+                            &lt;div class="jp-volume-bar"&gt;
+                                &lt;div class="jp-volume-bar-value"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="jp-controls"&gt;
+                            &lt;button class="jp-previous" role="button" tabindex="0"&gt;previous&lt;/button&gt;
+                            &lt;button class="jp-play" role="button" tabindex="0"&gt;play&lt;/button&gt;
+                            &lt;button class="jp-stop" role="button" tabindex="0"&gt;stop&lt;/button&gt;
+                            &lt;button class="jp-next" role="button" tabindex="0"&gt;next&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class="jp-toggles"&gt;
+                            &lt;button class="jp-repeat" role="button" tabindex="0"&gt;repeat&lt;/button&gt;
+                            &lt;button class="jp-shuffle" role="button" tabindex="0"&gt;shuffle&lt;/button&gt;
+                            &lt;button class="jp-full-screen" role="button" tabindex="0"&gt;full screen&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="jp-playlist" &gt;
+                &lt;ul&gt;
+                    &lt;!-- The method Playlist.displayPlaylist() uses this unordered list --&gt;
+                    &lt;li&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            @*&lt;div class="jp-no-solution"&gt;
+                &lt;span&gt;Update Required&lt;/span&gt;
+                To play the media you will need to either update your browser to a recent version or update your &lt;a href="http://get.adobe.com/flashplayer/" target="_blank"&gt;Flash plugin&lt;/a&gt;.
+            &lt;/div&gt;*@
+        &lt;/div&gt;
+    &lt;/div&gt;
+   
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><div><br></div><p>Now, this is your complete webpage code which we need, have a look at this html</p><p><br></p><pre> &lt;div id="jp_container_N" class="jp-video jp-video-270p" role="application" aria-label="media player"&gt;
+        &lt;div class="jp-type-playlist"&gt;
+            &lt;div id="jquery_jplayer_N" class="jp-jplayer"&gt;&lt;/div&gt;
+            &lt;div class="jp-gui"&gt;
+                &lt;div class="jp-video-play"&gt;
+                    &lt;button class="jp-video-play-icon" role="button" tabindex="0"&gt;play&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="jp-interface"&gt;
+                    &lt;div class="jp-progress"&gt;
+                        &lt;div class="jp-seek-bar"&gt;
+                            &lt;div class="jp-play-bar"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="jp-current-time" role="timer" aria-label="time"&gt;&amp;nbsp;&lt;/div&gt;
+                    &lt;div class="jp-duration" role="timer" aria-label="duration"&gt;&amp;nbsp;&lt;/div&gt;
+                    &lt;div class="jp-details"&gt;
+                        &lt;div class="jp-title" aria-label="title"&gt;&amp;nbsp;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="jp-controls-holder"&gt;
+                        &lt;div class="jp-volume-controls"&gt;
+                            &lt;button class="jp-mute" role="button" tabindex="0"&gt;mute&lt;/button&gt;
+                            &lt;button class="jp-volume-max" role="button" tabindex="0"&gt;max volume&lt;/button&gt;
+                            &lt;div class="jp-volume-bar"&gt;
+                                &lt;div class="jp-volume-bar-value"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="jp-controls"&gt;
+                            &lt;button class="jp-previous" role="button" tabindex="0"&gt;previous&lt;/button&gt;
+                            &lt;button class="jp-play" role="button" tabindex="0"&gt;play&lt;/button&gt;
+                            &lt;button class="jp-stop" role="button" tabindex="0"&gt;stop&lt;/button&gt;
+                            &lt;button class="jp-next" role="button" tabindex="0"&gt;next&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class="jp-toggles"&gt;
+                            &lt;button class="jp-repeat" role="button" tabindex="0"&gt;repeat&lt;/button&gt;
+                            &lt;button class="jp-shuffle" role="button" tabindex="0"&gt;shuffle&lt;/button&gt;
+                            &lt;button class="jp-full-screen" role="button" tabindex="0"&gt;full screen&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="jp-playlist" &gt;
+                &lt;ul&gt;
+                    &lt;!-- The method Playlist.displayPlaylist() uses this unordered list --&gt;
+                    &lt;li&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            @*&lt;div class="jp-no-solution"&gt;
+                &lt;span&gt;Update Required&lt;/span&gt;
+                To play the media you will need to either update your browser to a recent version or update your &lt;a href="http://get.adobe.com/flashplayer/" target="_blank"&gt;Flash plugin&lt;/a&gt;.
+            &lt;/div&gt;*@
+        &lt;/div&gt;
+    &lt;/div&gt;</pre><p>We have to use this html in same way, because jplayer uses specific classes for it's working. So make sure we don't change anything in the html above and use the same. That will help us getting our music player ready.</p><pre>    var myPlaylist = new jPlayerPlaylist({
+                jPlayer: "#jquery_jplayer_N",
+                cssSelectorAncestor: "#jp_container_N"
+            }, [
+                    {
+                        title: "Cro Magnon Man",
+                        artist: "The Stark Palace",
+                        mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+                        poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+                    },
+                    {
+                        title: "Your face",
+                        artist: "The Stark Palace2",
+                        mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
+                        poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+                    }
+                ], {
+                    playlistOptions: {
+                        enableRemoveControls: true
+                    },
+                    swfPath: "../../dist/jplayer",
+                    supplied: "webmv, ogv, m4v, oga, mp3",
+                    useStateClassSkin: true,
+                    autoBlur: false,
+                    smoothPlayBar: true,
+                    keyEnabled: true,
+                    audioFullScreen: true
+                });</pre><p>So , this is the method we use of initializing our jPlayer. Remember we can change the song list from&nbsp;</p><pre>[
+                    {
+                        title: "Cro Magnon Man",
+                        artist: "The Stark Palace",
+                        mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+                        poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+                    },
+                    {
+                        title: "Your face",
+                        artist: "The Stark Palace2",
+                        mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
+                        poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+                    }
+                ]</pre><p>So, this array is used as the playlist with all the songs and their paths. So you can change that or create that dynamically to get your <b>jPlayer</b>-<b>music player</b> ready with dynamic songs. Finally , we will see this output</p><p><img src="/Uploads/jplayrdemo20210904124928.PNG"></p><p>So this is how it will look, Now you can enjoy music player with great interface accross your website, supporting multiple songs list. For the code sample you can download the attachments</p>
+
+

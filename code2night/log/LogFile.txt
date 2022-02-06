@@ -1,0 +1,3 @@
+1/31/2022 12:53:34 AM: Failed to get access token res: Bad Request
+1/31/2022 12:54:03 AM: Failed to get access token res: Bad Request
+2/5/2022 10:59:40 PM: {"access_token":"ya29.A0ARrdaM9J-jPbzXCMOX-LwXTnMAgvfKzBhUeY-7SNXE1YHxyD1PW4H_p3YWsHMLS1xblqppifkWJ9pGvINxbQEV87BRsuml3X9_KYmcXQUAI_yKfQ8QB6gMvz8_lhZ3q82MC2ZyoDOs7A0YRB9dnzVUZhrqv_SA","refresh_token":null,"scope":"https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email","token_type":"Bearer"}

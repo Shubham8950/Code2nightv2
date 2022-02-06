@@ -2001,6 +2001,7 @@ E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\build\scss\_users-list.scss
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\build\scss\_variables.scss
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\client_secret.json
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Code2nightnew_ccexpress.png
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\codemirror.css
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\codemirror.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\CodeMirrorOld.zip
@@ -2011,6 +2012,7 @@ E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\CodeMirrorOld\Placeholder.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\CodeMirrorOld\xml.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Common.js
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\Banner.jpeg
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\fonts\font-awesome\css\font-awesome.css
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\fonts\font-awesome\fonts\fontawesome-webfont3e6e.eot
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\fonts\font-awesome\fonts\fontawesome-webfont3e6e.html
@@ -2239,10 +2241,12 @@ E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\font\summernote.ttf
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\font\summernote.woff
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\font\summernote.woff2
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\GoogleSignIn.png
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\JavaScript.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\jquery.json-editor.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\jquery.json-viewer.css
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\jquery.json-viewer.js
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\jquery.simplePagination.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\js\BlogIndex.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\js\BlogIndex.min.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\js\code.min.js
@@ -2262,6 +2266,8 @@ E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\layoutTop.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\layouttopfixed.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\layouttopfixed.min.js
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\logoo.jpeg
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\logoo_ccexpress.png
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\plugins\charts\Chart.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\plugins\hover\hover-min.css
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\plugins\isotope\isotope.pkgd.min.js
@@ -2349,6 +2355,7 @@ E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\prism.css
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\prism.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\prism.min.css
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\simplePagination.css
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Site.css
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\summernote.css
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Tags\bootstrap-tokenfield.css
@@ -2384,6 +2391,7 @@ E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\Google.Apis.Auth.dll
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\Google.Apis.Core.dll
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\Google.Apis.YouTube.v3.dll
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\GoogleAuthentication.dll
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\GroupDocs.Viewer.dll
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\System.Web.Mvc.dll
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\System.Web.Razor.dll
