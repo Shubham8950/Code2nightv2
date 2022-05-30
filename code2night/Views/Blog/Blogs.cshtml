@@ -25,7 +25,7 @@
                     {
                             <div class="masonry-grid-item col-sm-6 col-md-4" id="mydiv">
                                 <article class="clearfix blogpost">
-                                    @if (blog.VideoEmbed != null)
+                                    @if (!string.IsNullOrWhiteSpace( blog.VideoEmbed))
                                     {
                                     <div class="embed-responsive embed-responsive-16by9">
                                         @Html.Raw(blog.VideoEmbed)

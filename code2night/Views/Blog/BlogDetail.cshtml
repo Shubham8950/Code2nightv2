@@ -223,7 +223,7 @@
 </header>
 <div class="blogpost-content" style="word-break:break-word">
 
-    @if (Model.MyBlog.VideoEmbed != null)
+    @if (!string.IsNullOrWhiteSpace(Model.MyBlog.VideoEmbed))
     {
         <div class="embed-responsive embed-responsive-16by9">
             @Html.Raw(Model.MyBlog.VideoEmbed)

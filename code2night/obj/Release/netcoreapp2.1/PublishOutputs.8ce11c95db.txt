@@ -2013,6 +2013,9 @@ E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\CodeMirrorOld\xml.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Common.js
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\Banner.jpeg
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\code2night-A.png
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\code2night-B.jpg
+E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\code2night-C.png
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\fonts\font-awesome\css\font-awesome.css
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\fonts\font-awesome\fonts\fontawesome-webfont3e6e.eot
 E:\Code2nightv2Git\Code2nightv2\code2night\obj\Release\netcoreapp2.1\PubTmp\Out\wwwroot\Content\fonts\font-awesome\fonts\fontawesome-webfont3e6e.html

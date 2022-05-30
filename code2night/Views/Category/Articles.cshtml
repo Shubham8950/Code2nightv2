@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="" style="width:100%">
-                <h2 class="title">Topics</h2>
+                <h2 class="title">Articles</h2>
                 <hr>
                 <div class="form-horizontal">
                     @using (Html.BeginForm("SaveArticle", "Category", FormMethod.Post, new { @enctype = "multipart/form-data" }))
@@ -90,7 +90,7 @@
             {
                 <tr>
                     <td>
-                        @item.articleid
+                        @(Model.GetArticles.IndexOf(item)+1)
                     </td>
                     <td>
                         @item.articletitle
