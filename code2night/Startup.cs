@@ -42,7 +42,8 @@ namespace Code2Night
                 options.Level = CompressionLevel.Fastest;
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddMvc();
+            services.AddRazorPages();
             services.AddTransient<IBlog, BlogRepo>();
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IFeedback, FeedbackRepo>();
@@ -76,6 +77,7 @@ namespace Code2Night
             app.UseSession();
             app.UseStaticFiles();
             app.UseHttpsRedirection();
+            app.UseRouting();
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = ctx =>
@@ -99,11 +101,17 @@ namespace Code2Night
                 }
             });
             app.UseCookiePolicy();
-            app.UseMvc(routes =>
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Users}/{action=index}/{id?}");
+            //});
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Users}/{action=index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "Default",
+                    pattern: "{controller=Users}/{action=index}/{id?}");
             });
         }
     }
