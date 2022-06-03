@@ -1,0 +1,15 @@
+﻿document.writeln("<script type='text/javascript' src='/bootstrap/js/bootstrap.min.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/modernizr.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/rs-plugin/js/jquery.themepunch.tools.min.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/isotope/isotope.pkgd.min.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/owl-carousel/owl.carousel.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/magnific-popup/jquery.magnific-popup.min.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/jquery.appear.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/jquery.countTo.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/jquery.parallax-1.1.3.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/jquery.browser.js'></script>");
+document.writeln("<script type='text/javascript' src='/plugins/SmoothScroll.js'></script>");
+document.writeln("<script type='text/javascript' src='/js/custom.js'></script>");
+document.writeln("<script type='text/javascript' src='/js/template.js'></script>");
+document.writeln("<script type='text/javascript' src='/Sharee.js'></script>");
