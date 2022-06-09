@@ -29,12 +29,19 @@ namespace Code2Night
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    options.CheckConsentNeeded = context => false;
+            //    options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
+            //});
+            services.ConfigureApplicationCookie(options =>
             {
-                options.CheckConsentNeeded = context => false;
-                options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
-            });
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromDays(1);
 
+                options.SlidingExpiration = true;
+            });
             services.AddMvc().AddSessionStateTempDataProvider();
             services.AddSession();
             services.Configure<GzipCompressionProviderOptions>(options =>
